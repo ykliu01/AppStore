@@ -25,4 +25,6 @@ urlpatterns = [
     path('add', app.views.add, name='add'),
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
+    path('myCalculators/<str:id>',app.views.myCalculator, name='myCalculators'),
+    path('editAvailability/<str:id>',app.view.editAvailability, name='editAvailability')
 ]

@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect
 from django.db import connection
 
@@ -9,7 +10,7 @@ def index(request):
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM customers WHERE customerid = %s", [request.POST['id']])
+                cursor.execute("DELETE FROM calculator cal WHERE cal.owner = %s", [request.POST['id']]) # Delete calculator entry
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
@@ -88,5 +89,40 @@ def edit(request, id):
 
     context["obj"] = obj
     context["status"] = status
+ 
+    return render(request, "app/edit.html", context)
+
+# Select all customrs from cetrain id
+def myCalculators(request, id):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM calculator cal WHERE cal.owner = %s", [id])
+        calculator = cursor.fetchall()
+        cursor.execute("SELECT cal.serial_no, cal.type FROM loan l, calculator cal WHERE l.borrower_id = %s AND l.owner_id = cal.owner", [id])
+        loaned = cursor.fetchall()
+        result_dict = {'calculators': calculator, 'loaned': loaned}
+
+    return render(request,'app/myCalculators.html',result_dict)
+
+def editAvailability(request, id):
+    context ={}
+
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT serial_no, availaibility FROM calculator WHERE calculator.owner = %s', [id])
+        spec_avail = cursor.fetchall()
+        
+
+    spec_status = ''
+    # save the data from the form
+
+    if request.POST:
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculator.owner = %s",[request.POST['availability']], id)
+            spec_status = 'Customer edited successfully!'
+            cursor.execute("SELECT serial_no, availaibility FROM calculator WHERE calculator.owner = %s", [id])
+            spec_avail = cursor.fetchone()
+
+
+    context["spec_avail"] = spec_avail
+    context["status"] = spec_status
  
     return render(request, "app/edit.html", context)

@@ -1,0 +1,21 @@
+<html>
+<body>
+    <h2>Edit Availability</h2>
+    <a href="/">Back to home</a>
+
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        {{for calculator in spec_avail}}
+        <!-- form -->
+            <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
+            Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="first_name" maxlength="64" value={{spec_avail.0}}class="textinput textInput" required="" id="id_first_name"> </div> </div>
+            <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
+            Availability<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="first_name" maxlength="64" value={{spec_avail.1}}class="textinput textInput" required="" id="id_first_name"> </div> </div> 
+            <br>
+        <button type="submit" value="Update">Edit Availability</button>
+    </form>
+</body>
+</html>
