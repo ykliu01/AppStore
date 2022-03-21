@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+    
+<!--
+takes in student_timings, n by 2 table of timings and counts, n is top n to be displayed. for now 5.
+timing table likely clickable and redirect to find calculator page
+takes in student_locations, n by 3 table of id, code and name. n is all locations. 
+group by and count location in student table, then fetch with id from location table
+-->
+
+    
+    
+<body>
+    <h1>Calcurator</h1>
+    <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+    <br/><br/>
+    
+    <h2>Hot Timings</h2>
+     <table border=1>
+        <thead>
+            <th>Timing</th>
+        </thead>
+        {% for time in student_timings %}
+        <tr>
+            <td> {{ time.0 }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <h2>Hot Locations</h2>
+    <table border=1>
+        <thead>
+            <th>Location ID</th>
+            <th>MRT Code</th>
+            <th>Location Name</th>
+        </thead>
+        {% for loc in student_locations %}
+        <tr>
+            <td> {{ loc.0 }} </td>
+            <td> {{ loc.1 }} </td>
+            <td> {{ loc.2 }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
