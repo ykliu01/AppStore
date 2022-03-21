@@ -25,3 +25,14 @@ CREATE TABLE IF NOT EXISTS games(
  version CHAR(3),
  PRIMARY KEY (customerid, name, version),
  FOREIGN KEY (name, version) REFERENCES games(name, version) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED);
+ 
+ CREATE TABLE IF NOT EXISTS locations(
+ location_id INT PRIMARY KEY,
+ mrt_code VARCHAR(16) UNIQUE,
+ location_name VARCHAR(64) NOT NULL);
+
+ CREATE TABLE IF NOT EXISTS test_students(
+ id INT PRIMARY KEY,
+ time INT,
+ location_id INT REFERENCES locations(location_id));
+ 
