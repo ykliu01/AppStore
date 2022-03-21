@@ -126,3 +126,14 @@ def editAvailability(request, id):
     context["status"] = spec_status
  
     return render(request, "app/edit.html", context)
+# view hot locations
+def hot(request):
+    """Shows the main page"""
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT s.time, COUNT (*) FROM test_students s GROUP BY s.time ORDER BY COUNT DESC LIMIT 5;")
+        timings = cursor.fetchall()
+        cursor.execute("SELECT * FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM test_students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC;")
+        locations = cursor.fetchall()
+    result_dict = {'student_timings': timings,
+                  'student_locations': locations}
+    return render(request,'app/hot.html',result_dict)
