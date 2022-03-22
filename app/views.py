@@ -97,7 +97,7 @@ def myCalculators(request, id):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM calculators cal WHERE cal.owner_id = %s", [id])
         calculator = cursor.fetchall()
-        cursor.execute("SELECT cal.serial_number, cal.type FROM loan l, calculators cal WHERE l.borrower_id = %s AND l.owner_id = cal.owner_id", [id])
+        cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_id = %s AND l.owner_id = cal.owner_id", [id])
         loaned = cursor.fetchall()
         result_dict = {'calculators': calculator, 'loaned': loaned}
 
