@@ -95,9 +95,9 @@ def edit(request, id):
 # Select all customrs from cetrain id
 def myCalculators(request, id):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM calculator cal WHERE cal.owner = %s", [id])
+        cursor.execute("SELECT * FROM calculators cal WHERE cal.owner_id = %s", [id])
         calculator = cursor.fetchall()
-        cursor.execute("SELECT cal.serial_no, cal.type FROM loan l, calculator cal WHERE l.borrower_id = %s AND l.owner_id = cal.owner", [id])
+        cursor.execute("SELECT cal.serial_number, cal.type FROM loan l, calculators cal WHERE l.borrower_id = %s AND l.owner_id = cal.owner_id", [id])
         loaned = cursor.fetchall()
         result_dict = {'calculators': calculator, 'loaned': loaned}
 
@@ -107,7 +107,7 @@ def editAvailability(request, id):
     context ={}
 
     with connection.cursor() as cursor:
-        cursor.execute('SELECT serial_no, availaibility FROM calculator WHERE calculator.owner = %s', [id])
+        cursor.execute('SELECT serial_number, availaibility FROM calculators WHERE calculators.owner_id = %s', [id])
         spec_avail = cursor.fetchall()
         
 
@@ -116,9 +116,9 @@ def editAvailability(request, id):
 
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculator.owner = %s",[request.POST['availability']], id)
+            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculators.owner_id = %s",[request.POST['availability']], id)
             spec_status = 'Customer edited successfully!'
-            cursor.execute("SELECT serial_no, availaibility FROM calculator WHERE calculator.owner = %s", [id])
+            cursor.execute("SELECT serial_no, availaibility FROM calculator WHERE calculator.owner_id = %s", [id])
             spec_avail = cursor.fetchone()
 
 
@@ -126,6 +126,7 @@ def editAvailability(request, id):
     context["status"] = spec_status
  
     return render(request, "app/edit.html", context)
+
 # view hot locations
 def hot(request):
     """Shows the main page"""
