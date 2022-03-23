@@ -10,31 +10,45 @@ def index(request):
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM calculator cal WHERE cal.owner = %s", [request.POST['id']]) # Delete calculator entry
+                cursor.execute("DELETE FROM students WHERE student_id = %s", [request.POST['id']])
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers ORDER BY customerid")
+        cursor.execute("SELECT * FROM students ORDER BY student_id")
         customers = cursor.fetchall()
 
     result_dict = {'records': customers}
 
-    return render(request,'app/index.html',result_dict)
+    return render(request,'app/Login.html',result_dict)
 
 # Create your views here.
 def view(request, id):
     """Shows the main page"""
     
-    ## Use raw query to get a customer
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+        cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
         customer = cursor.fetchone()
-    result_dict = {'cust': customer}
+    result_dict = {'stud': student}
 
     return render(request,'app/view.html',result_dict)
 
 # Create your views here.
-def add(request):
+def login(request):
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                return redirect('login')    
+            else:
+                return redirect('index')
+
+
+# Create your views here.
+def register(request):
     """Shows the main page"""
     context = {}
     status = ''
@@ -43,22 +57,22 @@ def add(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM customers WHERE customerid = %s", [request.POST['customerid']])
+            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
             customer = cursor.fetchone()
             ## No customer with same id
             if customer == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO customers VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                        , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
-                           request.POST['dob'] , request.POST['since'], request.POST['customerid'], request.POST['country'] ])
+                cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s, %s, %s)"
+                        , request.POST['email'], request.POST['student_id'], request.POST['pass'],
+                           request.POST['first_name'] , request.POST['last_name'], request.POST['dob'])
                 return redirect('index')    
             else:
-                status = 'Customer with ID %s already exists' % (request.POST['customerid'])
+                status = 'Username %s taken' % (request.POST['student_id'])
 
 
     context['status'] = status
  
-    return render(request, "app/add.html", context)
+    return render(request, "app/Register.html", context)
 
 # Create your views here.
 def edit(request, id):
@@ -70,7 +84,7 @@ def edit(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+        cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
@@ -79,11 +93,11 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE customers SET first_name = %s, last_name = %s, email = %s, dob = %s, since = %s, country = %s WHERE customerid = %s"
+            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, email = %s, dob = %s, WHERE student_id = %s"
                     , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
                         request.POST['dob'] , request.POST['since'], request.POST['country'], id ])
-            status = 'Customer edited successfully!'
-            cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+            status = 'Student edited successfully!'
+            cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
             obj = cursor.fetchone()
 
 
