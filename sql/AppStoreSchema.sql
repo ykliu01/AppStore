@@ -15,7 +15,7 @@ last_name VARCHAR(64) NOT NULL,
 email VARCHAR(64) UNIQUE NOT NULL,
 pass VARCHAR(64) NOT NULL,
 admin_rights BOOLEAN DEFAULT FALSE,
-time_availability TIME,
+time_availability INT CHECK (time_availability > 0 AND 2400 > time_availability),
 number_of_transaction INT DEFAULT 0,
 location_id INT REFERENCES locations(location_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED);
 
