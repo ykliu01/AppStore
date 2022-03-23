@@ -21,7 +21,7 @@ import app.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app.views.login, name='Login'),
+    path('login/', app.views.login, name='login'),
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
     path('myCalculators/<str:id>',app.views.myCalculator, name='myCalculators'),
