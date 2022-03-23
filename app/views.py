@@ -14,7 +14,7 @@ def index(request):
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students ORDER BY customerid")
+        cursor.execute("SELECT * FROM students ORDER BY student_id")
         customers = cursor.fetchall()
 
     result_dict = {'records': customers}
@@ -43,7 +43,7 @@ def add(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['customerid']])
+            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
             customer = cursor.fetchone()
             ## No customer with same id
             if customer == None:
@@ -53,7 +53,7 @@ def add(request):
                            request.POST['dob'] , request.POST['since'], request.POST['student_id'], request.POST['country'] ])
                 return redirect('index')    
             else:
-                status = 'Customer with ID %s already exists' % (request.POST['customerid'])
+                status = 'Customer with ID %s already exists' % (request.POST['student_id'])
 
 
     context['status'] = status
@@ -79,7 +79,7 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE customers SET first_name = %s, last_name = %s, email = %s, dob = %s, since = %s, country = %s WHERE customerid = %s"
+            cursor.execute("UPDATE customers SET first_name = %s, last_name = %s, email = %s, dob = %s, since = %s, country = %s WHERE student_id = %s"
                     , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
                         request.POST['dob'] , request.POST['since'], request.POST['country'], id ])
             status = 'Customer edited successfully!'
