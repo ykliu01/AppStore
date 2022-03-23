@@ -15,7 +15,7 @@ group by and count location in student table, then fetch with id from location t
     <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
     <br/><br/>
     
-    <h2>Hot Timings</h2>
+    <h2>Top 5 Popular Timings</h2>
      <table border=1>
         <thead>
             <th>Timing</th>
@@ -27,18 +27,16 @@ group by and count location in student table, then fetch with id from location t
         {% endfor %}
     </table>
     
-    <h2>Hot Locations</h2>
+    <h2>List of locations ranked by popularity</h2>
     <table border=1>
         <thead>
             <th>Location ID</th>
-            <th>MRT Code</th>
             <th>Location Name</th>
         </thead>
         {% for loc in student_locations %}
         <tr>
             <td> {{ loc.0 }} </td>
             <td> {{ loc.1 }} </td>
-            <td> {{ loc.2 }} </td>
         </tr>
         {% endfor %}
     </table>
