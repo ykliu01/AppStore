@@ -22,7 +22,7 @@ import app.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', app.views.login, name='Login'),
-    path('add', app.views.add, name='add'),
+    """"path('add', app.views.add, name='add'),"""
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
     path('myCalculators/<str:id>',app.views.myCalculator, name='myCalculators'),
