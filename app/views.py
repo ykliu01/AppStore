@@ -19,7 +19,7 @@ def index(request):
 
     result_dict = {'records': customers}
 
-    return render(request,'app/index.html',result_dict)
+    return render(request,'app/Login.html',result_dict)
 
 # Create your views here.
 def view(request, id):
