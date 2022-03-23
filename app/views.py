@@ -10,11 +10,11 @@ def index(request):
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM calculator cal WHERE cal.owner = %s", [request.POST['id']]) # Delete calculator entry
+                cursor.execute("DELETE FROM calculators cal WHERE cal.owner = %s", [request.POST['id']]) # Delete calculator entry
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers ORDER BY customerid")
+        cursor.execute("SELECT * FROM students ORDER BY customerid")
         customers = cursor.fetchall()
 
     result_dict = {'records': customers}
@@ -27,7 +27,7 @@ def view(request, id):
     
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+        cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
         customer = cursor.fetchone()
     result_dict = {'cust': customer}
 
@@ -43,14 +43,14 @@ def add(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM customers WHERE customerid = %s", [request.POST['customerid']])
+            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['customerid']])
             customer = cursor.fetchone()
             ## No customer with same id
             if customer == None:
                 ##TODO: date validation
                 cursor.execute("INSERT INTO customers VALUES (%s, %s, %s, %s, %s, %s, %s)"
                         , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
-                           request.POST['dob'] , request.POST['since'], request.POST['customerid'], request.POST['country'] ])
+                           request.POST['dob'] , request.POST['since'], request.POST['student_id'], request.POST['country'] ])
                 return redirect('index')    
             else:
                 status = 'Customer with ID %s already exists' % (request.POST['customerid'])
@@ -70,7 +70,7 @@ def edit(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+        cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
@@ -83,7 +83,7 @@ def edit(request, id):
                     , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
                         request.POST['dob'] , request.POST['since'], request.POST['country'], id ])
             status = 'Customer edited successfully!'
-            cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+            cursor.execute("SELECT * FROM student WHERE student_id = %s", [id])
             obj = cursor.fetchone()
 
 
@@ -95,9 +95,9 @@ def edit(request, id):
 # Select all customrs from cetrain id
 def myCalculators(request, id):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM calculator cal WHERE cal.owner = %s", [id])
+        cursor.execute("SELECT * FROM calculators cal WHERE cal.owner = %s", [id])
         calculator = cursor.fetchall()
-        cursor.execute("SELECT cal.serial_no, cal.type FROM loan l, calculator cal WHERE l.borrower_id = %s AND l.owner_id = cal.owner", [id])
+        cursor.execute("SELECT cal.serial_number, cal.type FROM loan l, calculators cal WHERE l.borrower_id = %s AND l.owner_id = cal.owner_id", [id])
         loaned = cursor.fetchall()
         result_dict = {'calculators': calculator, 'loaned': loaned}
 
@@ -107,7 +107,7 @@ def editAvailability(request, id):
     context ={}
 
     with connection.cursor() as cursor:
-        cursor.execute('SELECT serial_no, availaibility FROM calculator WHERE calculator.owner = %s', [id])
+        cursor.execute('SELECT serial_number, availaibility FROM calculators WHERE calculator.owner_id = %s', [id])
         spec_avail = cursor.fetchall()
         
 
@@ -118,7 +118,7 @@ def editAvailability(request, id):
         with connection.cursor() as cursor:
             cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculator.owner = %s",[request.POST['availability']], id)
             spec_status = 'Customer edited successfully!'
-            cursor.execute("SELECT serial_no, availaibility FROM calculator WHERE calculator.owner = %s", [id])
+            cursor.execute("SELECT serial_number, availaibility FROM calculator WHERE calculator.owner_id = %s", [id])
             spec_avail = cursor.fetchone()
 
 
