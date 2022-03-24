@@ -30,7 +30,7 @@ urlpatterns = [
     path('myCalculators/<str:id>',app.views.myCalculator, name='myCalculators'),
     path('editAvailability/<str:id>',app.view.editAvailability, name='editAvailability'),
     path('hot', app.views.hot, name='hot'),
-    path('myCalculators/<str:id>/addCalculator', app.views.addCalculator, name='addCalculator')
+    path('myCalculators/<str:id>/addCalculator', app.views.addCalculator, name='addCalculator'),
     path('findCalculators/<str:id>/findCalculators', app.views.findCalculators, name='findCalculators')
 ]
 
