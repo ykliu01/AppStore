@@ -38,7 +38,7 @@ def login(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
+            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['student_id']])
             student = cursor.fetchone()
             ## No customer with same id
             if student == None:
@@ -58,7 +58,7 @@ def register(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
+            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['student_id']])
             student = cursor.fetchone()
             ## No customer with same id
             if student == None:
@@ -68,7 +68,7 @@ def register(request):
                            request.POST['first_name'] , request.POST['last_name'], request.POST['dob'])
                 return redirect('index')    
             else:
-                status = 'Username %s taken' % (request.POST['student_id'])
+                status = 'Account under %s exist' % (request.POST['student_id'])
 
 
     context['status'] = status
