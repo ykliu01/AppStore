@@ -1,0 +1,35 @@
+<html>
+<body>
+    <h2>Add New Calculator</h2>
+    <a href="/">Back to home</a>
+
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_id_serial_number" class="control-group"> <label for="id_serial_number" class="control-label requiredField">
+        Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="serial_number" maxlength="32" class="textinput textInput" required="" id="id_serial_number"> </div> </div> <div id="div_id_calc_type" class="control-group"> <label for="id_calc_type" class="control-label requiredField">
+        Calculator Type<span class="asteriskField">*</span> </label> <div class="controls"> <input list='id_calc_type' type="text" name="id_calc_type" maxlength="64" class="textinput textInput" required="" id="id_calc_type"> 
+        <datalist id='id_calc_type'>
+            <option value='scientific'>
+            <option value='graphing'>
+            <option value='financial'>
+        </datalist>
+        </div> </div> <div id="div_id_price" class="control-group"> <label for="id_price" class="control-label requiredField">
+        Price<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="price" maxlength="64" class="textinput textInput" required="" id="id_calc_type"> </div> </div> <div id="div_id_calc_condition" class="control-group"> <label for="id_calc_condition" class="control-label requiredField">
+        Calculator Condition<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="dob" class="textInput textInput" required="" id="id_calc_condition"> </div> </div> <div id="div_id_availability" class="control-group"> <label for="id_availability" class="control-label requiredField">
+        Availability<span class="asteriskField">*</span> </label> <div class="controls"> <input list='id_availability' type="text" name="id_availability" class="textInput textInput" required="" id="id_availability"> </div> </div> 
+        <datalist id='id_availability'>
+            <option value='Available'>
+            <option value='Unavailable'>
+        </datalist>
+        <div id="div_id_student_id" class="control-group"> <label for="id_student_id" class="control-label requiredField">
+        Student ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="student_id" maxlength="64" class="textinput textInput" required="" id="id_student_id"> </div> </div>
+        <br>
+        <button type="submit" value="Add">Add</button>
+    </form>
+</body>
+</html>
+

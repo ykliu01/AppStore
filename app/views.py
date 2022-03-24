@@ -152,3 +152,29 @@ def hot(request):
     result_dict = {'student_timings': timings,
                   'student_locations': locations}
     return render(request,'app/hot.html',result_dict)
+
+def addCalculator(request):
+    """Adds a calculator to id"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT serial_number FROM calculators WHERE calculators = %s", [request.POST['serial_number']])
+            serial_number = cursor.fetchone()
+            ## No customer with same id
+            if serial_number == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s)"
+                        , [request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
+                           request.POST['calc_condition'] , request.POST['availability'], request.POST['sutdent_id']])
+                return redirect('index')    
+            else:
+                status = 'Student with ID %s already exists' % (request.POST['student_id'])
+
+
+    context['status'] = status
+ 
+    return render(request, "app/addCalculator.html", context)
