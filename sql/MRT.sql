@@ -140,3 +140,6 @@ INSERT INTO locations(location_id,location_name) VALUES (139,'Upper Changi');
 INSERT INTO locations(location_id,location_name) VALUES (140,'Expo');
 INSERT INTO locations(location_id,location_name) VALUES (141,'Woodlands North');
 INSERT INTO locations(location_id,location_name) VALUES (142,'Woodlands South');
+INSERT INTO locations(location_id,location_name) VALUES (143,'Canberra');
+INSERT INTO locations(location_id,location_name) VALUES (144,'MacPherson');
+INSERT INTO locations(location_id,location_name) VALUES (145,'Gul Circle');

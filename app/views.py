@@ -15,11 +15,11 @@ def index(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM students ORDER BY student_id")
-        customers = cursor.fetchall()
+        students = cursor.fetchall()
 
-    result_dict = {'records': customers}
+    result_dict = {'records': students}
 
-    return render(request,'app/Login.html',result_dict)
+    return render(request,'app/index.html',result_dict)
 
 # Create your views here.
 def view(request, id):
@@ -27,7 +27,7 @@ def view(request, id):
     
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
-        customer = cursor.fetchone()
+        student = cursor.fetchone()
     result_dict = {'stud': student}
 
     return render(request,'app/view.html',result_dict)
@@ -38,13 +38,14 @@ def login(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
-            customer = cursor.fetchone()
+            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['student_id']])
+            student = cursor.fetchone()
             ## No customer with same id
-            if customer == None:
-                return redirect('login')    
+            if student == None:
+                return redirect('app/register.html')    
             else:
                 return redirect('index')
+    return render(request,'app/login.html')
 
 
 # Create your views here.
@@ -57,22 +58,22 @@ def register(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
-            customer = cursor.fetchone()
+            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['student_id']])
+            student = cursor.fetchone()
             ## No customer with same id
-            if customer == None:
+            if student == None:
                 ##TODO: date validation
                 cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s, %s, %s)"
                         , request.POST['email'], request.POST['student_id'], request.POST['pass'],
                            request.POST['first_name'] , request.POST['last_name'], request.POST['dob'])
                 return redirect('index')    
             else:
-                status = 'Username %s taken' % (request.POST['student_id'])
+                status = 'Account under %s exist' % (request.POST['student_id'])
 
 
     context['status'] = status
  
-    return render(request, "app/Register.html", context)
+    return render(request, "app/register.html", context)
 
 # Create your views here.
 def edit(request, id):
@@ -145,9 +146,9 @@ def editAvailability(request, id):
 def hot(request):
     """Shows the main page"""
     with connection.cursor() as cursor:
-        cursor.execute("SELECT s.time, COUNT (*) FROM test_students s GROUP BY s.time ORDER BY COUNT DESC LIMIT 5;")
+        cursor.execute("SELECT s.time_availability, COUNT (*) FROM students s GROUP BY s.time_availability ORDER BY COUNT DESC LIMIT 5;")
         timings = cursor.fetchall()
-        cursor.execute("SELECT * FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM test_students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC;")
+        cursor.execute("SELECT * FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC;")
         locations = cursor.fetchall()
     result_dict = {'student_timings': timings,
                   'student_locations': locations}

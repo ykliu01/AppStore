@@ -2,16 +2,16 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: url(bg2.jpg);
+    background: url('../../static/app/images/bg2.jpg');
     background-size: 750px;
-    background-position: center
+    background-position: center;
 }
 
 .loginbox{
     width: 320px;
-    height: 720px;
+    height: 420px;
     background: #000;
-    color: #fff;
+    color: rgb(66, 57, 57);
     top: 50%;
     left: 50%;
     position: absolute;
@@ -47,7 +47,7 @@ h1{
     margin-bottom: 20px;
 }
 
-.loginbox input[type="text"], input[type="password"], input[type="email"]{
+.loginbox input[type="text"], input[type="password"]{
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -78,6 +78,7 @@ h1{
     font-size: 12px;
     line-height: 20px;
     color: darkgrey;
+    text-align: center;
 }
 
 .loginbox p[class="message"]{
