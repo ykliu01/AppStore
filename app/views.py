@@ -42,7 +42,7 @@ def login(request):
             customer = cursor.fetchone()
             ## No customer with same id
             if customer == None:
-                return redirect('login')    
+                return redirect('app/register.html')    
             else:
                 return redirect('index')
     return render(request,'app/login.html')
