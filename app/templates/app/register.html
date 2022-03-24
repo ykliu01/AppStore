@@ -14,22 +14,18 @@
                 Register Here
            </h1>
            <form action="login" method="POST">{% csrf_token %}
-                <p>Email</p>
-                <input type="email" name="" placeholder="Enter Email" required>
-                <p>Username</p>
-                <input type="text" name="" placeholder="Enter Username" required>
-                <p>Password</p>
-                <input type="password" name="" placeholder="Enter Password" required minlength="8">
-                <p>First Name</p>
-                <input type="text" name="first_name" maxlength="64" class="textinput textInput" required="" id="id_first_name" placeholder="Enter First Name">
-                <p>Last Name</p>
-                <input type="text" name="last_name" maxlength="64" class="textinput textInput" required="" id="id_last_name" placeholder="Enter Last Name"> 
-                <p>Date of Birth</p>
-                <input type="date" name="dob" class="dateinput" required="" id="id_dob">
-                      
-                <input type="submit" name="" value="Register">
-                <p class="message"> Already have an account? <a href="login"> Login </a> </p>
-
+               <p>First Name</p>
+               <input type="text" name="first_name" maxlength="64" class="textinput textInput" required="" id="id_first_name" placeholder="Enter First Name">
+               <p>Last Name</p>
+               <input type="text" name="last_name" maxlength="64" class="textinput textInput" required="" id="id_last_name" placeholder="Enter Last Name"> 
+               <p>Email</p>
+               <input type="email" name="" placeholder="Enter Email" required>
+               <p>Password</p>
+               <input type="password" name="" placeholder="Enter Password" required minlength="8">
+               <p>Date of Birth</p>
+               <input type="date" name="dob" class="dateinput" required="" id="id_dob">
+               <input type="submit" name="" value="Register">
+               <p class="message"> Already have an account? <a href="login"> Login </a> </p>
            </form>
         </div>
     </body>
