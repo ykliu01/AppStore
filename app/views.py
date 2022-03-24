@@ -15,9 +15,9 @@ def index(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM students ORDER BY student_id")
-        customers = cursor.fetchall()
+        students = cursor.fetchall()
 
-    result_dict = {'records': customers}
+    result_dict = {'records': students}
 
     return render(request,'app/index.html',result_dict)
 
@@ -27,7 +27,7 @@ def view(request, id):
     
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
-        customer = cursor.fetchone()
+        student = cursor.fetchone()
     result_dict = {'stud': student}
 
     return render(request,'app/view.html',result_dict)
@@ -39,9 +39,9 @@ def login(request):
         with connection.cursor() as cursor:
 
             cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
-            customer = cursor.fetchone()
+            student = cursor.fetchone()
             ## No customer with same id
-            if customer == None:
+            if student == None:
                 return redirect('app/register.html')    
             else:
                 return redirect('index')
@@ -59,9 +59,9 @@ def register(request):
         with connection.cursor() as cursor:
 
             cursor.execute("SELECT * FROM students WHERE student_id = %s", [request.POST['student_id']])
-            customer = cursor.fetchone()
+            student = cursor.fetchone()
             ## No customer with same id
-            if customer == None:
+            if student == None:
                 ##TODO: date validation
                 cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s, %s, %s)"
                         , request.POST['email'], request.POST['student_id'], request.POST['pass'],
