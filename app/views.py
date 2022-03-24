@@ -45,6 +45,7 @@ def login(request):
                 return redirect('login')    
             else:
                 return redirect('index')
+    return render(request,'app/login.html')
 
 
 # Create your views here.
