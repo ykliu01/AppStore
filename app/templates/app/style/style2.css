@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: url('../../static/app/images/bg2.jpg');
+    background: url("{% static 'app/images/bg2.jpg' %}");
     background-size: 750px;
     background-position: center
 }
