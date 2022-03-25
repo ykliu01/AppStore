@@ -2,46 +2,89 @@
 <html>
 <body>
     <h1>Find Calculators</h1>
-    <a href="/">Back to homepage</a>
-
+    <a href="/">Back to home</a>
     <p style="color:red">{{ status|safe }}</p>
 
     <!-- Create a Form -->
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
+        <br>
         <!-- form -->
-        <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
-        Location<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="first_name" value="{{obj.0}}" maxlength="64" class="textinput textInput" required="" id="id_first_name"> </div> </div> <div id="div_id_last_name" class="control-group"> <label for="id_last_name" class="control-label requiredField">
-        Time<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="last_name" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_last_name"> </div> </div> <div id="div_id_email" class="control-group"> <label for="id_email" class="control-label requiredField">
-        Calculator Type<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="email" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_email"> </div> </div> <div id="div_id_dob" class="control-group"> <label for="id_dob" class="control-label requiredField">
+        Location
+        <span class="asteriskField">*</span> </label> <div class="controls"> <input list='id_location' type="text" name="id_location" maxlength="64" class="textinput textInput" required="" id="id_location">
+    
+        <br>
+        <br>
+
+        Time
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+                <div class="dropdown-content">
+                    <a href="#">00.00-00.59</a>
+                    <a href="#">01.00-01.59</a>
+                    <a href="#">02.00-02.59</a>
+                    <a href="#">03.00-03.59</a>
+                    <a href="#">04.00-04.59</a>
+                    <a href="#">05.00-05.59</a>
+                    <a href="#">06.00-06.59</a>
+                    <a href="#">07.00-07.59</a>
+                    <a href="#">08.00-08.59</a>
+                    <a href="#">09.00-09.59</a>
+                    <a href="#">10.00-10.59</a>
+                    <a href="#">11.00-11.59</a>
+                    <a href="#">12.00-12.59</a>
+                    <a href="#">13.00-13.59</a>
+                    <a href="#">14.00-14.59</a>
+                    <a href="#">15.00-15.59</a>
+                    <a href="#">16.00-16.59</a>
+                    <a href="#">17.00-17.59</a>
+                    <a href="#">18.00-18.59</a>
+                    <a href="#">19.00-19.59</a>
+                    <a href="#">20.00-20.59</a>
+                    <a href="#">21.00-21.59</a>
+                    <a href="#">22.00-22.59</a>
+                    <a href="#">23.00-23.59</a>
+            </div>
+          </div>
+        <br>
+        
+        Calculator Type
+        <span class="asteriskField">*</span> </label> <div class="controls"> <input list='id_calc_type' type="text" name="id_calc_type" maxlength="64" class="textinput textInput" required="" id="id_calc_type"> 
+            <datalist id='id_calc_type'>
+                <option value='scientific'>
+                <option value='graphing'>
+                <option value='financial'>
+            </datalist>
 
         <br>
+        <br>
         <button type="button">Find Available Calculators</button>
+        <input type="reset" value="Reset">
     </form>
 
     <h2>Results</h2>
     <table border=1>
         <thead>
-            <th>location_name</th>
-            <th>time_availability</th>
-            <th>calculator_type</th>
+            <th>brand</th>
+            <th>serial_number</th>
+            <th>price</th>
+            <th>calc_condition</th>
             <th>student_id</th>
             <th>first_name</th>
             <th>last_name</th>
             <th>email</th>
         </thead>
-        {}
         <tr>
-            <td> {{ xxx MRT }} </td>
-            <td> {{ 5-6 P.M. }} </td>
-            <td> {{ Casio }} </td>
-            <td> {{ W231XJ }} </td>
-            <td> {{ Bruce }} </td>
-            <td> {{ Wayne }} </td>
-            <td> {{ totallynotbatman@gmail.com }} </td>
+            <td> {{  }} </td>
+            <td> {{  }} </td>
+            <td> {{  }} </td>
+            <td> {{  }} </td>
+            <td> {{  }} </td>
+            <td> {{  }} </td>
+            <td> {{  }} </td>
+            <td> {{  }} </td>
         </tr>
-        {}
     </table>
 
 </body>
