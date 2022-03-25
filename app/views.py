@@ -28,7 +28,7 @@ def view(request, id):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
         student = cursor.fetchone()
-    result_dict = {'stud': student}
+    result_dict = {'student': student}
 
     return render(request,'app/view.html',result_dict)
 
@@ -93,9 +93,9 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, email = %s, dob = %s, WHERE student_id = %s"
+            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, email = %s, time_availability = %s, location_id = %s WHERE student_id = %s"
                     , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
-                        request.POST['dob'] , request.POST['since'], request.POST['country'], id ])
+                        request.POST['time_availability'] , request.POST['location_id'], id ])
             status = 'Student edited successfully!'
             cursor.execute("SELECT * FROM students WHERE student_id = %s", [id])
             obj = cursor.fetchone()
