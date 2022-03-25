@@ -8,7 +8,7 @@
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
-        {for calculator in spec_avail}
+        {% for calculator in spec_avail %}
         <!-- form -->
             <div id="div_id_serial_number" class="control-group"> <label for="id_serial_number" class="control-label requiredField">
             Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="serial_number" maxlength="64" value={{spec_avail.0}}class="textinput textInput" required="" id="id_serial_number"> </div> </div>
