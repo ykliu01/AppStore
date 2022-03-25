@@ -2,7 +2,7 @@
 <html>
 <body>
     <h1>Find Calculators</h1>
-    <a href="/">Back to home</a>
+    <a href="/">Back to homepage</a>
     <p style="color:red">{{ status|safe }}</p>
 
     <!-- Create a Form -->
@@ -59,7 +59,8 @@
 
         <br>
         <br>
-        <button type="button">Find Available Calculators</button>
+
+        <button type="submit" value="submit">Find Available Calculators</button>
         <input type="reset" value="Reset">
     </form>
 
@@ -70,12 +71,14 @@
             <th>serial_number</th>
             <th>price</th>
             <th>calc_condition</th>
-            <th>student_id</th>
+            <th>location_name</th>
+            <th>time_availability</th>
             <th>first_name</th>
             <th>last_name</th>
             <th>email</th>
         </thead>
         <tr>
+            <td> {{  }} </td>
             <td> {{  }} </td>
             <td> {{  }} </td>
             <td> {{  }} </td>
