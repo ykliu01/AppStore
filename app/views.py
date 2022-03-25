@@ -38,11 +38,11 @@ def login(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['student_id']])
+            cursor.execute("SELECT * FROM students WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
             student = cursor.fetchone()
             ## No customer with same id
             if student == None:
-                return redirect('app/register.html')    
+                return redirect('register')    
             else:
                 return redirect('index')
     return render(request,'app/login.html')
@@ -58,17 +58,16 @@ def register(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['student_id']])
+            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['email']])
             student = cursor.fetchone()
             ## No customer with same id
             if student == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s, %s, %s)"
-                        , request.POST['email'], request.POST['student_id'], request.POST['pass'],
-                           request.POST['first_name'] , request.POST['last_name'], request.POST['dob'])
+                cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s, %s)"
+                        , [request.POST['student_id'], request.POST['first_name'] ,request.POST['last_name'], request.POST['email'], request.POST['pass']])
                 return redirect('index')    
             else:
-                status = 'Account under %s exist' % (request.POST['student_id'])
+                status = 'Account under %s exist' % (request.POST['email'])
 
 
     context['status'] = status
