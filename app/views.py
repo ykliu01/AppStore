@@ -170,10 +170,10 @@ def addCalculator(request):
                 ##TODO: date validation
                 cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s)"
                         , [request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
-                           request.POST['calc_condition'] , request.POST['availability'], request.POST['sutdent_id']])
+                           request.POST['calc_condition'] , request.POST['availability'], request.POST['student_id']])
                 return redirect('index')    
             else:
-                status = 'Student with ID %s already exists' % (request.POST['student_id'])
+                status = 'Calculator with serial number %s already exists' % (request.POST['serial_number'])
 
 
     context['status'] = status
