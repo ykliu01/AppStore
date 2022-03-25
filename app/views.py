@@ -139,7 +139,7 @@ def editAvailability(request, id):
     context["spec_avail"] = spec_avail
     context["status"] = spec_status
  
-    return render(request, "index")
+    return render(request, "app/editAvailability.html")
 
 # view hot locations
 def hot(request):
