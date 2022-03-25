@@ -122,7 +122,7 @@ def editAvailability(request, id):
     context ={}
 
     with connection.cursor() as cursor:
-        cursor.execute('SELECT serial_number, availaibility FROM calculators WHERE calculators.owner_id = %s', [id])
+        cursor.execute('SELECT serial_number, availaibility FROM calculators WHERE calculators.serial_number = %s', [id])
         spec_avail = cursor.fetchall()
         
 
@@ -131,16 +131,16 @@ def editAvailability(request, id):
 
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculators.owner_id = %s",[request.POST['availability']], id)
+            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculators.serial_number = %s",[request.POST['availability']], id)
             spec_status = 'Availability edited successfully!'
-            cursor.execute("SELECT serial_no, availaibility FROM calculator WHERE calculator.owner_id = %s", [id])
-            spec_avail = cursor.fetchall()
+            cursor.execute("SELECT serial_no, availaibility, owner_id FROM calculator WHERE calculator.serial_number = %s", [id])
+            spec_avail = cursor.fetchone()
 
 
     context["spec_avail"] = spec_avail
     context["status"] = spec_status
  
-    return render(request, "app/edit.html", context)
+    return render(request, "index")
 
 # view hot locations
 def hot(request):
