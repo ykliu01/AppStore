@@ -184,4 +184,4 @@ def addCalculator(request):
 def findCalculators(request):
     """Shows the main page"""
     #with connection.cursor() as cursor:
-    return render(request,'app/findCalculators.html.html')
+    return render(request,'app/findCalculators.html')
