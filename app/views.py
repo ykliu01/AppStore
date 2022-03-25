@@ -132,9 +132,9 @@ def editAvailability(request, id):
     if request.POST:
         with connection.cursor() as cursor:
             cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculators.owner_id = %s",[request.POST['availability']], id)
-            spec_status = 'Customer edited successfully!'
+            spec_status = 'Availability edited successfully!'
             cursor.execute("SELECT serial_no, availaibility FROM calculator WHERE calculator.owner_id = %s", [id])
-            spec_avail = cursor.fetchone()
+            spec_avail = cursor.fetchall()
 
 
     context["spec_avail"] = spec_avail
@@ -154,7 +154,7 @@ def hot(request):
                   'student_locations': locations}
     return render(request,'app/hot.html',result_dict)
 
-def addCalculator(request):
+def addCalculator(request, id):
     """Adds a calculator to id"""
     context = {}
     status = ''
@@ -170,8 +170,8 @@ def addCalculator(request):
                 ##TODO: date validation
                 cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s)"
                         , [request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
-                           request.POST['calc_condition'] , request.POST['availability'], request.POST['student_id']])
-                return redirect('index')    
+                           request.POST['calc_condition'] , request.POST['availability'], [id]])
+                return redirect('index')
             else:
                 status = 'Calculator with serial number %s already exists' % (request.POST['serial_number'])
 
