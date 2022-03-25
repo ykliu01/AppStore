@@ -121,7 +121,7 @@ def editAvailability(request, id):
     context ={}
 
     with connection.cursor() as cursor:
-        cursor.execute('SELECT serial_number, availaibility FROM calculators WHERE calculators.serial_number = %s', [id])
+        cursor.execute('SELECT serial_number, availability FROM calculators WHERE calculators.serial_number = %s', [id])
         spec_avail = cursor.fetchall()
         
 
