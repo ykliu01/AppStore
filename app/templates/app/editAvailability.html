@@ -1,14 +1,13 @@
 <html>
 <body>
     <h2>Edit Availability for Serial Number: {{id}}</h2>
-    <a href="/">Back to home</a>
+    <a href="/index">Back to home</a>
 
     <p style="color:red">{{ status|safe }}</p>
     <!-- Create a Form -->
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
-        {% for calculator in spec_avail %}
         <!-- form -->
             <div id="div_id_serial_number" class="control-group"> <label for="id_serial_number" class="control-label requiredField">
             Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="serial_number" maxlength="64" value={{spec_avail.0}}class="textinput textInput" required="" id="id_serial_number"> </div> </div>
@@ -16,7 +15,6 @@
             Availability<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="availability" maxlength="64" value={{spec_avail.1}}class="textinput textInput" required="" id="id_availability"> </div> </div> 
             <br>
         <button type="submit" value="Update">Edit Availability</button>
-        {% endfor %}
     </form>
 </body>
 </html>
