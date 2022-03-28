@@ -162,7 +162,7 @@ def addCalculator(request, id):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT serial_number FROM calculators WHERE calculators = %s", [request.POST['serial_number']])
+            cursor.execute("SELECT serial_number FROM calculators WHERE calculators.serial_number = %s", [request.POST['serial_number']])
             serial_number = cursor.fetchone()
             ## No customer with same id
             if serial_number == None:
