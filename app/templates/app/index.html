@@ -5,7 +5,6 @@
     <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
     <!--<a href="add">New customer</a>-->
     <a href="hot">Hot Timings/Locations</a>
-    <!--<a href="myCalculators">My Calculators</a>-->
     <a href="findCalculators">Find Available Calculators</a>
     <br/><br/>
     <table border=1>
@@ -31,7 +30,7 @@
             <td>
                 <a href="view/{{student.0}}"><button>View</button></a> | 
                 <a href="edit/{{student.0}}"><button>Edit</button></a>
-                | 
+                <a href="myCalculators/{{student.0}}">My Calculators</a>
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{student.0}}"/>
