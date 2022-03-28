@@ -9,6 +9,8 @@
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
+        <div id="div_id_brand" class="control-group"> <label for="id_brand" class="control-label requiredField">
+        Brand<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="brand" maxlength="32" class="textinput textInput" required="" id="id_brand"> </div> </div>
         <div id="div_id_serial_number" class="control-group"> <label for="id_serial_number" class="control-label requiredField">
         Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="serial_number" maxlength="32" class="textinput textInput" required="" id="id_serial_number"> </div> </div> <div id="div_id_calc_type" class="control-group"> <label for="id_calc_type" class="control-label requiredField">
         Calculator Type<span class="asteriskField">*</span> </label> <div class="controls"> <input list="id_calc_type" type="text" name="id_calc_type" maxlength="64" class="textinput textInput" required="" id="id_calc_type"> 

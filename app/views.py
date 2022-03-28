@@ -167,8 +167,8 @@ def addCalculator(request, id):
             ## No customer with same id
             if serial_number == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s)"
-                        , [request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
+                cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        ,[request.POST['serial_number'] , request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
                            request.POST['calc_condition'] , request.POST['availability'], [id]])
                 return redirect('index')
             else:
