@@ -26,7 +26,8 @@ calc_type VARCHAR(64) NOT NULL CHECK (calc_type = 'scientific' OR calc_type = 'g
 price INT,
 calc_condition VARCHAR(64),
 availability VARCHAR(64) NOT NULL CHECK (availability = 'available' OR availability = 'not available'),
-owner_id INT REFERENCES students(student_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+owner_id INT,
+FOREIGN KEY (owner_id) REFERENCES students(student_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
 PRIMARY KEY (brand, serial_number));
 
 CREATE TABLE IF NOT EXISTS loan(
