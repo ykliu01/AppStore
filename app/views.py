@@ -10,11 +10,11 @@ def index(request):
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM students WHERE student_username = %s", [request.POST['id']])
+                cursor.execute("DELETE FROM students WHERE username = %s", [request.POST['id']])
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students ORDER BY student_username")
+        cursor.execute("SELECT * FROM students ORDER BY username")
         students = cursor.fetchall()
 
     result_dict = {'records': students}
