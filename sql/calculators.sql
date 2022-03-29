@@ -1,2 +1,2 @@
-INSERT INTO calculators VALUES ('texas', '1a2b', 'graphing', 100, 'good', 'available', 1);
+INSERT INTO calculators VALUES ('texas', '1a2b', 'graphing', 100, 'good', 'available', 'eromanetti0');
 
