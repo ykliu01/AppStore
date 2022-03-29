@@ -1,2 +1,2 @@
-INSERT INTO loan VALUES (1, '2022-01-03', '2022-02-04', 1, 2, 3, 4);
+INSERT INTO loan VALUES (1, 2100, 2130, 1, 2, 3, 4);
 
