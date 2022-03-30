@@ -3,14 +3,14 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-  background: {% static 'app/images/bg2.jpg' %};
+    background: {% static 'app/images/bg2.jpg' %};
     background-size: 750px;
     background-position: center
 }
 
 .loginbox{
     width: 320px;
-    height: 720px;
+    height: 550px;
     background: #000;
     color: #fff;
     top: 50%;
