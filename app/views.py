@@ -10,11 +10,11 @@ def index(request):
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM students WHERE username = %s", [request.POST['id']])
+                cursor.execute("DELETE FROM students WHERE email = %s", [request.POST['id']])
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students ORDER BY username")
+        cursor.execute("SELECT * FROM students ORDER BY first_name, last_name")
         students = cursor.fetchall()
 
     result_dict = {'records': students}
@@ -26,7 +26,7 @@ def view(request, id):
     """Shows the main page"""
     
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students WHERE username = %s", [id])
+        cursor.execute("SELECT * FROM students WHERE email = %s", [id])
         student = cursor.fetchone()
     result_dict = {'student': student}
 
@@ -55,19 +55,19 @@ def register(request):
     status = ''
 
     if request.POST:
-        ## Check if username is already in the table
+        ## Check if email is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM students WHERE username = %s", [request.POST['username']])
+            cursor.execute("SELECT * FROM students WHERE email = %s", [request.POST['email']])
             student = cursor.fetchone()
-            ## No student with same username
+            ## No student with same email
             if student == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s, %s)"
-                        , [request.POST['username'], request.POST['first_name'] ,request.POST['last_name'], request.POST['email'], request.POST['pass']])
+                cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s)"
+                        , request.POST['email'], request.POST['first_name'] ,request.POST['last_name'], request.POST['pass']])
                 return redirect('index')    
             else:
-                status = 'Username %s taken' % (request.POST['username'])
+                status = 'Email %s taken' % (request.POST['email'])
 
 
     context['status'] = status
@@ -84,7 +84,7 @@ def edit(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students WHERE username = %s", [id])
+        cursor.execute("SELECT * FROM students WHERE email = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
@@ -93,11 +93,11 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, email = %s, time_availability = %s, location_id = %s WHERE username = %s"
-                    , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
+            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s"
+                    , [request.POST['first_name'], request.POST['last_name'],
                         request.POST['time_availability'] , request.POST['location_id'], id ])
             status = 'Student edited successfully!'
-            cursor.execute("SELECT * FROM students WHERE username = %s", [id])
+            cursor.execute("SELECT * FROM students WHERE email = %s", [id])
             obj = cursor.fetchone()
 
 
@@ -109,9 +109,9 @@ def edit(request, id):
 # Select all customrs from cetrain id
 def myCalculators(request, id):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM calculators cal WHERE cal.owner_username = %s", [id])
+        cursor.execute("SELECT * FROM calculators cal WHERE cal.owner_email = %s", [id])
         calculator = cursor.fetchall()
-        cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_username = %s AND l.owner_username = cal.owner_username", [id])
+        cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_email = %s AND l.owner_email = cal.owner_email", [id])
         loaned = cursor.fetchall()
         result_dict = {'calculators': calculator, 'loaned': loaned}
 
