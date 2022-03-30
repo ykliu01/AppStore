@@ -32,6 +32,6 @@ psql ${URI} -f sql/AppStoreClean.sql
 psql ${URI} -f sql/AppStoreSchema.sql
 psql ${URI} -f sql/AppStoreTestStudents.sql
 psql ${URI} -f sql/MRT.sql
-#psql ${URI} -f sql/students.sql
-#psql ${URI} -f sql/calculators.sql
-#psql ${URI} -f sql/loan.sql
+psql ${URI} -f sql/students.sql
+psql ${URI} -f sql/calculators.sql
+psql ${URI} -f sql/loan.sql
