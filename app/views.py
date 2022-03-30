@@ -64,7 +64,7 @@ def register(request):
             if student == None:
                 ##TODO: date validation
                 cursor.execute("INSERT INTO students VALUES (%s, %s, %s, %s)"
-                        , request.POST['email'], request.POST['first_name'] ,request.POST['last_name'], request.POST['pass']])
+                        , [request.POST['email'], request.POST['first_name'] ,request.POST['last_name'], request.POST['pass']])
                 return redirect('index')    
             else:
                 status = 'Email %s taken' % (request.POST['email'])
