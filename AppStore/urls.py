@@ -21,8 +21,17 @@ import app.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app.views.index, name='index'),
-    path('add', app.views.add, name='add'),
+    path('login', app.views.login, name='login'), # think both lines needed for redirect 
+    path('', app.views.login, name='login'),
+    path('register', app.views.register, name='register'),
+    path('index', app.views.index, name='index'),
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
+    path('myCalculators/<str:id>',app.views.myCalculators, name='myCalculators'),
+    path('myCalculators/editAvailability/<str:id>',app.views.editAvailability, name='editAvailability'),
+    path('hot', app.views.hot, name='hot'),
+    path('myCalculators/<str:id>/addCalculator', app.views.addCalculator, name='addCalculator'),
+    #path('findCalculators/<str:id>/findCalculators', app.views.findCalculators, name='findCalculators')
 ]
+
+""""path('add', app.views.add, name='add'),"""

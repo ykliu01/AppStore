@@ -1,30 +1,38 @@
 {% load static %}
 <html>
 <body>
-    <h2>Customers in the App Store</h2>
+    <h2>Calcurator</h2>
     <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
-    <a href="add">New customer</a>
+    <!--<a href="add">New customer</a>-->
+    <a href="hot">Hot Timings/Locations</a>
+    <a href="findCalculators">Find Available Calculators</a>
     <br/><br/>
     <table border=1>
         <thead>
-            <th>ID</th>
+            <th>Email</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Preferred timing</th>
+            <th>Completed transactions</th>
+            <th>Preferred location id</th>
             <th>Action</th>
         </thead>
-        {% for cust in records %}
+        {% for student in records %}
         <tr>
-            <td> {{ cust.5 }} </td>
-            <td> {{ cust.0 }} </td>
-            <td> {{ cust.1 }} </td>
+            <td> {{ student.0 }} </td>
+            <td> {{ student.1 }} </td>
+            <td> {{ student.2 }} </td>
+            <td> {{ student.5 }} </td>
+            <td> {{ student.6 }} </td>
+            <td> {{ student.7 }} </td>
             <td>
-                <a href="view/{{cust.5}}"><button>View</button></a> | 
-                <a href="edit/{{cust.5}}"><button>Edit</button></a>
-                | 
+                <a href="view/{{student.0}}"><button>View</button></a> | 
+                <a href="edit/{{student.0}}"><button>Edit</button></a>
+                <a href="myCalculators/{{student.0}}">My Calculators</a>
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
-                <input type="hidden" name="id" value="{{cust.5}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{cust.5}}?');" type="submit" name="action" value="delete">Delete</button> 
+                <input type="hidden" name="id" value="{{student.0}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{student.0}}?');" type="submit" name="action" value="delete">Delete</button> 
               </form></td>
         </tr>
         {% endfor %}

@@ -1,43 +1,48 @@
 <html>
 <body>
-    <h2>Details for {{cust.0}} {{cust.1}}</h2>
-    <a href="/">Back to home</a>
+    <h2>Details for {{student.1}} {{student.2}}</h2>
+    <a href="../index">Back to home</a>
     <br/><br/>
     <table style='text-align:left'>
         <tr>
             <th>ID</th>
             <td>:</td>
-            <td> {{ cust.5 }} </td>
+            <td> {{ student.0 }} </td>
         </tr>
         <tr>
             <th>First name</th>
             <td>:</td>
-            <td> {{ cust.0 }} </td>
+            <td> {{ student.1 }} </td>
         </tr>
         <tr>
             <th>Last name</th>
             <td>:</td>
-            <td> {{ cust.1 }} </td>
+            <td> {{ student.2 }} </td>
         </tr>
         <tr>
             <th>Email</th>
             <td>:</td>
-            <td> {{ cust.2 }} </td>
+            <td> {{ student.3 }} </td>
         </tr>
         <tr>
-            <th>Date of birth</th>
+            <th>Admin rights</th>
             <td>:</td>
-            <td> {{ cust.3 }} </td>
+            <td> {{ student.5 }} </td>
         </tr>
         <tr>
-            <th>Since</th>
+            <th>Preferred timing</th>
             <td>:</td>
-            <td> {{ cust.4 }} </td>
+            <td> {{ student.6 }} </td>
         </tr>
         <tr>
-            <th>Country</th>
+            <th>Transactions completed</th>
             <td>:</td>
-            <td> {{ cust.6 }} </td>
+            <td> {{ student.7 }} </td>
+        </tr>
+        <tr>
+            <th>Preferred location</th>
+            <td>:</td>
+            <td> {{ student.8 }} </td>
         </tr>
     </table>
 </body>

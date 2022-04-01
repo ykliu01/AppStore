@@ -1,0 +1,42 @@
+{% load static %}
+<html>
+<body>
+    <h2>My Calculators</h2>
+    <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+    <br/><br/>
+    <h2>Calculators Lent Out</h2>
+    <table border=1>
+        <thead>
+            <th>Serial Number</th>
+            <th>Type</th>
+        </thead>
+        {% for calculator in calculators %}
+        <tr>
+            <td> {{ calculator.1 }} </td>
+            <td> {{ calculator.2 }} </td>
+            <td>
+                <a href="editAvailability/{{calculator.1}}"><button>Edit Availability</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{cust.5}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{calculator.1}}}? Make sure you have taken back your calculator');" type="submit" name="action" value="delete">Delete</button> 
+                </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Calculators borrowed</h2>
+    <table border=1>
+        <thead>
+            <th>Serial Number</th>
+            <th>Type</th>
+        </thead>
+        {% for loan in loaned %}
+        <tr>
+            <td> {{loan.0}} </td>
+            <td> {{loan.1}} </td>
+        {% endfor %}
+    </table>
+    <a href="/myCalculators/{{calculators.0.1}}/addCalculator">Add a Calculator</a>
+</body>
+</html>
