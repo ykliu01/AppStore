@@ -34,17 +34,10 @@ def view(request, id):
 
 # Create your views here.
 def login(request):
-    if request.POST:
-        ## Check if customerid is already in the table
-        with connection.cursor() as cursor:
-
-            cursor.execute("SELECT * FROM students WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
-            student = cursor.fetchone()
-            ## No customer with same id
-            if student == None:
-                return redirect('register')    
-            else:
-                return redirect('index')
+    if request.POST['email']=="brucewayne@gmail.com" and request.POST['pass']=="batmanbatman":
+        return redirect('index')   
+    else:
+        return redirect('login')
     return render(request,'app/login.html')
 
 
