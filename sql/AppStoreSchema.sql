@@ -41,6 +41,12 @@ CREATE TABLE IF NOT EXISTS test_students(
 id INT PRIMARY KEY,
 time INT,
 location_id INT REFERENCES locations(location_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED);
+
+CREATE TABLE IF NOT EXISTS admin(
+email VARCHAR(64) PRIMARY KEY,
+pass VARCHAR(64) NOT NULL;
+
+INSERT INTO admin(email, pass) VALUES ('brucewayne@gmail.com','batmanbatman'); 
  
 
  
