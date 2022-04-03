@@ -38,10 +38,10 @@ def login(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM admin WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
-            admin = admin.fetchone()
+            cursor.execute("SELECT * FROM admin_account WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
+            admin_account = admin_account.fetchone()
             ## No customer with same id
-            if admin == None:
+            if admin_account == None:
                 return redirect('register')    
             else:
                 return redirect('index')
