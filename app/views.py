@@ -113,7 +113,7 @@ def myCalculators(request, id):
         calculator = cursor.fetchall()
         cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_email = %s AND l.owner_email = cal.email", [id])
         loaned = cursor.fetchall()
-        result_dict = {'calculators': calculator, 'loaned': loaned}
+        result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
 
     return render(request,'app/myCalculators.html',result_dict)
 
