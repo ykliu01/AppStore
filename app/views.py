@@ -130,9 +130,9 @@ def editAvailability(request, id):
 
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculators.serial_number = %s",[request.POST['availability']], id)
+            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculators.serial_number = %s",[request.POST['availability']], [id])
             spec_status = 'Availability edited successfully!'
-            cursor.execute("SELECT serial_no, availaibility, owner_id FROM calculators WHERE calculator.serial_number = %s", [id])
+            cursor.execute("SELECT serial_no, availaibility, email FROM calculators WHERE calculator.serial_number = %s", [id])
             spec_avail = cursor.fetchone()
 
 
