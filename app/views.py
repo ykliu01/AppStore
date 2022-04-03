@@ -39,7 +39,7 @@ def login(request):
         with connection.cursor() as cursor:
 
             cursor.execute("SELECT * FROM admin_account WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
-            admin_account = admin_account.fetchone()
+            admin_account = cursor.fetchone()
             ## No customer with same id
             if admin_account == None:
                 return redirect('register')    
