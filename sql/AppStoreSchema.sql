@@ -1,3 +1,4 @@
+
 /*******************
 
   Create the schema
@@ -41,6 +42,4 @@ CREATE TABLE IF NOT EXISTS test_students(
 id INT PRIMARY KEY,
 time INT,
 location_id INT REFERENCES locations(location_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED);
- 
-
  

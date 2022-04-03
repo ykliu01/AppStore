@@ -162,13 +162,13 @@ def addCalculator(request, id):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT serial_number FROM calculators WHERE calculators = %s", [request.POST['serial_number']])
+            cursor.execute("SELECT serial_number FROM calculators WHERE calculators.serial_number = %s", [request.POST['serial_number']])
             serial_number = cursor.fetchone()
             ## No customer with same id
             if serial_number == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s)"
-                        , [request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
+                cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        ,[request.POST['brand'] , request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
                            request.POST['calc_condition'] , request.POST['availability'], [id]])
                 return redirect('index')
             else:
