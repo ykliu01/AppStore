@@ -12,11 +12,12 @@
                 
             </div>
             <nav>
+                {% for student in records %}
                 <ul id="MenuItems">
                     <li><a href="homepage.html">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="findCalculators">Find Calculator</a></li>
-                    <li><a href="myCalculators.html">My Calculator</a></li>
+                    <li><a href="myCalculators/{{student.0}}">My Calculator</a></li>
                     <li><a href="hot">Hot Area</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
