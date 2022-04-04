@@ -53,6 +53,11 @@ nav .links a{
     font-weight: bold;
     color: white;
     text-decoration: none;
+    transition: all .3s ease 0s;
+}
+
+nav .links a:hover{
+    color: #113e85;
 }
 
 #nav-toggle{
