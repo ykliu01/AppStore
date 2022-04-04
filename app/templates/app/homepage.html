@@ -1,36 +1,28 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Calcurator</title>
-    <link rel="stylesheet" href="{% static 'app/style/style-homepage.css' %}">
+    <link rel="stylesheet" href="style-homepage.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
 </head>
 <body>
-    <div class="main">
-        <div class="navbar">
-            <div class="icon">
-                
-            </div>
-            <nav>
-                <ul id="MenuItems">
-                    
-                    <li><a href="homepage">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="findCalculators">Find Calculator</a></li>
-                    <li><a href="myCalculators">My Calculator</a></li>
-                    <li><a href="hot">Hot Area</a></li>
-                    <li><a href="#">Contact</a></li>
-                    
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <div class="menu">
-        <ul>
-            
+    <nav>
+        <input id="nav-toggle" type="checkbox">
+        <div class="logo"><strong>CALC</strong>URATOR</div>
+        <ul class="links">
+            <li><a href="homepage">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="findCalculators">Find Calculator</a></li>
+            <li><a href="myCalculators">My Calculator</a></li>
+            <li><a href="hot">Hot Area</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
-    </div>
+        <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </label>
+    </nav>
 
 </body>
 </html>
