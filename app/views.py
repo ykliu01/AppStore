@@ -109,11 +109,11 @@ def edit(request, id):
 # Select all customrs from cetrain id
 def myCalculators(request, id):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM calculators cal WHERE cal.owner_email = %s", [id])
+        cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
         calculator = cursor.fetchall()
-        cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_email = %s AND l.owner_email = cal.owner_email", [id])
+        cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_email = %s AND l.owner_email = cal.email", [id])
         loaned = cursor.fetchall()
-        result_dict = {'calculators': calculator, 'loaned': loaned}
+        result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
 
     return render(request,'app/myCalculators.html',result_dict)
 
@@ -130,9 +130,9 @@ def editAvailability(request, id):
 
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE calculators SET availaibilty = %s WHERE calculators.serial_number = %s",[request.POST['availability']], id)
+            cursor.execute("UPDATE calculators SET availability = %s WHERE calculators.serial_number = %s",[request.POST['availability'], id])
             spec_status = 'Availability edited successfully!'
-            cursor.execute("SELECT serial_no, availaibility, owner_id FROM calculators WHERE calculator.serial_number = %s", [id])
+            cursor.execute("SELECT serial_number, availability, email FROM calculators WHERE calculators.serial_number = %s", [id])
             spec_avail = cursor.fetchone()
 
 
@@ -162,14 +162,14 @@ def addCalculator(request, id):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT serial_number FROM calculators WHERE calculators = %s", [request.POST['serial_number']])
+            cursor.execute("SELECT serial_number FROM calculators WHERE calculators.serial_number = %s", [request.POST['serial_number']])
             serial_number = cursor.fetchone()
             ## No customer with same id
             if serial_number == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s)"
-                        , [request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
-                           request.POST['calc_condition'] , request.POST['availability'], [id]])
+                cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        ,[request.POST['brand'] , request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
+                           request.POST['calc_condition'] , request.POST['availability'], id])
                 return redirect('index')
             else:
                 status = 'Calculator with serial number %s already exists' % (request.POST['serial_number'])
