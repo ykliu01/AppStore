@@ -24,6 +24,7 @@ urlpatterns = [
     path('login', app.views.login, name='login'), # think both lines needed for redirect 
     path('', app.views.login, name='login'),
     path('register', app.views.register, name='register'),
+    path('homepage', app.views.homepage, name='homepage'),
     path('index', app.views.index, name='index'),
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
@@ -33,5 +34,3 @@ urlpatterns = [
     path('myCalculators/<str:id>/addCalculator', app.views.addCalculator, name='addCalculator'),
     #path('findCalculators/<str:id>/findCalculators', app.views.findCalculators, name='findCalculators')
 ]
-
-""""path('add', app.views.add, name='add'),"""
