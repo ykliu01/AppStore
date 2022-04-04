@@ -1,3 +1,4 @@
+insert into students (email, first_name, last_name, pass, admin_rights, time_availability, number_of_transaction, location_id) values ('test@test.com', 'Test', 'Test', 'testtest', true, NULL, NULL, NULL);
 insert into students (email, first_name, last_name, pass, admin_rights, time_availability, number_of_transaction, location_id) values ('kmacvay0@shinystat.com', 'Karisa', 'MacVay', 'mEA0alNThcUL', false, 1303, 5, 41);
 insert into students (email, first_name, last_name, pass, admin_rights, time_availability, number_of_transaction, location_id) values ('nvairow1@wp.com', 'Nappy', 'Vairow', 'r8b4iL', false, 1854, 29, 122);
 insert into students (email, first_name, last_name, pass, admin_rights, time_availability, number_of_transaction, location_id) values ('gpalle2@springer.com', 'Gale', 'Palle', 'ofhSBmcqu2g', false, 136, 40, 68);
