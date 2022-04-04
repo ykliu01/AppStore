@@ -49,7 +49,7 @@ def login(request):
             if student == None:
                 return redirect('register')    
             else:
-                cursor.execute("SELECT admin_rights FROM students WHERE email = %s", [request.POST['email']])
+                cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [request.POST['email']])
                 admin = cursor.fetchone()
                 
                 if admin:
