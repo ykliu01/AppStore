@@ -44,7 +44,13 @@ def login(request):
             if student == None:
                 return redirect('register')    
             else:
-                return redirect('index')
+                cursor.execute("SELECT admin_rights FROM students WHERE email = %s", [request.POST['email']])
+                admin = cursor.fetchone()
+                
+                if admin:
+                    return redirect('index')
+                else:
+                    return redirect('homepage')
     return render(request,'app/login.html')
 
 
