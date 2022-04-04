@@ -11,15 +11,16 @@
             <div class="icon">
                 
             </div>
-            {% for student in records %}
             <nav>
                 <ul id="MenuItems">
+                    {% for student in records %}
                     <li><a href="homepage">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="findCalculators">Find Calculator</a></li>
                     <li><a href="myCalculators/{{student.0}}">My Calculator</a></li>
                     <li><a href="hot">Hot Area</a></li>
                     <li><a href="#">Contact</a></li>
+                    {% endfor %}
                 </ul>
             </nav>
         </div>
