@@ -23,8 +23,15 @@ def index(request):
 
 def homepage(request):
     """Shows the main page"""
+    
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM students ORDER BY first_name, last_name")
+        students = cursor.fetchall()
 
-    return render(request,'app/homepage.html')
+    result_dict = {'records': students}
+    
+    return render(request,'app/homepage.html', result_dict)
 
 # Create your views here.
 def view(request, id):
