@@ -182,8 +182,9 @@ def addCalculator(request, id):
 # find calculators
 def findCalculators(request):
     """Shows the main page"""
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['serial_number'], request.POST['calc_type'], request.POST['price'])
-        results = cursor.fetchall()
-    result_dict = {'available_calculators': results}
+    if request.POST:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            results = cursor.fetchall()
+        result_dict = {'available_calculators': results}
     return render(request,'app/findCalculators.html',result_dict)
