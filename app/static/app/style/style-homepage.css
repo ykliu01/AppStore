@@ -7,7 +7,7 @@
 .main{
     height: 100%;
 	width: 100%;
-	background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0)),url("/static/images/bg2.jpg");;
+	background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0)),url('{{ STATIC_URL }}images/bg2.jpg');
 	background-position: center;
 	background-size: 750px;
 	position: absolute;
