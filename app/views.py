@@ -21,6 +21,11 @@ def index(request):
 
     return render(request,'app/index.html',result_dict)
 
+def homepage(request):
+    """Shows the main page"""
+
+    return render(request,'app/homepage.html')
+
 # Create your views here.
 def view(request, id):
     """Shows the main page"""
