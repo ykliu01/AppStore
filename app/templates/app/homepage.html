@@ -1,22 +1,22 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Calcurator</title>
-    <link rel="stylesheet" href="{% static 'app/style/style-homepage.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-homepage.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
 </head>
 <body>
     <nav>
         <input id="nav-toggle" type="checkbox">
         <div class="logo"><strong>CALC</strong>URATOR</div>
         <ul class="links">
-            <li><a href="homepage">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="findCalculators">Find Calculator</a></li>
-            <li><a href="myCalculators">My Calculator</a></li>
-            <li><a href="hot">Hot Area</a></li>
-            <li><a href="#">Contact</a></li>
+                    <li><a href="homepage">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="findCalculators">Find Calculator</a></li>
+                    <li><a href="myCalculators">My Calculator</a></li>
+                    <li><a href="hot">Hot Area</a></li>
+                    <li><a href="#">Contact</a></li>
         </ul>
         <label for="nav-toggle" class="icon-burger">
             <div class="line"></div>
@@ -24,6 +24,59 @@
             <div class="line"></div>
         </label>
     </nav>
+
+    <div class="content">
+        <div class="welcome">
+            <strong>Welcome, Name!</strong>
+        </div>
+        <div class="statistic">
+            <p>Calcurator currently have</p>
+        </div>
+    </div>
+
+    <div class="grid">
+        
+        <div class="grid-item">
+            <div class="card">
+                <img class="card-img" src="./user.png" alt="User">
+                <div class="card-content">
+                    <h2 class="stats">Number</h2>
+                    <h1 class="card-header">Users</h1>
+                    <p class="card-text">
+                        People you can borrow from or lend to!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <div class="card">
+                <img class="card-img" src="./calculator.png" alt="Calculator">
+                <div class="card-content">
+                    <h2 class="stats">Number</h2>
+                    <h1 class="card-header">Calculator</h1>
+                    <p class="card-text">
+                        Calculators available to borrow!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+            <div class="card">
+                <img class="card-img" src="./location.png" alt="Location">
+                <div class="card-content">
+                    <h2 class="stats">Place</h2>
+                    <h1 class="card-header">Location</h1>
+                    <p class="card-text">
+                        Top location where you can meet up!
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
 
 </body>
 </html>
