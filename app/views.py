@@ -58,7 +58,7 @@ def login(request):
                 cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [request.POST['email']])
                 admin = cursor.fetchone()
                 
-                if admin:
+                if admin == True:
                     return redirect('index')
                 else:
                     return redirect('homepage')
