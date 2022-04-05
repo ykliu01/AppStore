@@ -44,7 +44,8 @@ def view(request, id):
 
     return render(request,'app/view.html',result_dict)
 
-# Create your views here.
+"""
+# User login (not solved yet)
 def login(request):
     if request.POST:
         ## Check if customerid is already in the table
@@ -64,7 +65,21 @@ def login(request):
                 else:
                     return redirect('homepage')
     return render(request,'app/login.html')
+"""
+# Admin login
+def login(request):
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
 
+            cursor.execute("SELECT * FROM admin_account WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
+            admin_account = cursor.fetchone()
+            ## No customer with same id
+            if admin_account == None:
+                return redirect('register')    
+            else:
+                return redirect('index')
+    return render(request,'app/login.html')
 
 # Create your views here.
 def register(request):
