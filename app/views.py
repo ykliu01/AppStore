@@ -44,8 +44,6 @@ def view(request, id):
 
     return render(request,'app/view.html',result_dict)
 
-"""
-# User login (not solved yet)
 def login(request):
     if request.POST:
         ## Check if customerid is already in the table
@@ -65,8 +63,9 @@ def login(request):
                 else:
                     return redirect('homepage')
     return render(request,'app/login.html')
+
 """
-# Admin login
+# Admin login backup
 def login(request):
     if request.POST:
         ## Check if customerid is already in the table
@@ -80,6 +79,7 @@ def login(request):
             else:
                 return redirect('index')
     return render(request,'app/login.html')
+"""
 
 # Create your views here.
 def register(request):
