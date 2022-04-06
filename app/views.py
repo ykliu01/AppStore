@@ -40,7 +40,7 @@ def homepage(request):
         num_of_users = cursor.fetchone()
         cursor.execute("SELECT COUNT (*) FROM calculators c")
         num_of_calculators = cursor.fetchone()
-        cursor.execute("SELECT location_name FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC FETCH FIRST 1 ROWS ONLY")
+        cursor.execute("SELECT location_name FROM locations l, hot_location hl WHERE l.location_id = hl.location_id ORDER BY hl.count DESC FETCH FIRST 1 ROWS ONLY;")
         hottest_location = cursor.fetchone()
     
     result_dict = {'name':user_name,
@@ -66,7 +66,7 @@ def login(request):
     if request.POST:
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
-
+            cursor.execute("CREATE OR REPLACE VIEW hot_location AS SELECT s.location_id, COUNT (*) as count FROM students s GROUP BY s.location_id;)
             cursor.execute("SELECT * FROM students WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
             student = cursor.fetchone()
             ## No customer with same id
@@ -198,7 +198,7 @@ def hot(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT s.time_availability, COUNT (*) FROM students s GROUP BY s.time_availability ORDER BY COUNT DESC LIMIT 5;")
         timings = cursor.fetchall()
-        cursor.execute("SELECT * FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC;")
+        cursor.execute("SELECT * FROM locations l, hot_location hl WHERE l.location_id = hl.location_id ORDER BY hl.count DESC;")
         locations = cursor.fetchall()
     result_dict = {'student_timings': timings,
                   'student_locations': locations}
