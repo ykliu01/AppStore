@@ -184,6 +184,7 @@ def editAvailability(request, id):
             spec_status = 'Availability edited successfully!'
             cursor.execute("SELECT serial_number, availability, email FROM calculators WHERE calculators.serial_number = %s", [id])
             spec_avail = cursor.fetchone()
+            return redirect('index')
 
 
     context["spec_avail"] = spec_avail
