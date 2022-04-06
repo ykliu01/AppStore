@@ -189,5 +189,5 @@ def findCalculators(request):
             cursor.execute(select_statement,user_input)
             available_calculators = cursor.fetchall()
         result_dict = {'Results':available_calculators}
-        return redirect(request, 'app/findCalculators_results.html', result_dict)
+        return redirect(request, 'app/findCalculators.html', result_dict)
     return render(request,'app/findCalculators.html')
