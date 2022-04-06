@@ -12,11 +12,12 @@
         <!-- form -->
         Preferred Time<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="s.time_availability" maxlength="32" class="textinput textInput"> </div> 
         <br>
-        Location<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="l.location_name" maxlength="32" class="textinput textInput"> </div> 
-        <br>
     
-        <label for="mrt">Choose a location (MRT station):</label>
-        <select id="mrt" name="l.location_name">
+    
+    
+        <label>Choose a location (MRT station):</label>
+        <select id="mrt" name="l.location_name" required="">
+            <option value="ANY">ANY</option>
             <option value="Jurong East">Jurong East</option>
             <option value="Bukit Batok">Bukit Batok</option>
             <option value="Bukit Gombak">Bukit Gombak</option>
@@ -107,63 +108,63 @@
             <option value="Bartley">Bartley</option>
             <option value="Serangoon">Serangoon</option>
             <option value="Lorong Chuan">Lorong Chuan</option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+            <option value="Bishan">Bishan</option>
+            <option value="Marymount">Marymount</option>
+            <option value="Caldecott">Caldecott</option>
+            <option value="Botanic Gardens">Botanic Gardens</option>
+            <option value="Farrer Road">Farrer Road</option>
+            <option value="Holland Village">Holland Village</option>
+            <option value="Buona Vista">Buona Vista</option>
+            <option value="one-north">one-north</option>
+            <option value="Kent Ridge">Kent Ridge</option>
+            <option value="Haw Par Villa">Haw Par Villa</option>
+            <option value="Pasir Panjang">Pasir Panjang</option>
+            <option value="Labrador Park">Labrador Park</option>
+            <option value="Telok Blangah">Telok Blangah</option>
+            <option value="HarbourFront">HarbourFront</option>
+            <option value="Bayfront">Bayfront</option>
+            <option value="Marina Bay">Marina Bay</option>
+            <option value="Bukit Panjang">Bukit Panjang</option>
+            <option value="Cashew">Cashew</option>
+            <option value="Hillview">Hillview</option>
+            <option value="Beauty World">Beauty World</option>
+            <option value="King Albert Park">King Albert Park</option>
+            <option value="Sixth Avenue">Sixth Avenue</option>
+            <option value="Tan Kah Kee">Tan Kah Kee</option>
+            <option value="Botanic Gardens">Botanic Gardens</option>
+            <option value="Stevens">Stevens</option>
+            <option value="Newton">Newton</option>
+            <option value="Little India">Little India</option>
+            <option value="Rochor">Rochor</option>
+            <option value="Bugis">Bugis</option>
+            <option value="Promenade">Promenade</option>
+            <option value="Bayfront">Bayfront</option>
+            <option value="Downtown">Downtown</option>
+            <option value="Telok Ayer">Telok Ayer</option>
+            <option value="Chinatown">Chinatown</option>
+            <option value="Fort Canning">Fort Canning</option>
+            <option value="Bencoolen">Bencoolen</option>
+            <option value="Jalan Besar">Jalan Besar</option>
+            <option value="Bendemeer">Bendemeer</option>
+            <option value="Geylang Bahru">Geylang Bahru</option>
+            <option value="Mattar">Mattar</option>
+            <option value="MacPherson">MacPherson</option>
+            <option value="Ubi">Ubi</option>
+            <option value="Kaki Bukit">Kaki Bukit</option>
+            <option value="Bedok North">Bedok North</option>
+            <option value="Bedok Reservoir">Bedok Reservoir</option>
+            <option value="Tampines West">Tampines West</option>
+            <option value="Tampines">Tampines</option>
+            <option value="Tampines East">Tampines East</option>
+            <option value="Upper Changi">Upper Changi</option>
+            <option value="Expo">Expo</option>
+            <option value="Woodlands North">Woodlands North</option>
+            <option value="Woodlands South">Woodlands South</option>
+            <option value="Canberra">Canberra</option>
+            <option value="MacPherson">MacPherson</option>
+            <option value="Gul Circle">Gul Circle</option>
         </select>
-    
+        <br>
     
         Calculator Type<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="c.calc_type" maxlength="32" class="textinput textInput"> </div> 
         <br>
