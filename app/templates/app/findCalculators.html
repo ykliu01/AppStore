@@ -3,7 +3,6 @@
 <body>
     <h1>Find Calculators</h1>
     <a href="index">Back to homepage</a>
-    <p style="color:red">{{ status|safe }}</p>
 
     <!-- Create a Form -->
     <form method="POST">
@@ -77,17 +76,19 @@
             <th>last_name</th>
             <th>email</th>
         </thead>
+        {% for result in Results %}
         <tr>
-            <td> {{ 1 }} </td>
-            <td> {{ 2 }} </td>
-            <td> {{ 3 }} </td>
-            <td> {{ 4 }} </td>
-            <td> {{ 5 }} </td>
-            <td> {{ 6 }} </td>
-            <td> {{ 7 }} </td>
-            <td> {{ 8 }} </td>
-            <td> {{ 9 }} </td>
+            <td> {{ result.0 }} </td>
+            <td> {{ result.1 }} </td>
+            <td> {{ result.2 }} </td>
+            <td> {{ result.3 }} </td>
+            <td> {{ result.4 }} </td>
+            <td> {{ result.5 }} </td>
+            <td> {{ result.6 }} </td>
+            <td> {{ result.7 }} </td>
+            <td> {{ result.8 }} </td>
         </tr>
+        {% endfor %}
     </table>
 
 </body>
