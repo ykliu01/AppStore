@@ -42,8 +42,11 @@ def homepage(request):
         num_of_calculators = cursor.fetchone()
         cursor.execute("SELECT location_name FROM locations l, hot_location hl WHERE l.location_id = hl.location_id ORDER BY hl.count DESC FETCH FIRST 1 ROWS ONLY;")
         hottest_location = cursor.fetchone()
+        cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [username])
+        test_admin = cursor.fetchone()
     
     result_dict = {'name':user_name,
+                   'admin': test_admin,
                    'email': email,
                    'user': num_of_users,
                   'calculator': num_of_calculators,
