@@ -146,11 +146,12 @@ nav .icon-burger .line{
 }
 
 .grid{
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    grid-template-columns: min-content auto
+    grid-auto-flow: column;
+    column-gap: 60px; 
 }
 
 .card-img{
