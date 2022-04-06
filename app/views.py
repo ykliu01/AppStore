@@ -25,11 +25,15 @@ def index(request):
                    'admin': test_admin}
     return render(request,'app/index.html',result_dict)
 
-def homepage(request):
+def homepage(request, id):
     """Shows the main page"""
     
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.first_name FROM students s WHERE s.email = %s", [username])
+        user_name = cursor.fetchone()
         cursor.execute("SELECT COUNT (*) FROM students s")
         num_of_users = cursor.fetchone()
         cursor.execute("SELECT COUNT (*) FROM calculators c")
@@ -37,7 +41,8 @@ def homepage(request):
         cursor.execute("SELECT location_name FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC FETCH FIRST 1 ROWS ONLY")
         hottest_location = cursor.fetchone()
     
-    result_dict = {'user': num_of_users,
+    result_dict = {'name':user_name,
+                   'user': num_of_users,
                   'calculator': num_of_calculators,
                   'location': hottest_location}
     
@@ -134,7 +139,6 @@ def edit(request, id):
     # save the data from the form
 
     if request.POST:
-        ##TODO: date validation
         with connection.cursor() as cursor:
             cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s"
                     , [request.POST['first_name'], request.POST['last_name'],
