@@ -33,5 +33,5 @@ urlpatterns = [
     path('hot', app.views.hot, name='hot'),
     path('myCalculators/<str:id>/addCalculator', app.views.addCalculator, name='addCalculator'),
     path('logout/',  app.views.logout, name = 'logout'),
-    path('findCalculators', app.views.findCalculators, name='findCalculators')
+    #path('findCalculators', app.views.findCalculators, name='findCalculators')
 ]
