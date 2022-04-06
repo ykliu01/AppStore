@@ -233,14 +233,14 @@
             <td> {{ result.8 }} </td>
                                            
             <td>
-            {% csrf_token %}
+            
             <form method="POST" style="display: inline;">
                 <input type="hidden" name="brand" value="{{result.0}}"/>
                 <input type="hidden" name="serial_number" value="{{result.1}}"/>
                 <input type="hidden" name="loan_time" value="{{result.5}}"/>
                 <input type="hidden" name="location_name" value="{{result.4}}"/>
                 <input type="hidden" name="loaner_email" value="{{result.8}}"/> 
-                <button onclick="return confirm('Do you want to borrow {{result.0}}-{{result.1}} calulator from {{result.6}}?');" type="submit" name="action" value="Borrow">Borrow</button>         
+                <button onclick="return confirm('Do you want to borrow {{result.0}}-{{result.1}} calculator from {{result.6}}?');" type="submit" name="action" value="Borrow">Borrow</button>         
             </form></td>
         </tr>
         {% endfor %}
