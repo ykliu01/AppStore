@@ -184,7 +184,7 @@ def editAvailability(request, id):
             spec_status = 'Availability edited successfully!'
             cursor.execute("SELECT serial_number, availability, email FROM calculators WHERE calculators.serial_number = %s", [id])
             spec_avail = cursor.fetchone()
-            return redirect('index')
+            return redirect('homepage')
 
 
     context["spec_avail"] = spec_avail
@@ -221,7 +221,7 @@ def addCalculator(request, id):
                 cursor.execute("INSERT INTO calculators VALUES (%s, %s, %s, %s, %s, %s, %s)"
                         ,[request.POST['brand'] , request.POST['serial_number'], request.POST['calc_type'], request.POST['price'],
                            request.POST['calc_condition'] , request.POST['availability'], id])
-                return redirect('index')
+                return redirect('homepage')
             else:
                 status = 'Calculator with serial number %s already exists' % (request.POST['serial_number'])
 
