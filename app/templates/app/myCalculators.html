@@ -1,15 +1,9 @@
 {% load static %}
 <html>
-    
-<head>
-    <title>Calcurator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'app/style/style-myCalculators.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
-</head>
+  
      
 <body>
-    <div class = 'content'>
+    
         <h2>Calculators Lent Out</h2>
         <table border=1>
             <thead>
@@ -47,7 +41,7 @@
         </table>
     
         <a href="/myCalculators/{{student_email}}/addCalculator">Add a Calculator</a>
-    </div>
+
 
 </body>
 </html>
