@@ -12,9 +12,7 @@
         <!-- form -->
         Preferred Time<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="s.time_availability" maxlength="32" class="textinput textInput"> </div> 
         <br>
-    
-    
-    
+      
         <label>Choose a location (MRT station):</label>
         <select id="mrt" name="l.location_name" required="">
             <option value="ANY">ANY</option>
@@ -45,7 +43,7 @@
             <option value="Marina Bay">Marina Bay</option>
             <option value="Marina South Pier">Marina South Pier</option>
             <option value="Pasir Ris">Pasir Ris</option>
-            <option value="Tampines"Tampines></option>
+            <option value="Tampines">Tampines</option>
             <option value="Simei">Simei</option>
             <option value="Tanah Merah">Tanah Merah</option>
             <option value="Bedok">Bedok</option>
@@ -165,9 +163,17 @@
             <option value="Gul Circle">Gul Circle</option>
         </select>
         <br>
-    
-        Calculator Type<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="c.calc_type" maxlength="32" class="textinput textInput"> </div> 
         <br>
+    
+        
+        <label>Choose a calculator type:</label>
+        <select id="calculator_type" name="c.calc_type" required="">
+            <option value="ANY">ANY</option>
+            <option value="scientific">ANY</option>
+            <option value="graphing">ANY</option>
+            <option value="financial">ANY</option>
+        <br>
+            
         <button type="submit" value=Submit">Submit</button>
     </form>
     
