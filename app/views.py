@@ -184,7 +184,9 @@ def findCalculators(request):
     result_dict={}
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT c.brand, c.serial_number, c.price, c.serial_number, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE s.time_availability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            select_statement = "SELECT c.brand, c.serial_number, c.price, c.serial_number, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.owner_id = s.student_id AND l.location_id=s.location_id AND s.time_availability<%c AND l.location_name = %s AND c.calc_type=%s"
+            user_input = (request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            cursor.execute(select_statement,user_input)
             available_calculators = cursor.fetchall()
         result_dict = {'Results':available_calculators}
     return render(request,'app/findCalculators.html',result_dict)
