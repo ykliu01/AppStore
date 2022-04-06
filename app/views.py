@@ -181,11 +181,25 @@ def addCalculator(request, id):
 
 # find calculators
 def findCalculators(request):
-    """
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
-            results = cursor.fetchall()
-        result_dict = {'available_calculators': results}
-    """
+            cursor.execute("SELECT c.brand FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            brands = cursor.fetchall()
+            cursor.execute("SELECT c.serial_number FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            serial_numbers = cursor.fetchall()
+            cursor.execute("SELECT c.price FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            prices = cursor.fetchall()
+            cursor.execute("SELECT c.serial_number FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            conditions = cursor.fetchall()
+            cursor.execute("SELECT l.location_name FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            locations = cursor.fetchall()
+            cursor.execute("SELECT s.time_availability WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            time_availabilities = cursor.fetchall()
+            cursor.execute("SELECT s.first_name WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            first_names = cursor.fetchall()
+            cursor.execute("SELECT s.last_name FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            last_names = cursor.fetchall()
+            cursor.execute("SELECT s.email FROM calculators c, students s, locations l WHERE s.timeavailability<%c AND c.owner_id = s.student_id AND l.location_name = %s and c.calc_type=%s and l.location_id=s.location_id", request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
+            emails = cursor.fetchall()        
+        result_dict = {'Brand': brands, 'Serial_number':serial_numbers, 'Price':prices, 'Calculator_condition':conditions, 'Location_name':locations, 'Time_availability':time_availabilities, 'First_name':first_names, 'Last_name':last_names, 'Email':emails}
     return render(request,'app/findCalculators.html')
