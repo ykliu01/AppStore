@@ -137,6 +137,7 @@ nav .icon-burger .line{
     color: #113e85;
     font-size: 70px;
     font-weight: bolder;
+    text-transform: capitalize;
 }
 
 .content .statistic{
@@ -169,7 +170,7 @@ nav .icon-burger .line{
     font-weight: 500;
     color: #113e85;
     margin-bottom: 1.5rem;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 
 .card-stats{
