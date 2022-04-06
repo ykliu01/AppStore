@@ -169,9 +169,9 @@
         <label>Choose a calculator type:</label>
         <select id="calculator_type" name="c.calc_type" required="">
             <option value="ANY">ANY</option>
-            <option value="scientific">ANY</option>
-            <option value="graphing">ANY</option>
-            <option value="financial">ANY</option>
+            <option value="scientific">scientific</option>
+            <option value="graphing">graphing</option>
+            <option value="financial">financial</option>
         </select>
         <br>
         <br>
@@ -182,15 +182,15 @@
     <h2>Results</h2>   
     <table border=1>
         <thead>
-            <th>brand</th>
-            <th>serial_number</th>
-            <th>price</th>
-            <th>calc_condition</th>
-            <th>location_name</th>
-            <th>time_availability</th>
-            <th>first_name</th>
-            <th>last_name</th>
-            <th>email</th>
+            <th>Brand</th>
+            <th>Serial Number</th>
+            <th>Price</th>
+            <th>Calculator Condition</th>
+            <th>MRT Station</th>
+            <th>Time Availability</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
         </thead>
         {% for result in Results %}
         <tr>
