@@ -33,6 +33,7 @@ urlpatterns = [
     path('myCalculators/<str:id>/addCalculator', app.views.addCalculator, name='addCalculator'),
     path('findCalculators', app.views.findCalculators, name='findCalculators'),
     path('findCalculators_time', app.views.findCalculators_time, name='findCalculators_time')
+    path('findCalculators_location', app.views.findCalculators_location, name='findCalculators_location')
 ]
 
 """"path('add', app.views.add, name='add'),"""
