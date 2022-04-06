@@ -158,6 +158,12 @@ def edit(request, id):
 
 # Select all customrs from cetrain id
 def myCalculators(request, id):
+    
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM calculators WHERE serial_number = %s", [request.POST['id']])
+    
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
         calculator = cursor.fetchall()
