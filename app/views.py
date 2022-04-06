@@ -202,7 +202,7 @@ def findCalculators_time(request):
         return render(request, 'app/findCalculators_time.html', result_dict)
     return render(request,'app/findCalculators_time.html', result_dict)
 
-'''
+
 def findCalculators_location(request):
     result_dict={}
     if request.POST:
@@ -215,6 +215,7 @@ def findCalculators_location(request):
         return render(request, 'app/findCalculators_location.html', result_dict)
     return render(request,'app/findCalculators_location.html', result_dict)
 
+'''
 def findCalculators_type(request):
     result_dict={}
     if request.POST:
