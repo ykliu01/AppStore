@@ -25,7 +25,7 @@ def index(request):
                    'admin': test_admin}
     return render(request,'app/index.html',result_dict)
 
-def homepage(request, id):
+def homepage(request):
     """Shows the main page"""
     
     ## Use raw query to get all objects
