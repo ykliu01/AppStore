@@ -149,7 +149,7 @@ nav .icon-burger .line{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    align-items: start;
+    grid-template-columns: auto auto auto;
 }
 
 .card-img{
