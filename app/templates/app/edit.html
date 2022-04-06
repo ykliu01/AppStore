@@ -10,6 +10,10 @@
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
+        <div id="div_id_email" class="control-group"> <label for="id_email" class="control-label requiredField">
+        Email<span class="asteriskField">*</span> </label> <div class="controls"> 
+        <input type="text" name="email" value="{{obj.0}}" maxlength="64" class="textinput textInput" required="" id="id_email"> </div> </div> 
+
         <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
         First name<span class="asteriskField">*</span> </label> <div class="controls"> 
         <input type="text" name="first_name" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_first_name"> </div> </div> 
@@ -18,17 +22,25 @@
         Last name<span class="asteriskField">*</span> </label> <div class="controls"> 
         <input type="text" name="last_name" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_last_name"> </div> </div> 
         
-        <div id="div_id_email" class="control-group"> <label for="id_email" class="control-label requiredField">
-        Email<span class="asteriskField">*</span> </label> <div class="controls"> 
-        <input type="text" name="email" value="{{obj.3}}" maxlength="64" class="textinput textInput" required="" id="id_email"> </div> </div> 
+        <div id="div_id_pass" class="control-group"> <label for="id_email" class="control-label requiredField">
+        Password<span class="asteriskField">*</span> </label> <div class="controls"> 
+        <input type="text" name="pass" value="{{obj.3}}" maxlength="64" class="textinput textInput" required="" id="id_pass"> </div> </div> 
+        
+        <div id="div_id_admin" class="control-group"> <label for="id_admin" class="control-label requiredField">
+        Admin<span class="asteriskField">*</span> </label> <div class="controls"> 
+        <input type="text" name="admin_rights" value="{{obj.4}}" maxlength="64" class="textinput textInput" required="" id="id_admin_rights"> </div> </div> 
         
         <div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
         Preferred timing<span class="asteriskField">*</span> </label> <div class="controls"> 
-        <input type="number" name="time_availability" value="{{obj.6}}" class="numberinput" required="" id="id_time_availability"> </div> </div> 
+        <input type="number" name="time_availability" value="{{obj.5}}" class="numberinput" required="" id="id_time_availability"> </div> </div> 
+        
+        <div id="div_id_number_of_transaction" class="control-group"> <label for="id_number_of_transaction" class="control-label requiredField">
+        number of transaction<span class="asteriskField">*</span> </label> <div class="controls"> 
+        <input type="text" name="number_of_transaction" value="{{obj.6}}" maxlength="64" class="textinput textInput" required="" id="id_number_of_transaction"> </div> </div> 
         
         <div id="div_id_location_id" class="control-group"> <label for="id_since" class="control-label requiredField">
         Preferred Location ID<span class="asteriskField">*</span> </label> <div class="controls"> 
-        <input type="number" name="location_id" value="{{obj.8}}" class="numberinput" required="" id="id_location_id"> </div> </div> 
+        <input type="number" name="location_id" value="{{obj.7}}" class="numberinput" required="" id="id_location_id"> </div> </div> 
 
         <br>
         <button type="submit" value="Update">Update</button>
