@@ -243,6 +243,31 @@ def addCalculator(request, id):
 def findCalculators(request):
     result_dict={}
     if request.POST:
+        if request.POST['action'] == 'borrow':
+            with connection.cursor() as cursor:
+                # generate loan id
+                cursor.execute("SELECT MAX(loan_id) FROM loan")
+                loan_id = cursor.fetchone()
+            
+                # get location id
+                cursor.execute("SELECT location_id FROM location WHERE location_name == %s")
+                location_id = cursor.fetchone()
+            
+                # get borrower's email
+                if request.session.has_key('username'):
+                    borrower_email = request.session['username']
+            
+                cursor.execute("INSERT INTO loan VALUES (loan_id, %s, %s, %s, borrower_email, location_id, location_id, %s, %s)"
+                            ,[request.POST['loan_time'] , request.POST['return_time'], request.POST['loaner_email'],
+                            request.POST['brand'] , request.POST['serial_number'], id])
+            
+                cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
+                        , [request.POST['loaner_email'], id ])
+            
+                cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
+                        , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email'], id ])
+        
+        
         with connection.cursor() as cursor:
             select_statement = "SELECT c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND (CAST(%s as INTEGER)-s.time_availability<=59) AND l.location_name = %s AND c.calc_type=%s"
             user_input = (request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type'])
@@ -252,6 +277,7 @@ def findCalculators(request):
         return render(request, 'app/findCalculators.html', result_dict)
     return render(request,'app/findCalculators.html', result_dict)
 
+"""
 def borrow(request, id):
     """Shows the main page"""
 
@@ -296,6 +322,7 @@ def borrow(request, id):
     context["status"] = status
  
     return render(request, "app/homepage.html", context)
+"""
 
 def logout(request):
     try:
