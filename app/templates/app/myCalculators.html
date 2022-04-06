@@ -1,47 +1,52 @@
 {% load static %}
 <html>
+    
+<head>
+    <title>Calcurator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'app/style/style-myCalculators.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
+</head>
+     
 <body>
-    <h2>My Calculators</h2>
-    <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
-    <br/><br/>
-    <h2>Calculators Lent Out</h2>
-    <table border=1>
-        <thead>
-            <th>Serial Number</th>
-            <th>Type</th>
-        </thead>
-        {% for calculator in calculators %}
-        <tr>
-            <td> {{ calculator.1 }} </td>
-            <td> {{ calculator.2 }} </td>
-            <td>
-                <a href="editAvailability/{{calculator.1}}"><button>Edit Availability</button></a> 
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
+    <div class = 'content'>
+        <h2>Calculators Lent Out</h2>
+        <table border=1>
+            <thead>
+                <th>Serial Number</th>
+                <th>Type</th>
+            </thead>
+            {% for calculator in calculators %}
+            <tr>
+                <td> {{ calculator.1 }} </td>
+                <td> {{ calculator.2 }} </td>
+                <td>
+                    <a href="editAvailability/{{calculator.1}}"><button>Edit Availability</button></a> 
                     <form method="POST" style="display: inline;">
-                        <input type="hidden" name="brand" value="{{calculator.0}}"/>
-                        <input type="hidden" name="serial_number" value="{{calculator.1}}"/>
-                            |<button onclick="return confirm('Are you sure you want to delete {{calculator.1}}? Make sure you have taken back your calculator');" type="submit" name="action" value="delete">Delete</button>         
-                    </form></td>
-        </tr>
-        {% endfor %}
-    </table>
-    <h2>Calculators borrowed</h2>
-    <table border=1>
-        <thead>
-            <th>Serial Number</th>
-            <th>Type</th>
-        </thead>
-        {% for loan in loaned %}
-        <tr>
-            <td> {{loan.0}} </td>
-            <td> {{loan.1}} </td>
-        {% endfor %}
-    </table>
-    <a href="/myCalculators/{{student_email}}/addCalculator">Add a Calculator</a>
+                    {% csrf_token %}
+                        <form method="POST" style="display: inline;">
+                            <input type="hidden" name="brand" value="{{calculator.0}}"/>
+                            <input type="hidden" name="serial_number" value="{{calculator.1}}"/>
+                                |<button onclick="return confirm('Are you sure you want to delete {{calculator.1}}? Make sure you have taken back your calculator');" type="submit" name="action" value="delete">Delete</button>         
+                        </form></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h2>Calculators borrowed</h2>
+        <table border=1>
+            <thead>
+                <th>Serial Number</th>
+                <th>Type</th>
+            </thead>
+            {% for loan in loaned %}
+            <tr>
+                <td> {{loan.0}} </td>
+                <td> {{loan.1}} </td>
+            {% endfor %}
+        </table>
     
-    
-    
-    
+        <a href="/myCalculators/{{student_email}}/addCalculator">Add a Calculator</a>
+
 </body>
 </html>
