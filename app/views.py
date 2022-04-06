@@ -30,12 +30,12 @@ def homepage(request):
     
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT COUNT (*) FROM students s;")
-        num_of_users = cursor.fetchall()
-        cursor.execute("SELECT COUNT (*) FROM calculators c;")
-        num_of_calculators = cursor.fetchall()
-        cursor.execute("SELECT location_name FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC FETCH FIRST 1 ROWS ONLY;")
-        hottest_location = cursor.fetchall()
+        cursor.execute("SELECT COUNT (*) FROM students s")
+        num_of_users = cursor.fetchone()
+        cursor.execute("SELECT COUNT (*) FROM calculators c")
+        num_of_calculators = cursor.fetchone()
+        cursor.execute("SELECT location_name FROM locations l, (SELECT s1.location_id, COUNT (*) as count FROM students s1 GROUP BY s1.location_id) as hot_location WHERE l.location_id = hot_location.location_id ORDER BY hot_location.count DESC FETCH FIRST 1 ROWS ONLY")
+        hottest_location = cursor.fetchone()
     
     result_dict = {'user': num_of_users,
                   'calculator': num_of_calculators,
