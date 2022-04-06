@@ -8,7 +8,35 @@
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
-        Preferred Time<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="s.time_availability" maxlength="32" class="textinput textInput"> </div> 
+        <label>Choose a calculator type:</label>
+        <select id="time_preference" name="s.time_availability" required="">
+            <option value="ANY">ANY</option>
+            <option value="59">00.00-00.59</option>
+            <option value="159">01.00-01.59</option>
+            <option value="259">02.00-02.59</option>
+            <option value="359">03.00-03.59</option>
+            <option value="459">04.00-04.59</option>
+            <option value="559">05.00-05.59</option>
+            <option value="659">06.00-06.59</option>
+            <option value="759">07.00-07.59</option>
+            <option value="859">08.00-08.59</option>
+            <option value="959">09.00-09.59</option>
+            <option value="1059">10.00-10.59</option>
+            <option value="1159">11.00-11.59</option>
+            <option value="1259">12.00-12.59</option>
+            <option value="1359">13.00-13.59</option>
+            <option value="1459">14.00-14.59</option>
+            <option value="1559">15.00-15.59</option>
+            <option value="1659">16.00-16.59</option>
+            <option value="1759">17.00-17.59</option>
+            <option value="1859">18.00-18.59</option>
+            <option value="1959">19.00-19.59</option>
+            <option value="2059">20.00-20.59</option>
+            <option value="2159">21.00-21.59</option>
+            <option value="2259">22.00-22.59</option>
+            <option value="2359">23.00-23.59</option>
+        </select>
+        <br>
         <br>
       
         <label>Choose a location (MRT station):</label>
