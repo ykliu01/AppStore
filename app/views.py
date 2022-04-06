@@ -262,6 +262,48 @@ def findCalculators(request):
         return render(request, 'app/findCalculators.html', result_dict)
     return render(request,'app/findCalculators.html', result_dict)
 
+def borrow(request, id):
+    """Shows the main page"""
+
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+'''
+    # fetch the object related to passed id
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM students WHERE email = %s", [id])
+        obj = cursor.fetchone()
+'''
+    status = ''
+    # save the data from the form
+    
+    if request.POST:
+        with connection.cursor() as cursor:
+            # generate loan id
+            cursor.execute("SELECT MAX(loan_id) FROM loan")
+            loan_id = cursor.fetchone()
+            
+            # get location id
+            cursor.execute("SELECT location_id FROM location WHERE location_name == %s")
+            location_id = cursor.fetchone()
+            
+            # get borrower's email
+            if request.session.has_key('username'):
+                borrower_email = request.session['username']
+            
+            cursor.execute("INSERT INTO loan VALUES (loan_id, %s, %s, %s, borrower_email, location_id, location_id, %s, %s)"
+                        ,[request.POST['loan_time'] , request.POST['return_time'], request.POST['loaner_email'],
+                          request.POST['brand'] , request.POST['serial_number'], id])
+            
+            cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
+                    , [request.POST['loaner_email'], id ])
+            
+            status = 'Borrowed successfully! Contact your loaner through their email if you have further queries.'
+
+    context["status"] = status
+ 
+    return render(request, "app/homepage.html", context)
+
 def logout(request):
     try:
         del request.session['username']
