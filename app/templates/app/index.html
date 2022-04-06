@@ -27,17 +27,13 @@
             <td> {{ student.7 }} </td>
             <td>
                 <a href="view/{{student.0}}"><button>View</button></a> | 
-                <a href="myCalculators/{{student.0}}">My Calculators</a>
+                <a href="myCalculators/{{student.0}}">My Calculators</a> | 
                 {% csrf_token %}
-                {% for admin_check in admin %}
-                {% if admin_check %}
-                     |<a href="edit/{{student.0}}"><button>Edit</button></a>
-                    <form method="POST" style="display: inline;">
-                        <input type="hidden" name="id" value="{{student.0}}"/>
-                         |<button onclick="return confirm('Are you sure you want to delete {{student.0}}?');" type="submit" name="action" value="delete">Delete</button> 
-                    </form>
-                {% endif %}
-                {% endfor %}
+                <a href="edit/{{student.0}}"><button>Edit</button></a>
+                <form method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="{{student.0}}"/> | 
+                    <button onclick="return confirm('Are you sure you want to delete {{student.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+                </form>
         </tr>
         {% endfor %}
     </table>
