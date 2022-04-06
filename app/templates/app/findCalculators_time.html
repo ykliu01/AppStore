@@ -19,7 +19,7 @@
     <a href="index">Display all results</a>
     <br>
     <br>
-    <a href="index">Back to homepage!</a>
+    <a href="index">Back to homepage</a>
     <br>
     <br>
 
@@ -28,7 +28,7 @@
         {% csrf_token %}
         <!-- form -->
         <label>Preferred Time:</label>
-        <select id="time_prefer" name="s.time_availability" required="">
+        <select id="time_preference" name="s.time_availability" required="">
             <option value="59">00.00-00.59</option>
             <option value="159">01.00-01.59</option>
             <option value="259">02.00-02.59</option>
@@ -57,7 +57,7 @@
         <br>
         <br>
             
-        <button type="submit" value=Submit">Submit</button>
+        <button type="submit" value="Submit">Submit</button>
     </form>
     
     <h2>Results</h2>   
