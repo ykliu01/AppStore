@@ -5,7 +5,8 @@ from django.db import connection
 # Create your views here.
 def index(request):
     """Shows the main page"""
-
+    if request.session.has_key('username'):
+        username = request.session['username']
     ## Delete customer
     if request.POST:
         if request.POST['action'] == 'delete':
@@ -16,9 +17,11 @@ def index(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM students ORDER BY first_name, last_name")
         students = cursor.fetchall()
-
-    result_dict = {'records': students}
-
+        cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [username])
+        test_admin = cursor.fetchone() 
+    result_dict = {'records': students, 
+                   'username': username,
+                   'admin': test_admin}
     return render(request,'app/index.html',result_dict)
 
 def homepage(request):
@@ -68,9 +71,9 @@ def login(request):
             if student == None:
                 return redirect('register')    
             else:
+                request.session['username'] = request.POST['email']
                 cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [request.POST['email']])
                 admin = cursor.fetchone()
-                
                 if admin == True:
                     return redirect('index')
                 else:
@@ -230,3 +233,10 @@ def findCalculators(request):
     """Shows the main page"""
     #with connection.cursor() as cursor:
     return render(request,'app/findCalculators.html')
+
+def logout(request):
+    try:
+        del request.session['username']
+    except:
+        pass
+    return HttpResponse("<strong>You are logged out.</strong>")
