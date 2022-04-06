@@ -268,12 +268,12 @@ def borrow(request, id):
     # dictionary for initial data with
     # field names as keys
     context ={}
-'''
+
     # fetch the object related to passed id
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM students WHERE email = %s", [id])
         obj = cursor.fetchone()
-'''
+
     status = ''
     # save the data from the form
     
