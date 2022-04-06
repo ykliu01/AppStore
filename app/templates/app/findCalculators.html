@@ -3,91 +3,236 @@
 <body>
     <h1>Find Calculators</h1>
     <a href="index">Back to homepage</a>
-    <p style="color:red">{{ status|safe }}</p>
+    <br>
+    <br>
 
-    <!-- Create a Form -->
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
-        <br>
         <!-- form -->
-        Location
-        <span class="asteriskField">*</span> </label> <div class="controls"> <input list='id_location' type="text" name="id_location" maxlength="64" class="textinput textInput" required="" id="id_location">
+        <label>Preferred Time:</label>
+        <select id="time_preference" name="s.time_availability" required="">
+            <option value="2459">ANY TIME</option>
+            <option value="59">00.00-00.59</option>
+            <option value="159">01.00-01.59</option>
+            <option value="259">02.00-02.59</option>
+            <option value="359">03.00-03.59</option>
+            <option value="459">04.00-04.59</option>
+            <option value="559">05.00-05.59</option>
+            <option value="659">06.00-06.59</option>
+            <option value="759">07.00-07.59</option>
+            <option value="859">08.00-08.59</option>
+            <option value="959">09.00-09.59</option>
+            <option value="1059">10.00-10.59</option>
+            <option value="1159">11.00-11.59</option>
+            <option value="1259">12.00-12.59</option>
+            <option value="1359">13.00-13.59</option>
+            <option value="1459">14.00-14.59</option>
+            <option value="1559">15.00-15.59</option>
+            <option value="1659">16.00-16.59</option>
+            <option value="1759">17.00-17.59</option>
+            <option value="1859">18.00-18.59</option>
+            <option value="1959">19.00-19.59</option>
+            <option value="2059">20.00-20.59</option>
+            <option value="2159">21.00-21.59</option>
+            <option value="2259">22.00-22.59</option>
+            <option value="2359">23.00-23.59</option>
+        </select>
+        <br>
+        <br>
+      
+        <label>Choose a location (MRT station):</label>
+        <select id="mrt" name="l.location_name" required="">
+            <option value="ANY">ANY</option>
+            <option value="Jurong East">Jurong East</option>
+            <option value="Bukit Batok">Bukit Batok</option>
+            <option value="Bukit Gombak">Bukit Gombak</option>
+            <option value="Choa Chu Kang">Choa Chu Kang</option>
+            <option value="Yew Tee">Yew Tee</option>
+            <option value="Kranji">Kranji</option>
+            <option value="Marsiling">Marsiling</option>
+            <option value="Woodlands">Woodlands</option>
+            <option value="Admiralty">Admiralty</option>
+            <option value="Sembawang">Sembawang</option>
+            <option value="Yishun">Yishun</option>
+            <option value="Khatib">Khatib</option>
+            <option value="Yio Chu Kang">Yio Chu Kang</option>
+            <option value="Ang Mo Kio">Ang Mo Kio</option>
+            <option value="Bishan">Bishan</option>
+            <option value="Braddell">Braddell</option>
+            <option value="Toa Payoh">Toa Payoh</option>
+            <option value="Novena">Novena</option>
+            <option value="Newton">Newton</option>
+            <option value="Orchard">Orchard</option>
+            <option value="Somerset">Somerset</option>
+            <option value="Dhoby Ghaut">Dhoby Ghaut</option>
+            <option value="City Hall">City Hall</option>
+            <option value="Raffles Place">Raffles Place</option>
+            <option value="Marina Bay">Marina Bay</option>
+            <option value="Marina South Pier">Marina South Pier</option>
+            <option value="Pasir Ris">Pasir Ris</option>
+            <option value="Tampines">Tampines</option>
+            <option value="Simei">Simei</option>
+            <option value="Tanah Merah">Tanah Merah</option>
+            <option value="Bedok">Bedok</option>
+            <option value="Kembangan">Kembangan</option>
+            <option value="Eunos">Eunos</option>
+            <option value="Paya Lebar">Paya Lebar</option>
+            <option value="Aljunied">Aljunied</option>
+            <option value="Kallang">Kallang</option>
+            <option value="Lavender">Lavender</option>
+            <option value="Bugis">Bugis</option>
+            <option value="City Hall">City Hall</option>
+            <option value="Raffles Place">Raffles Place</option>
+            <option value="Tanjong Pagar">Tanjong Pagar</option>
+            <option value="Outram Park">Outram Park</option>
+            <option value="Tiong Bahru">Tiong Bahru</option>
+            <option value="Redhill">Redhill</option>
+            <option value="Queenstown">Queenstown</option>
+            <option value="Commonwealth">Commonwealth</option>
+            <option value="Buona Vista">Buona Vista</option>
+            <option value="Dover">Dover</option>
+            <option value="Clementi">Clementi</option>
+            <option value="Jurong East">Jurong East</option>
+            <option value="Chinese Garden">Chinese Garden</option>
+            <option value="Lakeside">Lakeside</option>
+            <option value="Boon Lay">Boon Lay</option>
+            <option value="Pioneer">Pioneer</option>
+            <option value="Joo Koon">Joo Koon</option>
+            <option value="Tuas Crescent">Tuas Crescent</option>
+            <option value="Tuas West Road">Tuas West Road</option>
+            <option value="Tuas Link">Tuas Link</option>
+            <option value="Expo">Expo</option>
+            <option value="Changi Airport">Changi Airport</option>
+            <option value="HarbourFront">HarbourFront</option>
+            <option value="Outram Park">Outram Park</option>
+            <option value="Chinatown">Chinatown</option>
+            <option value="Clarke Quay">Clarke Quay</option>
+            <option value="Dhoby Ghaut">Dhoby Ghaut</option>
+            <option value="Little India">Little India</option>
+            <option value="Farrer Park">Farrer Park</option>
+            <option value="Boon Keng">Boon Keng</option>
+            <option value="Potong Pasir">Potong Pasir</option>
+            <option value="Woodleigh">Woodleigh</option>
+            <option value="Serangoon">Serangoon</option>
+            <option value="Kovan">Kovan</option>
+            <option value="Hougang">Hougang</option>
+            <option value="Buangkok">Buangkok</option>
+            <option value="Sengkang">Sengkang</option>
+            <option value="Punggol">Punggol</option>
+            <option value="Dhoby Ghaut">Dhoby Ghaut</option>
+            <option value="Bras Basah">Bras Basah</option>
+            <option value="Esplanade">Esplanade</option>
+            <option value="Promenade">Promenade</option>
+            <option value="Nicoll Highway">Nicoll Highway</option>
+            <option value="Stadium">Stadium</option>
+            <option value="Mountbatten">Mountbatten</option>
+            <option value="Dakota">Dakota</option>
+            <option value="Paya Lebar">Paya Lebar</option>
+            <option value="MacPherson">MacPherson</option>
+            <option value="Tai Seng">Tai Seng</option>
+            <option value="Bartley">Bartley</option>
+            <option value="Serangoon">Serangoon</option>
+            <option value="Lorong Chuan">Lorong Chuan</option>
+            <option value="Bishan">Bishan</option>
+            <option value="Marymount">Marymount</option>
+            <option value="Caldecott">Caldecott</option>
+            <option value="Botanic Gardens">Botanic Gardens</option>
+            <option value="Farrer Road">Farrer Road</option>
+            <option value="Holland Village">Holland Village</option>
+            <option value="Buona Vista">Buona Vista</option>
+            <option value="one-north">one-north</option>
+            <option value="Kent Ridge">Kent Ridge</option>
+            <option value="Haw Par Villa">Haw Par Villa</option>
+            <option value="Pasir Panjang">Pasir Panjang</option>
+            <option value="Labrador Park">Labrador Park</option>
+            <option value="Telok Blangah">Telok Blangah</option>
+            <option value="HarbourFront">HarbourFront</option>
+            <option value="Bayfront">Bayfront</option>
+            <option value="Marina Bay">Marina Bay</option>
+            <option value="Bukit Panjang">Bukit Panjang</option>
+            <option value="Cashew">Cashew</option>
+            <option value="Hillview">Hillview</option>
+            <option value="Beauty World">Beauty World</option>
+            <option value="King Albert Park">King Albert Park</option>
+            <option value="Sixth Avenue">Sixth Avenue</option>
+            <option value="Tan Kah Kee">Tan Kah Kee</option>
+            <option value="Botanic Gardens">Botanic Gardens</option>
+            <option value="Stevens">Stevens</option>
+            <option value="Newton">Newton</option>
+            <option value="Little India">Little India</option>
+            <option value="Rochor">Rochor</option>
+            <option value="Bugis">Bugis</option>
+            <option value="Promenade">Promenade</option>
+            <option value="Bayfront">Bayfront</option>
+            <option value="Downtown">Downtown</option>
+            <option value="Telok Ayer">Telok Ayer</option>
+            <option value="Chinatown">Chinatown</option>
+            <option value="Fort Canning">Fort Canning</option>
+            <option value="Bencoolen">Bencoolen</option>
+            <option value="Jalan Besar">Jalan Besar</option>
+            <option value="Bendemeer">Bendemeer</option>
+            <option value="Geylang Bahru">Geylang Bahru</option>
+            <option value="Mattar">Mattar</option>
+            <option value="MacPherson">MacPherson</option>
+            <option value="Ubi">Ubi</option>
+            <option value="Kaki Bukit">Kaki Bukit</option>
+            <option value="Bedok North">Bedok North</option>
+            <option value="Bedok Reservoir">Bedok Reservoir</option>
+            <option value="Tampines West">Tampines West</option>
+            <option value="Tampines">Tampines</option>
+            <option value="Tampines East">Tampines East</option>
+            <option value="Upper Changi">Upper Changi</option>
+            <option value="Expo">Expo</option>
+            <option value="Woodlands North">Woodlands North</option>
+            <option value="Woodlands South">Woodlands South</option>
+            <option value="Canberra">Canberra</option>
+            <option value="MacPherson">MacPherson</option>
+            <option value="Gul Circle">Gul Circle</option>
+        </select>
+        <br>
+        <br>
     
-        <br>
-        <br>
-
-        Time
-        <div class="dropdown">
-            <button class="dropbtn"></button>
-                <div class="dropdown-content">
-                    <a href="#">00.00-00.59</a>
-                    <a href="#">01.00-01.59</a>
-                    <a href="#">02.00-02.59</a>
-                    <a href="#">03.00-03.59</a>
-                    <a href="#">04.00-04.59</a>
-                    <a href="#">05.00-05.59</a>
-                    <a href="#">06.00-06.59</a>
-                    <a href="#">07.00-07.59</a>
-                    <a href="#">08.00-08.59</a>
-                    <a href="#">09.00-09.59</a>
-                    <a href="#">10.00-10.59</a>
-                    <a href="#">11.00-11.59</a>
-                    <a href="#">12.00-12.59</a>
-                    <a href="#">13.00-13.59</a>
-                    <a href="#">14.00-14.59</a>
-                    <a href="#">15.00-15.59</a>
-                    <a href="#">16.00-16.59</a>
-                    <a href="#">17.00-17.59</a>
-                    <a href="#">18.00-18.59</a>
-                    <a href="#">19.00-19.59</a>
-                    <a href="#">20.00-20.59</a>
-                    <a href="#">21.00-21.59</a>
-                    <a href="#">22.00-22.59</a>
-                    <a href="#">23.00-23.59</a>
-            </div>
-          </div>
-        <br>
         
-        Calculator Type
-        <span class="asteriskField">*</span> </label> <div class="controls"> <input list='id_calc_type' type="text" name="id_calc_type" maxlength="64" class="textinput textInput" required="" id="id_calc_type"> 
-            <datalist id='id_calc_type'>
-                <option value='scientific'>
-                <option value='graphing'>
-                <option value='financial'>
-            </datalist>
-
+        <label>Choose a calculator type:</label>
+        <select id="calculator_type" name="c.calc_type" required="">
+            <option value="ANY">ANY</option>
+            <option value="scientific">scientific</option>
+            <option value="graphing">graphing</option>
+            <option value="financial">financial</option>
+        </select>
         <br>
         <br>
-
-        <button type="submit" value="submit">Find Available Calculators</button>
-        <input type="reset" value="Reset">
+            
+        <button type="submit" value=Submit">Submit</button>
     </form>
-
-    <h2>Results</h2>
+    
+    <h2>Results</h2>   
     <table border=1>
         <thead>
-            <th>brand</th>
-            <th>serial_number</th>
-            <th>price</th>
-            <th>calc_condition</th>
-            <th>location_name</th>
-            <th>time_availability</th>
-            <th>first_name</th>
-            <th>last_name</th>
-            <th>email</th>
+            <th>Brand</th>
+            <th>Serial Number</th>
+            <th>Price</th>
+            <th>Calculator Condition</th>
+            <th>MRT Station</th>
+            <th>Time Availability</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
         </thead>
+        {% for result in Results %}
         <tr>
-            <td> {{ 1 }} </td>
-            <td> {{ 2 }} </td>
-            <td> {{ 3 }} </td>
-            <td> {{ 4 }} </td>
-            <td> {{ 5 }} </td>
-            <td> {{ 6 }} </td>
-            <td> {{ 7 }} </td>
-            <td> {{ 8 }} </td>
-            <td> {{ 9 }} </td>
+            <td> {{ result.0 }} </td>
+            <td> {{ result.1 }} </td>
+            <td> {{ result.2 }} </td>
+            <td> {{ result.3 }} </td>
+            <td> {{ result.4 }} </td>
+            <td> {{ result.5 }} </td>
+            <td> {{ result.6 }} </td>
+            <td> {{ result.7 }} </td>
+            <td> {{ result.8 }} </td>
         </tr>
+        {% endfor %}
     </table>
 
 </body>
