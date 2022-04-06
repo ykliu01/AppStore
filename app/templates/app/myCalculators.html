@@ -19,9 +19,10 @@
                 | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
-                <input type="hidden" name="id" value="{{cust.5}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{calculator.1}}}? Make sure you have taken back your calculator');" type="submit" name="action" value="delete">Delete</button> 
-                </form></td>
+                    <form method="POST" style="display: inline;">
+                        <input type="hidden" name="id" value="{{cust.5}}"/>
+                            |<button onclick="return confirm('Are you sure you want to delete {{calculator.1}}}? Make sure you have taken back your calculator');" type="submit" name="action" value="delete">Delete</button>         
+                    </form></td>
         </tr>
         {% endfor %}
     </table>
@@ -38,5 +39,9 @@
         {% endfor %}
     </table>
     <a href="/myCalculators/{{student_email}}/addCalculator">Add a Calculator</a>
+    
+    
+    
+    
 </body>
 </html>
