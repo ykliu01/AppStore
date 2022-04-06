@@ -148,7 +148,6 @@ nav .icon-burger .line{
     display: grid;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
     grid-auto-flow: column;
     column-gap: 30px; 
 }
