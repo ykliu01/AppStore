@@ -26,10 +26,13 @@ def homepage(request):
     
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students ORDER BY first_name, last_name")
-        students = cursor.fetchall()
-
-    result_dict = {'records': students}
+        cursor.execute("SELECT COUNT (*) FROM students s;")
+        num_of_users = cursor.fetchall()
+        cursor.execute("SELECT COUNT (*) FROM calculators c;")
+        num_of_calculators = cursor.fetchall()
+    
+    result_dict = {'users': num_of_users,
+                  'student_locations': num_of_calculators}
     
     return render(request,'app/homepage.html', result_dict)
 
