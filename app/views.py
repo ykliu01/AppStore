@@ -298,6 +298,9 @@ def borrow(request, id):
             cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
                     , [request.POST['loaner_email'], id ])
             
+            cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
+                    , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email'], id ])
+            
             status = 'Borrowed successfully! Contact your loaner through their email if you have further queries.'
 
     context["status"] = status
