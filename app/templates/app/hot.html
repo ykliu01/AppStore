@@ -8,63 +8,68 @@ takes in student_locations, n by 3 table of id, code and name. n is all location
 group by and count location in student table, then fetch with id from location table 
 -->
 
+    <head>
+        <title>Calcurator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'app/style/style-homepage.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
+    </head>
     
     
-<body>
+    <body>
     
-    <nav>
-        <input id="nav-toggle" type="checkbox">
-        <div class="logo"><strong>CALC</strong>URATOR</div>
-        <ul class="links">
-            {% for admin_check in admin %}
-            {% if admin_check %}
-            <li><a href="index">ADMIN</a></li>
-            {% endif %}
-            {% endfor %}
-            <li><a href="homepage">Home</a></li>
-            <li><a href="findCalculators">Find Calculator</a></li>
-            <li><a href="myCalculators/{{ email.0 }}">My Calculator</a></li>
-            <li><a href="hot">Hot Area</a></li>
-        </ul>
-        <label for="nav-toggle" class="icon-burger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </label>
-    </nav>
+        <nav>
+            <input id="nav-toggle" type="checkbox">
+            <div class="logo"><strong>CALC</strong>URATOR</div>
+            <ul class="links">
+                {% for admin_check in admin %}
+                {% if admin_check %}
+                <li><a href="index">ADMIN</a></li>
+                {% endif %}
+                {% endfor %}
+                <li><a href="homepage">Home</a></li>
+                <li><a href="findCalculators">Find Calculator</a></li>
+                <li><a href="myCalculators/{{ email.0 }}">My Calculator</a></li>
+                <li><a href="hot">Hot Area</a></li>
+            </ul>
+            <label for="nav-toggle" class="icon-burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label>
+        </nav>
     
     
-    <div class = content>
-        <h1>Calcurator</h1>
-        <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
-        <br/><br/>
+        <div class = content>
+            <h1>Calcurator</h1>
+            <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+            <br/><br/>
     
-        <h2>Top 5 Popular Timings</h2>
-        <table border=1>
-            <thead>
-                <th>Timing</th>
-            </thead>
-            {% for time in student_timings %}
-            <tr>
-                <td> {{ time.0 }} </td>
-            </tr>
-            {% endfor %}
-        </table>
+            <h2>Top 5 Popular Timings</h2>
+            <table border=1>
+                <thead>
+                    <th>Timing</th>
+                </thead>
+                {% for time in student_timings %}
+                <tr>
+                    <td> {{ time.0 }} </td>
+                </tr>
+                {% endfor %}
+            </table>
     
-        <h2>List of locations ranked by popularity</h2>
-        <table border=1>
-            <thead>
-                <th>Location ID</th>
-                <th>Location Name</th>
-            </thead>
-            {% for loc in student_locations %}
-            <tr>
-                <td> {{ loc.0 }} </td>
-                <td> {{ loc.1 }} </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    
-</body>
+            <h2>List of locations ranked by popularity</h2>
+            <table border=1>
+                <thead>
+                    <th>Location ID</th>
+                    <th>Location Name</th>
+                </thead>
+                {% for loc in student_locations %}
+                <tr>
+                    <td> {{ loc.0 }} </td>
+                    <td> {{ loc.1 }} </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
 </html>
