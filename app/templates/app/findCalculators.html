@@ -233,7 +233,7 @@
             <td> {{ result.8 }} </td>
                                            
             <td>
-            
+            {% csrf_token %}
             <form method="POST" style="display: inline;">
                 <input type="hidden" name="brand" value="{{result.0}}"/>
                 <input type="hidden" name="serial_number" value="{{result.1}}"/>
