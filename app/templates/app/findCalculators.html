@@ -6,10 +6,9 @@
     <br>
     <br>
 
-    {% csrf_token %}
     <form method="POST">
         <!-- Security token by Django -->
-        
+        {% csrf_token %}
         <!-- form -->
         <label>Preferred Time:</label>
         <select id="time_preference" name="s.time_availability" required="">
@@ -205,7 +204,7 @@
         <br>
         <br>
             
-        <button type="submit" value=Submit">Submit</button>
+        <button type="submit" value="Submit">Submit</button>
     </form>
     
     <h2>Results</h2>   
