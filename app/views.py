@@ -40,7 +40,7 @@ def homepage(request):
                         GROUP BY s1.location_id) as hot_location 
                        WHERE l.location_id = hot_location.location_id 
                        ORDER BY hot_location.count DESC
-                       FETCH FIRST 1 ROWS ONLY;)
+                       FETCH FIRST 1 ROWS ONLY;
         hottest_location = cursor.fetchall()
     
     result_dict = {'user': num_of_users,
