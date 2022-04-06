@@ -13,6 +13,10 @@
             Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="serial_number" maxlength="64" value="{{spec_avail.0}}" class="textinput textInput" required="" id="id_serial_number"> </div> </div>
             <div id="div_id_availability" class="control-group"> <label for="id_availability" class="control-label requiredField">
             Availability<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="availability" maxlength="64" value="{{spec_avail.1}}" class="textinput textInput" required="" id="id_availability"> </div> </div> 
+            <select id="id_availability">
+                <option value="available">available</option>
+                <option value="unavailable">unavailable</option>
+            </select>
             <br>
         <button type="submit" value="Update">Edit Availability</button>
     </form>
