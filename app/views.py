@@ -34,6 +34,8 @@ def homepage(request):
             username = request.session['username']
         cursor.execute("SELECT s.first_name FROM students s WHERE s.email = %s", [username])
         user_name = cursor.fetchone()
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
         cursor.execute("SELECT COUNT (*) FROM students s")
         num_of_users = cursor.fetchone()
         cursor.execute("SELECT COUNT (*) FROM calculators c")
@@ -42,6 +44,7 @@ def homepage(request):
         hottest_location = cursor.fetchone()
     
     result_dict = {'name':user_name,
+                   'email': email,
                    'user': num_of_users,
                   'calculator': num_of_calculators,
                   'location': hottest_location}
