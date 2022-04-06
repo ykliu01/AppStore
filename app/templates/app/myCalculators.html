@@ -20,8 +20,9 @@
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
                     <form method="POST" style="display: inline;">
-                        <input type="hidden" name="id" value="{{cust.5}}"/>
-                            |<button onclick="return confirm('Are you sure you want to delete {{calculator.1}}}? Make sure you have taken back your calculator');" type="submit" name="action" value="delete">Delete</button>         
+                        <input type="hidden" name="id" value="{{calculator.0}}"/>
+                        <input type="hidden" name="id" value="{{calculator.1}}"/>
+                            |<button onclick="return confirm('Are you sure you want to delete {{calculator.1}}? Make sure you have taken back your calculator');" type="submit" name="action" value="delete">Delete</button>         
                     </form></td>
         </tr>
         {% endfor %}
