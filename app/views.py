@@ -697,22 +697,7 @@ def findCalculators_all(request):
     return render(request, 'app/findCalculators_all.html', result_dict)
 
 def settings(request):
-    # dictionary for initial data with
-    # field names as keys
-    context ={}
 
-    # fetch the object related to passed id
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students WHERE email = %s", [id])
-        obj = cursor.fetchone()
-
-    status = ''
-    # save the data from the form
-
-    
-
-    context["obj"] = obj
-    context["status"] = status
     return render(request, "app/settings.html", context)
 
 
