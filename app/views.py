@@ -698,7 +698,7 @@ def findCalculators_all(request):
 
 def settings(request):
 
-    return render(request, "app/settings.html", context)
+    return render(request, "app/settings.html")
 
 
 def logout(request):
