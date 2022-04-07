@@ -334,7 +334,7 @@ def findCalculators_time(request):
                 user_input = [request.POST['s.time_availability']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators, 'email':email}
+            result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators_time.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -387,7 +387,7 @@ def findCalculators_location(request):
                 user_input = [request.POST['l.location_name']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators, 'email':email}
+            result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators_location.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -439,7 +439,7 @@ def findCalculators_type(request):
                 user_input = [request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators, 'email':email}
+            result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators_type.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -491,7 +491,7 @@ def findCalculators_time_loc(request):
                 user_input = [request.POST['s.time_availability'], request.POST['l.location_name']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators, 'email':email}
+            result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators_time_loc.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -542,7 +542,7 @@ def findCalculators_time_type(request):
                 user_input = [request.POST['s.time_availability'],  request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators, 'email':email}
+            result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators_time_type.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -593,7 +593,7 @@ def findCalculators_loc_type(request):
                 user_input = [request.POST['l.location_name'], request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators, 'email':email}
+            result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators_loc_type.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -639,7 +639,7 @@ def findCalculators_all(request):
         cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
         email = cursor.fetchone()
           
-    result_dict = {'Results':available_calculators, 'email':email}
+    result_dict = {'Results':available_calculators}
     
     if request.POST:
         if request.POST['action'] == 'borrow':            
