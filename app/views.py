@@ -2,6 +2,7 @@ from urllib import request
 from django.shortcuts import render, redirect
 from django.db import connection
 from django.http import HttpResponse
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -277,8 +278,8 @@ def findCalculators(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
@@ -319,8 +320,8 @@ def findCalculators_time(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
@@ -331,6 +332,7 @@ def findCalculators_time(request):
                 messages.info(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
+        
     return render(request,'app/findCalculators_time.html', result_dict)
 
 
@@ -361,8 +363,8 @@ def findCalculators_location(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
@@ -403,8 +405,8 @@ def findCalculators_type(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
@@ -445,8 +447,8 @@ def findCalculators_time_loc(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
@@ -487,8 +489,8 @@ def findCalculators_time_type(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
@@ -529,8 +531,8 @@ def findCalculators_loc_type(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
@@ -554,32 +556,32 @@ def findCalculators_all(request):
     
     if request.POST:
         if request.POST['action'] == 'borrow':            
-                with connection.cursor() as cursor:
-                    # generate loan id
-                    cursor.execute("SELECT MAX(loan_id) + 1 FROM loan")
-                    loan_id = cursor.fetchone()
+            with connection.cursor() as cursor:
+                # generate loan id
+                cursor.execute("SELECT MAX(loan_id) + 1 FROM loan")
+                loan_id = cursor.fetchone()
 
-                    # get location id
-                    cursor.execute("SELECT location_id FROM locations WHERE location_name = %s", [request.POST['location_name']])
-                    location_id = cursor.fetchone()
+                # get location id
+                cursor.execute("SELECT location_id FROM locations WHERE location_name = %s", [request.POST['location_name']])
+                location_id = cursor.fetchone()
 
-                    # get borrower's email
-                    if request.session.has_key('username'):
-                        borrower_email = request.session['username']
+                # get borrower's email
+                if request.session.has_key('username'):
+                    borrower_email = request.session['username']
 
-                    cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
-                                ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
-                                  location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
+                cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                            ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
-                    cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
-                            , [request.POST['loaner_email']])
+                cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
+                        , [request.POST['loaner_email']])
 
-                    cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
-                            , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
+                cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
+                        , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                    messages.info(request, 'Borrowed sucessfully!')
-
-                return render(request, "app/homepage.html")
+                messages.info(request, 'Borrowed sucessfully!')
+            
+            return render(request, "app/homepage.html")
             
     return render(request, 'app/findCalculators_all.html', result_dict)
 
