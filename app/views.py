@@ -346,20 +346,7 @@ def findCalculators_all(request):
     return render(request, 'app/findCalculators_all.html', result_dict)
 
 def borrow(request, id):
-    """Shows the main page"""
-
-    # dictionary for initial data with
-    # field names as keys
-    context ={}
-
-    # fetch the object related to passed id
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM students WHERE email = %s", [id])
-        obj = cursor.fetchone()
-
-    status = ''
-    # save the data from the form
-    
+    """Shows the main page"""    
     if request.POST:
         with connection.cursor() as cursor:
             # generate loan id
@@ -383,10 +370,6 @@ def borrow(request, id):
             
             cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                     , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
-            
-            status = 'Borrowed successfully! Contact your loaner through their email if you have further queries.'
-
-    context["status"] = status
  
     return render(request, "app/homepage.html", context)
 
