@@ -207,12 +207,17 @@ def editAvailability(request, id):
 def hot(request):
     """Shows the main page"""
     with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
         cursor.execute("SELECT s.time_availability, COUNT (*) FROM students s GROUP BY s.time_availability ORDER BY COUNT DESC LIMIT 5;")
         timings = cursor.fetchall()
         cursor.execute("SELECT * FROM locations l, hot_location hl WHERE l.location_id = hl.location_id ORDER BY hl.count DESC;")
         locations = cursor.fetchall()
     result_dict = {'student_timings': timings,
-                  'student_locations': locations}
+                  'student_locations': locations,
+                  'email': email}
     return render(request,'app/hot.html',result_dict)
 
 def addCalculator(request, id):
