@@ -39,6 +39,6 @@ urlpatterns = [
     path('findCalculators_time_loc', app.views.findCalculators_time_loc, name='findCalculators_time_loc'),
     path('findCalculators_time_type', app.views.findCalculators_time_type, name='findCalculators_time_type'),
     path('findCalculators_loc_type', app.views.findCalculators_loc_type, name='findCalculators_loc_type'),
-    path('findCalculators_all', app.views.findCalculators_all, name='findCalculators_all')
+    path('findCalculators_all', app.views.findCalculators_all, name='findCalculators_all'),
     path('logout/',  app.views.logout, name = 'logout')
 ]
