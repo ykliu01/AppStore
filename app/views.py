@@ -273,7 +273,7 @@ def findCalculators(request):
                 loan_id = cursor.fetchone()
 
                 # get location id
-                cursor.execute("SELECT location_id FROM locations WHERE location_name == %s")
+                cursor.execute("SELECT location_id FROM locations WHERE location_name = %s")
                 location_id = cursor.fetchone()
 
                 # get borrower's email
