@@ -38,7 +38,7 @@ def homepage(request):
         email = cursor.fetchone()
         cursor.execute("SELECT COUNT (*) FROM students s")
         num_of_users = cursor.fetchone()
-        cursor.execute("SELECT COUNT (*) FROM calculators c")
+        cursor.execute("SELECT COUNT (*) FROM calculators c WHERE c.availability = 'available'")
         num_of_calculators = cursor.fetchone()
         cursor.execute("SELECT location_name FROM locations l, hot_location hl WHERE l.location_id = hl.location_id ORDER BY hl.count DESC FETCH FIRST 1 ROWS ONLY;")
         hottest_location = cursor.fetchone()
