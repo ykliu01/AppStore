@@ -1,3 +1,4 @@
+INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Citizen','y78uzebxxf','scientific',183,'bad','available','test@test.com');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Casio','abzlbh6g92','scientific',191,'good','not available','rfilyaeve6@shareasale.com');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Sharp','2l71adc6en','graphing',139,'medium','not available','gcastelliz@cbslocal.com');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Casio','fhk3hv0mnp','financial',189,'bad','not available','sgreenfielddk@alexa.com');
@@ -642,7 +643,6 @@ INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,avail
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Citizen','kt8wpgfutf','scientific',81,'bad','not available','hkoschkego@shutterfly.com');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Casio','if1sutggmo','graphing',196,'medium','available','estuartkp@timesonline.co.uk');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Citizen','mnxre0n1dp','scientific',110,'medium','available','bbulfootfj@bandcamp.com');
-INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Citizen','y78uzebxxf','scientific',183,'bad','available','test@test.com');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Hewlett-Packard','jf10yz35i3','graphing',151,'bad','not available','mraffanio@princeton.edu');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Canon','uolxkzx835','scientific',132,'medium','available','jerswellmx@google.co.uk');
 INSERT INTO calculators(brand,serial_number,calc_type,price,calc_condition,availability,email) VALUES ('Texas Instruments','j8qgtqm1tk','financial',155,'good','available','mderobertf9@nytimes.com');
