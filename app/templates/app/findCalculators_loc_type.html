@@ -1,6 +1,40 @@
 {% load static %}
 <html>
 <body>
+    {% load static %}
+<html>
+    <head>
+        <title>Calcurator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'app/style/style-findCalculators.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
+    </head>
+    
+<body>
+    
+    <nav>
+        <input id="nav-toggle" type="checkbox">
+        <div class="logo"><strong>CALC</strong>URATOR</div>
+        <ul class="links">
+            {% for admin_check in admin %}
+            {% if admin_check %}
+            <li><a href="index">ADMIN</a></li>
+            {% endif %}
+            {% endfor %}
+            <li><a href="homepage">Home</a></li>
+            <li><a href="findCalculators">Find Calculator</a></li>
+            <li><a href="myCalculators/{{ email.0 }}">My Calculator</a></li>
+            <li><a href="hot">Hot Area</a></li>
+        </ul>
+        <label for="nav-toggle" class="icon-burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </label>
+    </nav>
+    
+    <div class = 'content'>
+        
     <h1>Find Calculators, sorted by: </h1>
     <a href="findCalculators">Time, location, and calculator type</a>
     <br>
@@ -17,9 +51,6 @@
     <a href="findCalculators_loc_type">Location and calculator type only</a>
     <br>
     <a href="findCalculators_all">Display all results</a>
-    <br>
-    <br>
-    <a href="homepage">Back to homepage</a>
     <br>
     <br>
 
@@ -197,6 +228,7 @@
         </tr>
         {% endfor %}
     </table>
+    </div>
 
 </body>
 </html>
