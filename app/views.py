@@ -261,8 +261,39 @@ def findCalculators(request):
 
             result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators.html', result_dict)
+        
         if request.POST['action'] == 'borrow':
-            return borrow(request)
+            
+            context ={}
+            status = ''
+            
+            with connection.cursor() as cursor:
+            # generate loan id
+            cursor.execute("SELECT MAX(loan_id) FROM loan")
+            loan_id = cursor.fetchone()
+            
+            # get location id
+            cursor.execute("SELECT location_id FROM location WHERE location_name == %s")
+            location_id = cursor.fetchone()
+            
+            # get borrower's email
+            if request.session.has_key('username'):
+                borrower_email = request.session['username']
+            
+            cursor.execute("INSERT INTO loan VALUES (loan_id, %s, %s, %s, borrower_email, location_id, location_id, %s, %s)"
+                        ,[request.POST['loan_time'] , request.POST['return_time'], request.POST['loaner_email'],
+                          request.POST['brand'] , request.POST['serial_number']])
+            
+            cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
+                    , [request.POST['loaner_email']])
+            
+            cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
+                    , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
+            
+            status = 'Borrowed successfully!'
+            
+            return render(request, "app/homepage.html", context)
+        
     return render(request,'app/findCalculators.html', result_dict)
 
 def findCalculators_time(request):
