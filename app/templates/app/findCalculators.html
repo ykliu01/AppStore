@@ -8,7 +8,10 @@
     </head>
     
 <body>
-
+    
+    {% for msg in messages %}
+        {{ msg }}
+    {% endfor %}
     
     <nav>
         <input id="nav-toggle" type="checkbox">
