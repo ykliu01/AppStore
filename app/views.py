@@ -284,7 +284,7 @@ def findCalculators(request):
                             ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
                               location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
 
-                cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
+                cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
 
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
