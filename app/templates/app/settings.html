@@ -48,40 +48,7 @@
                 <h1>Preferred Location: {{ location.0 }}</h1> 
                 <button type='submit' value='Update'> Update </button>
             </div>
-            
-            <div class = 'updated'>
-                <!-- Create a Form -->
-                <form method="POST">
-                <!-- Security token by Django -->
-                {% csrf_token %}
-                <!-- form -->
-
-                <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
-                First name<span class="asteriskField">*</span> </label> <div class="controls"> 
-                <input type="text" name="first_name" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_first_name" minlength="1"> </div> </div> 
-
-                <div id="div_id_last_name" class="control-group"> <label for="id_last_name" class="control-label requiredField">
-                Last name<span class="asteriskField">*</span> </label> <div class="controls"> 
-                <input type="text" name="last_name" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_last_name" minlength="1"> </div> </div> 
-
-                <div id="div_id_pass" class="control-group"> <label for="id_email" class="control-label requiredField">
-                Password<span class="asteriskField">*</span> </label> <div class="controls"> 
-                <input type="text" name="pass" value="{{obj.3}}" maxlength="64" class="textinput textInput" required="" id="id_pass" minlength="6"> </div> </div> 
-
-                <div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
-                Preferred timing<span class="asteriskField">*</span> </label> <div class="controls"> 
-                <input type="number" name="time_availability" value="{{obj.5}}" class="numberinput" required="" id="id_time_availability" min="0"> </div> </div> 
-
-                <div id="div_id_location_id" class="control-group"> <label for="id_since" class="control-label requiredField">
-                Preferred location<span class="asteriskField">*</span> </label> <div class="controls"> 
-                <input type="number" name="location_id" value="{{obj.7}}" class="numberinput" required="" id="id_location_id" min="1"> </div> </div> 
-
-                <br>
-                <button type="submit" value="Update">Update</button>
-                
-                </form>
-            </div>
-  
+              
         </div>
 
     </body>
