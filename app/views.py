@@ -674,6 +674,8 @@ def settings(request):
     with connection.cursor() as cursor:
         if request.session.has_key('username'):
             username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
         cursor.execute("SELECT s.first_name FROM students s WHERE s.email = %s", [username])
         first_name = cursor.fetchone()
         cursor.execute("SELECT s.last_name FROM students s WHERE s.email = %s", [username])
@@ -683,7 +685,8 @@ def settings(request):
         cursor.execute("SELECT location_name FROM students s, locations l WHERE s.location_id = l.location_id AND s.email = %s", [username])
         location = cursor.fetchone()
     
-    result_dict = {'first_name': first_name,
+    result_dict = {'email': email,
+                    'first_name': first_name,
                    'last_name': last_name,
                    'time': time,
                    'location': location}
