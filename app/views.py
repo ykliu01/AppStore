@@ -308,16 +308,15 @@ def findCalculators(request):
 def findCalculators_time(request):
     result_dict={}
     
-    if request.POST:
-        
-        with connection.cursor() as cursor:
-            if request.session.has_key('username'):
-                username = request.session['username']
-            cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
-            email = cursor.fetchone()
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
 
-        result_dict = {'email':email}
-        
+    result_dict = {'email':email}
+     
+    if request.POST:        
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
                 select_statement="SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) ORDER by s.time_availability ASC"
@@ -361,16 +360,16 @@ def findCalculators_time(request):
 def findCalculators_location(request):
     result_dict={}
         
-    if request.POST:
-        
-        with connection.cursor() as cursor:
-            if request.session.has_key('username'):
-                username = request.session['username']
-            cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
-            email = cursor.fetchone()
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
 
-        result_dict = {'email':email}
+    result_dict = {'email':email}    
         
+    if request.POST:
+                
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
                 select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s ORDER BY l.location_name ASC"
@@ -413,16 +412,16 @@ def findCalculators_location(request):
 def findCalculators_type(request):
     result_dict={}
     
-    if request.POST:
-        
-        with connection.cursor() as cursor:
-            if request.session.has_key('username'):
-                username = request.session['username']
-            cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
-            email = cursor.fetchone()
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
 
-        result_dict = {'email':email}
-        
+    result_dict = {'email':email}
+    
+    if request.POST:
+               
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
                 select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND c.calc_type=%s ORDER BY c.calc_type ASC"
@@ -464,17 +463,17 @@ def findCalculators_type(request):
 
 def findCalculators_time_loc(request):
     result_dict={}
-           
-    if request.POST:
-        
-        with connection.cursor() as cursor:
-            if request.session.has_key('username'):
-                username = request.session['username']
-            cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
-            email = cursor.fetchone()
+     
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
 
-        result_dict = {'email':email}
+    result_dict = {'email':email}
         
+    if request.POST:
+                
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
                 select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND l.location_name = %s ORDER BY l.location_name ASC"
@@ -516,17 +515,16 @@ def findCalculators_time_loc(request):
 
 def findCalculators_time_type(request):
     result_dict={}
-           
-    if request.POST:
-        
-        with connection.cursor() as cursor:
-            if request.session.has_key('username'):
-                username = request.session['username']
-            cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
-            email = cursor.fetchone()
+    
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
 
-        result_dict = {'email':email}
-        
+    result_dict = {'email':email}
+           
+    if request.POST:        
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
                 select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND c.calc_type=%s ORDER BY s.time_availability ASC"
@@ -569,15 +567,15 @@ def findCalculators_time_type(request):
 def findCalculators_loc_type(request):
     result_dict={}
        
-    if request.POST:
-        
-        with connection.cursor() as cursor:
-            if request.session.has_key('username'):
-                username = request.session['username']
-            cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
-            email = cursor.fetchone()
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
 
-        result_dict = {'email':email}
+    result_dict = {'email':email}
+        
+    if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
                 select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s AND c.calc_type=%s ORDER BY l.location_name ASC"
