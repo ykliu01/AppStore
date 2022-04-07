@@ -262,11 +262,7 @@ def findCalculators(request):
             result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators.html', result_dict)
         
-        if request.POST['action'] == 'borrow':
-            
-            context ={}
-            status = ''
-            
+        if request.POST['action'] == 'borrow':            
             with connection.cursor() as cursor:
                 # generate loan id
                 cursor.execute("SELECT MAX(loan_id) + 1 FROM loan")
@@ -290,83 +286,89 @@ def findCalculators(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                status = 'Borrowed successfully!'
+                messages.info(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html", context)
+            return render(request, "app/homepage.html")
         
     return render(request,'app/findCalculators.html', result_dict)
 
 def findCalculators_time(request):
     result_dict={}
     if request.POST:
-        with connection.cursor() as cursor:
-            select_statement="SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) ORDER by s.time_availability ASC"
-            user_input = [request.POST['s.time_availability']]
-            cursor.execute(select_statement,user_input)
-            available_calculators = cursor.fetchall() 
-        result_dict = {'Results':available_calculators}
-        return render(request, 'app/findCalculators_time.html', result_dict)
+        if request.POST['action'] == 'Submit':
+            with connection.cursor() as cursor:
+                select_statement="SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) ORDER by s.time_availability ASC"
+                user_input = [request.POST['s.time_availability']]
+                cursor.execute(select_statement,user_input)
+                available_calculators = cursor.fetchall() 
+            result_dict = {'Results':available_calculators}
+            return render(request, 'app/findCalculators_time.html', result_dict)
     return render(request,'app/findCalculators_time.html', result_dict)
 
 
 def findCalculators_location(request):
     result_dict={}
     if request.POST:
-        with connection.cursor() as cursor:
-            select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s ORDER BY l.location_name ASC"
-            user_input = [request.POST['l.location_name']]
-            cursor.execute(select_statement,user_input)
-            available_calculators = cursor.fetchall() 
-        result_dict = {'Results':available_calculators}
-        return render(request, 'app/findCalculators_location.html', result_dict)
+        if request.POST['action'] == 'Submit':
+            with connection.cursor() as cursor:
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s ORDER BY l.location_name ASC"
+                user_input = [request.POST['l.location_name']]
+                cursor.execute(select_statement,user_input)
+                available_calculators = cursor.fetchall() 
+            result_dict = {'Results':available_calculators}
+            return render(request, 'app/findCalculators_location.html', result_dict)
     return render(request,'app/findCalculators_location.html', result_dict)
 
 def findCalculators_type(request):
     result_dict={}
     if request.POST:
-        with connection.cursor() as cursor:
-            select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND c.calc_type=%s ORDER BY c.calc_type ASC"
-            user_input = [request.POST['c.calc_type']]
-            cursor.execute(select_statement,user_input)
-            available_calculators = cursor.fetchall() 
-        result_dict = {'Results':available_calculators}
-        return render(request, 'app/findCalculators_type.html', result_dict)
+        if request.POST['action'] == 'Submit':
+            with connection.cursor() as cursor:
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND c.calc_type=%s ORDER BY c.calc_type ASC"
+                user_input = [request.POST['c.calc_type']]
+                cursor.execute(select_statement,user_input)
+                available_calculators = cursor.fetchall() 
+            result_dict = {'Results':available_calculators}
+            return render(request, 'app/findCalculators_type.html', result_dict)
     return render(request,'app/findCalculators_type.html', result_dict)
 
 def findCalculators_time_loc(request):
     result_dict={}
     if request.POST:
-        with connection.cursor() as cursor:
-            select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND l.location_name = %s ORDER BY l.location_name ASC"
-            user_input = [request.POST['s.time_availability'], request.POST['l.location_name']]
-            cursor.execute(select_statement,user_input)
-            available_calculators = cursor.fetchall() 
-        result_dict = {'Results':available_calculators}
-        return render(request, 'app/findCalculators_time_loc.html', result_dict)
+        if request.POST['action'] == 'Submit':
+            with connection.cursor() as cursor:
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND l.location_name = %s ORDER BY l.location_name ASC"
+                user_input = [request.POST['s.time_availability'], request.POST['l.location_name']]
+                cursor.execute(select_statement,user_input)
+                available_calculators = cursor.fetchall() 
+            result_dict = {'Results':available_calculators}
+            return render(request, 'app/findCalculators_time_loc.html', result_dict)
     return render(request,'app/findCalculators_time_loc.html', result_dict)
 
 def findCalculators_time_type(request):
     result_dict={}
     if request.POST:
-        with connection.cursor() as cursor:
-            select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND c.calc_type=%s ORDER BY s.time_availability ASC"
-            user_input = [request.POST['s.time_availability'],  request.POST['c.calc_type']]
-            cursor.execute(select_statement,user_input)
-            available_calculators = cursor.fetchall() 
-        result_dict = {'Results':available_calculators}
-        return render(request, 'app/findCalculators_time_type.html', result_dict)
+        if request.POST['action'] == 'Submit':
+            with connection.cursor() as cursor:
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND c.calc_type=%s ORDER BY s.time_availability ASC"
+                user_input = [request.POST['s.time_availability'],  request.POST['c.calc_type']]
+                cursor.execute(select_statement,user_input)
+                available_calculators = cursor.fetchall() 
+            result_dict = {'Results':available_calculators}
+            return render(request, 'app/findCalculators_time_type.html', result_dict)
     return render(request,'app/findCalculators_time_type.html', result_dict)
 
 def findCalculators_loc_type(request):
     result_dict={}
     if request.POST:
-        with connection.cursor() as cursor:
-            select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s AND c.calc_type=%s ORDER BY l.location_name ASC"
-            user_input = [request.POST['l.location_name'], request.POST['c.calc_type']]
-            cursor.execute(select_statement,user_input)
-            available_calculators = cursor.fetchall() 
-        result_dict = {'Results':available_calculators}
-        return render(request, 'app/findCalculators_loc_type.html', result_dict)
+        if request.POST['action'] == 'Submit':
+            with connection.cursor() as cursor:
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s AND c.calc_type=%s ORDER BY l.location_name ASC"
+                user_input = [request.POST['l.location_name'], request.POST['c.calc_type']]
+                cursor.execute(select_statement,user_input)
+                available_calculators = cursor.fetchall() 
+            result_dict = {'Results':available_calculators}
+            return render(request, 'app/findCalculators_loc_type.html', result_dict)
     return render(request,'app/findCalculators_loc_type.html', result_dict)
 
 def findCalculators_all(request):
@@ -377,35 +379,6 @@ def findCalculators_all(request):
         available_calculators = cursor.fetchall() 
     result_dict = {'Results':available_calculators}
     return render(request, 'app/findCalculators_all.html', result_dict)
-
-def borrow(request):
-    """Shows the main page"""    
-    if request.POST:
-        with connection.cursor() as cursor:
-            # generate loan id
-            cursor.execute("SELECT MAX(loan_id) FROM loan")
-            loan_id = cursor.fetchone()
-            
-            # get location id
-            cursor.execute("SELECT location_id FROM location WHERE location_name == %s")
-            location_id = cursor.fetchone()
-            
-            # get borrower's email
-            if request.session.has_key('username'):
-                borrower_email = request.session['username']
-            
-            cursor.execute("INSERT INTO loan VALUES (loan_id, %s, %s, %s, borrower_email, location_id, location_id, %s, %s)"
-                        ,[request.POST['loan_time'] , request.POST['return_time'], request.POST['loaner_email'],
-                          request.POST['brand'] , request.POST['serial_number']])
-            
-            cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
-                    , [request.POST['loaner_email']])
-            
-            cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
-                    , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
- 
-    return render(request, "app/homepage.html", context)
-
 
 def logout(request):
     try:
