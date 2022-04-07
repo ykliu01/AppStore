@@ -170,11 +170,15 @@ def myCalculators(request, id):
                 cursor.execute("DELETE FROM calculators WHERE brand = %s AND serial_number = %s", [request.POST['brand'], request.POST['serial_number']])
     
     with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
         cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
         calculator = cursor.fetchall()
         cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_email = %s AND l.owner_email = cal.email", [id])
         loaned = cursor.fetchall()
-        result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
+        result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id, 'email':email}
 
     return render(request,'app/myCalculators.html',result_dict)
 
