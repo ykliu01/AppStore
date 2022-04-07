@@ -4,7 +4,7 @@ from django.db import connection
 from django.http import HttpResponse
 from django.contrib import messages
 
-# Create your views here.
+# Page to update, edit, and delete students' data for admin only
 def index(request):
     """Shows the main page"""
     if request.session.has_key('username'):
@@ -26,6 +26,7 @@ def index(request):
                    'admin': test_admin}
     return render(request,'app/index.html',result_dict)
 
+# Homepage
 def homepage(request):
     """Shows the main page"""
     
@@ -156,13 +157,12 @@ def edit(request, id):
             cursor.execute("SELECT * FROM students WHERE email = %s", [id])
             obj = cursor.fetchone()
 
-
     context["obj"] = obj
     context["status"] = status
  
     return render(request, "app/edit.html", context)
 
-# Select all customrs from cetrain id
+# Select all calculators belonging to a student
 def myCalculators(request, id):
     
     if request.POST:
@@ -172,7 +172,7 @@ def myCalculators(request, id):
         if request.POST['action'] == 'return':
             with connection.cursor() as cursor:
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE serial_number = %s AND brand = %s", [request.POST['serial_number'], request.POST['brand']])
-                return render(request, 'app/myCalculators.html')
+            return render(request, 'app/myCalculators.html')
                 
                 # cursor.execute("DELETE FROM loan l WHERE l.serial_number = %s", [request.POST['serial_number']])
     
@@ -254,7 +254,7 @@ def addCalculator(request, id):
  
     return render(request, "app/addCalculator.html", context)
 
-# find calculators
+# find calculators available to be borrowed
 def findCalculators(request):
     result_dict={}
     
