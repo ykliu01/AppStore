@@ -696,7 +696,7 @@ def findCalculators_all(request):
             
     return render(request, 'app/findCalculators_all.html', result_dict)
 
-def settings(request, id):
+def settings(request):
     # dictionary for initial data with
     # field names as keys
     context ={}
