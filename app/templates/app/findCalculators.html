@@ -266,17 +266,20 @@
                         <input type="hidden" name="location_name" value="{{result.5}}"/>
                         <input type="hidden" name="loaner_email" value="{{result.9}}"/> 
                         <button onclick="return confirm('Do you want to borrow {{result.0}} calculator {{result.1}}-{{result.2}} from {{result.7}}?');" type="submit" name="action" value="borrow">Borrow</button>      
-
-                        {% for msg in messages %}
-                            {{ msg }}
-                        {% endfor %}
-                    
+                   
                     </form>
                 </td>
             </tr>
             {% endfor %}                                                                           
         </table>       
 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            {% for msg in messages %}
+                swal('{{ msg }}');
+            {% endfor %}
+        </script>
+    
     </div>
     
 </body>
