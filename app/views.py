@@ -307,7 +307,7 @@ def findCalculators(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.success(request, 'Borrowed sucessfully!')
+            messages.success(request, 'Borrowed sucessfully!')
                 
             return render(request, "app/homepage.html")
         
