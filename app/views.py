@@ -172,7 +172,12 @@ def myCalculators(request, id):
         if request.POST['action'] == 'return':
             with connection.cursor() as cursor:
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE serial_number = %s AND brand = %s", [request.POST['serial_number'], request.POST['brand']])
-            return render(request, 'app/myCalculators.html')
+                cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
+                calculator = cursor.fetchall()
+                cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_email = %s AND l.owner_email = cal.email", [id])
+                loaned = cursor.fetchall()
+                result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
+            return render(request, 'app/myCalculators.html', result_dict)
                 
                 # cursor.execute("DELETE FROM loan l WHERE l.serial_number = %s", [request.POST['serial_number']])
     
