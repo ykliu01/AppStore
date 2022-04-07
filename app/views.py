@@ -657,40 +657,13 @@ def findCalculators_all(request):
                             ,[loan_id[0], request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
                               location_id[0], location_id[0], request.POST['brand'] , request.POST['serial_number']])
 
+                cursor.execute("UPDATE students SET number_of_transaction = number_of_transaction + 1 WHERE email = %s"
+                        , [request.POST['loaner_email']])
 
-    status = ''
-    # save the data from the form
-    
-    if request.POST:
-        with connection.cursor() as cursor:
-            # generate loan id
-            cursor.execute("SELECT MAX(loan_id) FROM loan")
-            loan_id = cursor.fetchone()
-            
-            # get location id
-            cursor.execute("SELECT location_id FROM location WHERE location_name == %s")
-            location_id = cursor.fetchone()
-            
-            # get borrower's email
-            if request.session.has_key('username'):
-                borrower_email = request.session['username']
-            
-            cursor.execute("INSERT INTO loan VALUES (loan_id, %s, %s, %s, borrower_email, location_id, location_id, %s, %s)"
-                        ,[request.POST['loan_time'] , request.POST['return_time'], request.POST['loaner_email'],
-                          request.POST['brand'] , request.POST['serial_number'], id])
-            
-            cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
-                    , request.POST['loaner_email'])
-            
-            cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
-                    , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
-            
-            status = 'Borrowed successfully! Contact your loaner through their email if you have further queries.'
+                cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
+                        , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-            cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
-                           , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
-
-            messages.success(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
             
