@@ -281,7 +281,7 @@ def findCalculators(request):
                     borrower_email = request.session['username']
 
                 cursor.execute("INSERT INTO loan VALUES (loan_id, %s, %s, %s, borrower_email, location_id, location_id, %s, %s)"
-                            ,[request.POST['loan_time'] , request.POST['return_time'], request.POST['loaner_email'],
+                            ,[request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'],
                               request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
