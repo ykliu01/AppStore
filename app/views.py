@@ -77,12 +77,14 @@ def login(request):
                 return redirect('register')    
             else:
                 request.session['username'] = request.POST['email']
-                cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [request.POST['email']])
-                admin = cursor.fetchone()
-                if admin == True:
-                    return redirect('index')
-                else:
-                    return redirect('homepage')
+                return redirect('homepage')
+                ## admin will go homepage first too, with a link to go admin page instead
+                #cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [request.POST['email']])
+                #admin = cursor.fetchone()
+                #if admin == True:
+                #    return redirect('index')
+                #else:
+                #    return redirect('homepage')
     return render(request,'app/login.html')
 
 """
