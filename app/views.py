@@ -162,7 +162,7 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
-def edit_user(request, id):
+def setting(request, id):
     """Shows the main page"""
     if request.POST:
         with connection.cursor() as cursor:
@@ -176,7 +176,7 @@ def edit_user(request, id):
     context["obj"] = obj
     context["status"] = status
  
-    return render(request, "app/edit_user.html", context)
+    return render(request, "app/setting.html", context)
 
 # Select all calculators belonging to a student
 def myCalculators(request, id):
