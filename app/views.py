@@ -162,22 +162,6 @@ def edit(request, id):
  
     return render(request, "app/edit.html", context)
 
-def setting(request, id):
-    """Shows the main page"""
-    if request.POST:
-        with connection.cursor() as cursor:
-            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s"
-                    , [request.POST['first_name'], request.POST['last_name'],
-                        request.POST['time_availability'] , request.POST['location_id'], id ])
-            status = 'Student edited successfully!'
-            cursor.execute("SELECT * FROM students WHERE email = %s", [id])
-            obj = cursor.fetchone()
-
-    context["obj"] = obj
-    context["status"] = status
- 
-    return render(request, "app/setting.html", context)
-
 # Select all calculators belonging to a student
 def myCalculators(request, id):
     
