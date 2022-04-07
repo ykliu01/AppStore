@@ -1,0 +1,69 @@
+{% load static %}
+<html>
+<body>
+    <h1>Find Calculators, sorted by: </h1>
+    <a href="findCalculators">Time, location, and calculator type</a>
+    <br>
+    <a href="findCalculators_time">Time only</a>
+    <br>
+    <a href="findCalculators_location">Location only</a>
+    <br>
+    <a href="findCalculators_type">Calculator type only</a>
+    <br>
+    <a href="findCalculators_time_loc">Time and location only</a>
+    <br>
+    <a href="findCalculators_time_type">Time and calculator type only</a>
+    <br>
+    <a href="findCalculators_loc_type">Location and calculator type only</a>
+    <br>
+    <a href="findCalculators_all">Display all results</a>
+    <br>
+    <br>
+    <a href="index">Back to homepage</a>
+    <br>
+    <br>
+
+    <h2>Results</h2>   
+    <table border=1>
+        <thead>
+            <th>Calculator Type</th>                               
+            <th>Brand</th>
+            <th>Serial Number</th>
+            <th>Price</th>
+            <th>Calculator Condition</th>
+            <th>MRT Station</th>
+            <th>Time Availability</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </thead>
+        {% for result in Results %}
+        <tr>
+            <td> {{ result.0 }} </td>
+            <td> {{ result.1 }} </td>
+            <td> {{ result.2 }} </td>
+            <td> {{ result.3 }} </td>
+            <td> {{ result.4 }} </td>
+            <td> {{ result.5 }} </td>
+            <td> {{ result.6 }} </td>
+            <td> {{ result.7 }} </td>
+            <td> {{ result.8 }} </td>
+            <td> {{ result.9 }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
