@@ -261,7 +261,7 @@ def findCalculators(request):
 
             result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators.html', result_dict)
-        if request.POST['action'] == 'Submit':
+        if request.POST['action'] == 'borrow':
             return borrow(request)
     return render(request,'app/findCalculators.html', result_dict)
 
