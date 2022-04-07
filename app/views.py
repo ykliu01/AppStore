@@ -711,8 +711,8 @@ def settings(request, id):
 
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, password = %s, time_availability = %s, location_id = %s WHERE email = %s"
-                    , [request.POST['first_name'], request.POST['last_name'], request.POST['password'],
+            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s"
+                    , [request.POST['first_name'], request.POST['last_name'],
                         request.POST['time_availability'] , request.POST['location_id'], id ])
             status = 'Student edited successfully!'
             cursor.execute("SELECT * FROM students WHERE email = %s", [id])
@@ -721,7 +721,7 @@ def settings(request, id):
     context["obj"] = obj
     context["status"] = status
  
-    return render(request, "app/setting.html", context)
+    return render(request, "app/edit.html", context)
 
 
 def logout(request):
