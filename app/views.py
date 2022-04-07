@@ -269,7 +269,7 @@ def findCalculators(request):
             
             with connection.cursor() as cursor:
                 # generate loan id
-                cursor.execute("SELECT MAX(loan_id) FROM loan")
+                cursor.execute("SELECT MAX(loan_id) + 1 FROM loan")
                 loan_id = cursor.fetchone()
 
                 # get location id
