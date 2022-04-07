@@ -51,8 +51,8 @@ def homepage(request):
                    'admin': test_admin,
                    'email': email,
                    'user': num_of_users,
-                  'calculator': num_of_calculators,
-                  'location': hottest_location}
+                   'calculator': num_of_calculators,
+                   'location': hottest_location}
     
     return render(request,'app/homepage.html', result_dict)
 
