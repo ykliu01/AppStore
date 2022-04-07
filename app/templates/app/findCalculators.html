@@ -269,11 +269,11 @@
             <td>
                 <form method="POST" style="display: inline;">
                     {% csrf_token %}
-                    <input type="hidden" name="brand" value="{{result.0}}"/>
-                    <input type="hidden" name="serial_number" value="{{result.1}}"/>
-                    <input type="hidden" name="loan_time" value="{{result.5}}"/>
-                    <input type="hidden" name="location_name" value="{{result.4}}"/>
-                    <input type="hidden" name="loaner_email" value="{{result.8}}"/> 
+                    <input type="hidden" name="brand" value="{{result.1}}"/>
+                    <input type="hidden" name="serial_number" value="{{result.2}}"/>
+                    <input type="hidden" name="loan_time" value="{{result.6}}"/>
+                    <input type="hidden" name="location_name" value="{{result.5}}"/>
+                    <input type="hidden" name="loaner_email" value="{{result.9}}"/> 
                     <button onclick="return confirm('Do you want to borrow {{result.0}} calculator {{result.1}}-{{result.2}} from {{result.7}}?');" type="submit" name="action" value="borrow">Borrow</button>      
                 </form>
             </td>
