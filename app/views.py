@@ -261,6 +261,8 @@ def findCalculators(request):
 
             result_dict = {'Results':available_calculators}
             return render(request, 'app/findCalculators.html', result_dict)
+        if request.POST['action'] == 'Submit':
+            return borrow(request)
     return render(request,'app/findCalculators.html', result_dict)
 
 def findCalculators_time(request):
@@ -345,7 +347,7 @@ def findCalculators_all(request):
     result_dict = {'Results':available_calculators}
     return render(request, 'app/findCalculators_all.html', result_dict)
 
-def borrow(request, id):
+def borrow(request):
     """Shows the main page"""    
     if request.POST:
         with connection.cursor() as cursor:
