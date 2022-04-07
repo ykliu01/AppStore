@@ -8,11 +8,7 @@
     </head>
     
 <body>
-    
-    {% for msg in messages %}
-        {{ msg }}
-    {% endfor %}
-    
+        
     <nav>
         <input id="nav-toggle" type="checkbox">
         <div class="logo"><strong>CALC</strong>URATOR</div>
@@ -36,6 +32,10 @@
     
     <div class = 'content'>
 
+        {% for msg in messages %}
+            {{ msg }}
+        {% endfor %}
+        
         <h1>Find Calculators, sorted by:</h1>
 
         <li><a href="findCalculators">Time, location, and calculator type</a></li>
