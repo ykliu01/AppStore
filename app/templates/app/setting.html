@@ -1,0 +1,72 @@
+<html>
+    
+    <head>
+        <title>Calcurator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'app/style/style-setting.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
+    </head>
+    
+    <body>
+        <nav>
+            <input id="nav-toggle" type="checkbox">
+            <div class="logo"><strong>CALC</strong>URATOR</div>
+            <ul class="links">
+                {% for admin_check in admin %}
+                    {% if admin_check %}
+                        <li><a href="index">ADMIN</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li><a href="homepage">Home</a></li>
+                <li><a href="findCalculators">Find Calculator</a></li>
+                <li><a href="myCalculators/{{ email.0 }}">My Calculator</a></li>
+                <li><a href="hot">Hot Area</a></li>
+                <li><a href="setting">Setting</li>
+            </ul>
+            <label for="nav-toggle" class="icon-burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label>
+        </nav>
+        
+        <div class = 'content'>
+            <h2>Update your particulars here {{obj.0}}</h2>
+                  <a href="../index">Back to admin</a>
+
+                  <p style="color:red">{{ status|safe }}</p>
+
+                  <!-- Create a Form -->
+                  <form method="POST">
+                      <!-- Security token by Django -->
+                      {% csrf_token %}
+                      <!-- form -->
+
+                      <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
+                      First name<span class="asteriskField">*</span> </label> <div class="controls"> 
+                      <input type="text" name="first_name" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_first_name"> </div> </div> 
+
+                      <div id="div_id_last_name" class="control-group"> <label for="id_last_name" class="control-label requiredField">
+                      Last name<span class="asteriskField">*</span> </label> <div class="controls"> 
+                      <input type="text" name="last_name" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_last_name"> </div> </div> 
+
+                      <div id="div_id_pass" class="control-group"> <label for="id_email" class="control-label requiredField">
+                      Password<span class="asteriskField">*</span> </label> <div class="controls"> 
+                      <input type="text" name="pass" value="{{obj.3}}" maxlength="64" class="textinput textInput" required="" id="id_pass"> </div> </div> 
+
+                      <div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
+                      Preferred timing<span class="asteriskField">*</span> </label> <div class="controls"> 
+                      <input type="number" name="time_availability" value="{{obj.5}}" class="numberinput" required="" id="id_time_availability"> </div> </div> 
+
+                      <div id="div_id_location_id" class="control-group"> <label for="id_since" class="control-label requiredField">
+                      Preferred location<span class="asteriskField">*</span> </label> <div class="controls"> 
+                      <input type="number" name="location_id" value="{{obj.7}}" class="numberinput" required="" id="id_location_id"> </div> </div> 
+
+                      <br>
+                      <button type="submit" value="Update">Update</button>
+                  </form>
+            
+        </div>
+
+    </body>
+</html>
