@@ -373,10 +373,10 @@ def borrow(request, id):
                           request.POST['brand'] , request.POST['serial_number'], id])
             
             cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
-                    , [request.POST['loaner_email'], id ])
+                    , request.POST['loaner_email'])
             
             cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
-                    , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email'], id ])
+                    , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
             
             status = 'Borrowed successfully! Contact your loaner through their email if you have further queries.'
 
