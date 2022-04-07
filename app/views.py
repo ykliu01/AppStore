@@ -254,15 +254,23 @@ def findCalculators(request):
     context = {}
     status = ''
 
-    if request.POST: 
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+        
+    if request.POST:        
+        
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
                 select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND l.location_name = %s AND c.calc_type=%s"
                 user_input = [request.POST['s.time_availability'], request.POST['l.location_name'], request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
-                available_calculators = cursor.fetchall()    
-
-            result_dict = {'Results':available_calculators}
+                available_calculators = cursor.fetchall()   
+            
+            result_dict = {'Results':available_calculators, 'email':email}
+            
             return render(request, 'app/findCalculators.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -300,6 +308,13 @@ def findCalculators(request):
 
 def findCalculators_time(request):
     result_dict={}
+    
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+    
     if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
@@ -307,7 +322,7 @@ def findCalculators_time(request):
                 user_input = [request.POST['s.time_availability']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators}
+            result_dict = {'Results':available_calculators, 'email':email}
             return render(request, 'app/findCalculators_time.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -343,6 +358,13 @@ def findCalculators_time(request):
 
 def findCalculators_location(request):
     result_dict={}
+    
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+    
     if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
@@ -350,7 +372,7 @@ def findCalculators_location(request):
                 user_input = [request.POST['l.location_name']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators}
+            result_dict = {'Results':available_calculators, 'email':email}
             return render(request, 'app/findCalculators_location.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -385,6 +407,13 @@ def findCalculators_location(request):
 
 def findCalculators_type(request):
     result_dict={}
+    
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+    
     if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
@@ -392,7 +421,7 @@ def findCalculators_type(request):
                 user_input = [request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators}
+            result_dict = {'Results':available_calculators, 'email':email}
             return render(request, 'app/findCalculators_type.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -427,6 +456,13 @@ def findCalculators_type(request):
 
 def findCalculators_time_loc(request):
     result_dict={}
+    
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+        
     if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
@@ -434,7 +470,7 @@ def findCalculators_time_loc(request):
                 user_input = [request.POST['s.time_availability'], request.POST['l.location_name']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators}
+            result_dict = {'Results':available_calculators, 'email':email}
             return render(request, 'app/findCalculators_time_loc.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -469,6 +505,13 @@ def findCalculators_time_loc(request):
 
 def findCalculators_time_type(request):
     result_dict={}
+    
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+        
     if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
@@ -476,7 +519,7 @@ def findCalculators_time_type(request):
                 user_input = [request.POST['s.time_availability'],  request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators}
+            result_dict = {'Results':available_calculators, 'email':email}
             return render(request, 'app/findCalculators_time_type.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -511,6 +554,13 @@ def findCalculators_time_type(request):
 
 def findCalculators_loc_type(request):
     result_dict={}
+    
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+    
     if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
@@ -518,7 +568,7 @@ def findCalculators_loc_type(request):
                 user_input = [request.POST['l.location_name'], request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
-            result_dict = {'Results':available_calculators}
+            result_dict = {'Results':available_calculators, 'email':email}
             return render(request, 'app/findCalculators_loc_type.html', result_dict)
         
         if request.POST['action'] == 'borrow':            
@@ -552,12 +602,19 @@ def findCalculators_loc_type(request):
     return render(request,'app/findCalculators_loc_type.html', result_dict)
 
 def findCalculators_all(request):
-    result_dict={}
+    result_dict={} 
+
     with connection.cursor() as cursor:
         select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id ORDER BY c.calc_type ASC"
         cursor.execute(select_statement)
         available_calculators = cursor.fetchall() 
-    result_dict = {'Results':available_calculators}
+        
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+          
+    result_dict = {'Results':available_calculators, 'email':email}
     
     if request.POST:
         if request.POST['action'] == 'borrow':            
