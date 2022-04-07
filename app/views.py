@@ -309,10 +309,7 @@ def findCalculators(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
                 
-                status = 'Borrowed successfully!'
-                context['status'] = status
-            
-            return render(request, "app/homepage.html", context)
+            return render(request, "app/homepage.html")
         
     return render(request,'app/findCalculators.html', result_dict)
 
