@@ -138,14 +138,6 @@ nav .icon-burger .line{
     font-size: 35;
 }
 
-.content section section.child{
-    border: 1px solid blue;
-}
-
-content section section.parent{
-    display: flex;
-}
-
 .content table{
     border-collapse: collapse;
     margin: 25px 0;
