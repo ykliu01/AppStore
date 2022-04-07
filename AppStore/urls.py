@@ -28,6 +28,7 @@ urlpatterns = [
     path('index', app.views.index, name='index'),
     path('view/<str:id>', app.views.view, name='view'),
     path('edit/<str:id>', app.views.edit, name='edit'),
+    path('borrow', app.views.borrow, name='borrow'),
     path('myCalculators/<str:id>',app.views.myCalculators, name='myCalculators'),
     path('myCalculators/editAvailability/<str:id>',app.views.editAvailability, name='editAvailability'),
     path('hot', app.views.hot, name='hot'),
