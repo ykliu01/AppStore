@@ -287,7 +287,7 @@ def findCalculators(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
         
@@ -329,7 +329,7 @@ def findCalculators_time(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
         
@@ -372,7 +372,7 @@ def findCalculators_location(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
         
@@ -414,7 +414,7 @@ def findCalculators_type(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
         
@@ -456,7 +456,7 @@ def findCalculators_time_loc(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
         
@@ -498,7 +498,7 @@ def findCalculators_time_type(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
         
@@ -540,7 +540,7 @@ def findCalculators_loc_type(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
         
@@ -579,7 +579,7 @@ def findCalculators_all(request):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE brand = %s AND serial_number = %s AND email = %s"
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
-                messages.info(request, 'Borrowed sucessfully!')
+                messages.success(request, 'Borrowed sucessfully!')
             
             return render(request, "app/homepage.html")
             
