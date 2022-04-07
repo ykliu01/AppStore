@@ -280,9 +280,9 @@ def findCalculators(request):
                 if request.session.has_key('username'):
                     borrower_email = request.session['username']
 
-                cursor.execute("INSERT INTO loan VALUES (loan_id, %s, %s, %s, borrower_email, location_id, location_id, %s, %s)"
-                            ,[request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'],
-                              request.POST['brand'] , request.POST['serial_number']])
+                cursor.execute("INSERT INTO loan VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                            ,[loan_id, request.POST['loan_time'] , request.POST['loan_time'], request.POST['loaner_email'], borrower_email,
+                              location_id, location_id, request.POST['brand'] , request.POST['serial_number']])
 
                 cursor.execute("UPDATE students SET number_of_transaction += 1 WHERE email = %s"
                         , [request.POST['loaner_email']])
