@@ -32,16 +32,29 @@
             </label>
         </nav>
         
+                
         <div class = 'content'>
             <h2>Update your particulars here {{obj.0}}</h2>
             <br>
             <p style="color:red">{{ status|safe }}</p>
-
-            <!-- Create a Form -->
-            <form method="POST">
-            <!-- Security token by Django -->
-            {% csrf_token %}
-            <!-- form -->
+            
+            <div class = 'current'>
+                <h1>First Name: {{ first_name.0 }}</h1> 
+                <button type='submit' value='Update'> Update </button>
+                <h1>Last Name: {{ last_name.0 }}</h1>
+                <button type='submit' value='Update'> Update </button>
+                <h1>Preferred Time: {{ time.0 }}</h1>
+                <button type='submit' value='Update'> Update </button>
+                <h1>Preferred Location: {{ location.0 }}</h1> 
+                <button type='submit' value='Update'> Update </button>
+            </div>
+            
+            <div class = 'updated'>
+                <!-- Create a Form -->
+                <form method="POST">
+                <!-- Security token by Django -->
+                {% csrf_token %}
+                <!-- form -->
 
                 <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
                 First name<span class="asteriskField">*</span> </label> <div class="controls"> 
@@ -66,8 +79,9 @@
                 <br>
                 <button type="submit" value="Update">Update</button>
                 
-            </form>
-            
+                </form>
+            </div>
+  
         </div>
 
     </body>
