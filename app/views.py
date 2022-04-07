@@ -251,6 +251,8 @@ def addCalculator(request, id):
 # find calculators
 def findCalculators(request):
     result_dict={}
+    context = {}
+    status = ''
 
     if request.POST: 
         if request.POST['action'] == 'Submit':
@@ -288,8 +290,11 @@ def findCalculators(request):
                         , [request.POST['brand'] , request.POST['serial_number'], request.POST['loaner_email']])
 
                 messages.success(request, 'Borrowed sucessfully!')
+                
+                status = 'Borrowed successfully!'
+                context['status'] = status
             
-            return render(request, "app/homepage.html")
+            return render(request, "app/homepage.html", context)
         
     return render(request,'app/findCalculators.html', result_dict)
 
