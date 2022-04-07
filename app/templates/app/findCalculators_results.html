@@ -1,0 +1,35 @@
+<html>
+<body>
+    <h2>Results</h2>
+    <a href="findCalculators">Back to Searching Calculators</a>
+    
+    <h1>Results</h1>
+    <table border=1>
+        <thead>
+            <th>brand</th>
+            <th>serial_number</th>
+            <th>price</th>
+            <th>calc_condition</th>
+            <th>location_name</th>
+            <th>time_availability</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>email</th>
+        </thead>
+        {% for result in Results %}
+        <tr>
+            <td> {{ result.0 }} </td>
+            <td> {{ result.1 }} </td>
+            <td> {{ result.2 }} </td>
+            <td> {{ result.3 }} </td>
+            <td> {{ result.4 }} </td>
+            <td> {{ result.5 }} </td>
+            <td> {{ result.6 }} </td>
+            <td> {{ result.7 }} </td>
+            <td> {{ result.8 }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

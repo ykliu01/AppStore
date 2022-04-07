@@ -1,7 +1,5 @@
 {% load static %}
 <html>
-<body>
-    {% load static %}
 <html>
     <head>
         <title>Calcurator</title>
@@ -35,6 +33,7 @@
     
     <div class = 'content'>
         
+
     <h1>Find Calculators, sorted by: </h1>
     <a href="findCalculators">Time, location, and calculator type</a>
     <br>
@@ -53,6 +52,7 @@
     <a href="findCalculators_all">Display all results</a>
     <br>
     <br>
+
 
     <form method="POST">
         <!-- Security token by Django -->
@@ -120,7 +120,9 @@
         </tr>
         {% endfor %}
     </table>
+
     </div>
+
 
 </body>
 </html>

@@ -1,8 +1,5 @@
 {% load static %}
 <html>
-<body>
-    {% load static %}
-<html>
     <head>
         <title>Calcurator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +32,7 @@
     
     <div class = 'content'>
         
+
     <h1>Find Calculators, sorted by: </h1>
     <a href="findCalculators">Time, location, and calculator type</a>
     <br>
@@ -53,6 +51,7 @@
     <a href="findCalculators_all">Display all results</a>
     <br>
     <br>
+
 
     <form method="POST">
         <!-- Security token by Django -->
@@ -180,8 +179,10 @@
             <option value="Woodlands South">Woodlands South</option>
             <option value="Woodleigh">Woodleigh</option>
             <option value="Yew Tee">Yew Tee</option>
+
             <option value="Yio Chu Kang">Yio Chu Kang</option>
             <option value="Yishun">Yishun</option>
+
         </select>
         <br>
         <br>
@@ -228,7 +229,9 @@
         </tr>
         {% endfor %}
     </table>
+
     </div>
+
 
 </body>
 </html>
