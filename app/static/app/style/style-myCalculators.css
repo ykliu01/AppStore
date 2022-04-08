@@ -170,11 +170,6 @@ nav .icon-burger .line{
     border-bottom: 2px solid #0082e6;
 }
 
-.content{
-    display: flex;
-    gap: 50px;
-}
-
 .content .table-fixed {
     height: 100px;
     border-radius: 5px 5px 0 0;
