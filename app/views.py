@@ -199,7 +199,7 @@ def editAvailability(request, id):
 
     with connection.cursor() as cursor:
         cursor.execute('SELECT serial_number, availability FROM calculators WHERE calculators.serial_number = %s', [id])
-        spec_avail = cursor.fetchall()
+        spec_avail = cursor.fetchone()
         
     result_dict = {'spec_avail': spec_avail}
 
