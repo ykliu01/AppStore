@@ -50,10 +50,61 @@
             <div id="div_id_last_name" class="control-group"> <label for="id_last_name" class="control-label requiredField">
             Last name<span class="asteriskField">*</span> </label> <div class="controls"> 
             <input type="text" name="last_name" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_last_name"> </div> </div> 
-
-            <div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
+            
+            <div id="div_id_time_availability" class="control-group"> <select id="div_id_time_availability" name="time_availability">
+                <option value=0>00.00</option>
+                <option value=30>00.30</option>
+                <option value=100>01.00</option>
+                <option value=130>01.30</option>
+                <option value=200>02.00</option>
+                <option value=230>02.30</option>
+                <option value=300>03.00</option>
+                <option value=330>03.30</option>
+                <option value=400>04.00</option>
+                <option value=430>04.30</option>
+                <option value=500>05.00</option>
+                <option value=530>05.30</option>
+                <option value=600>06.00</option>
+                <option value=630>06.30</option>
+                <option value=700>07.00</option>
+                <option value=730>07.30</option>
+                <option value=800>08.00</option>
+                <option value=830>08.30</option>
+                <option value=900>09.00</option>
+                <option value=930>09.30</option>
+                <option value=1000>10.00</option>
+                <option value=1030>10.30</option>
+                <option value=1100>11.00</option>
+                <option value=1130>11.30</option>
+                <option value=1200>12.00</option>
+                <option value=1230>12.30</option>
+                <option value=1300>13.00</option>
+                <option value=1330>13.30</option>
+                <option value=1400>14.00</option>
+                <option value=1430>14.30</option>
+                <option value=1500>15.00</option>
+                <option value=1530>15.30</option>
+                <option value=1600>16.00</option>
+                <option value=1630>16.30</option>
+                <option value=1700>17.00</option>
+                <option value=1730>17.30</option>
+                <option value=1800>18.00</option>
+                <option value=1830>18.30</option>
+                <option value=1900>19.00</option>
+                <option value=1930>19.30</option>
+                <option value=2000>20.00</option>
+                <option value=2030>20.30</option>
+                <option value=2100>21.00</option>
+                <option value=2130>21.30</option>
+                <option value=2200>22.00</option>
+                <option value=2230>22.30</option>
+                <option value=2300>23.00</option>
+                <option value=2330>23.30</option>
+            </select></div>
+                
+            <!--<div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
             Preferred timing<span class="asteriskField">*</span> </label> <div class="controls"> 
-            <input type="number" name="time_availability" value="{{obj.3}}" class="numberinput" required="" id="id_time_availability"> </div> </div> 
+            <input type="number" name="time_availability" value="{{obj.3}}" class="numberinput" required="" id="id_time_availability"> </div> </div> --> 
 
             <div id="div_id_location_id" class="control-group"> <label for="id_since" class="control-label requiredField">
             Preferred Location ID<span class="asteriskField">*</span> </label> <div class="controls"> 
