@@ -132,3 +132,45 @@ nav .icon-burger .line{
     margin: 60px 100px;
     padding-top: 70px;
 }
+
+.content h2{
+    color: #113e85;
+    font-size: 35;
+}
+
+.content table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content table thead tr{
+    background-color: #0082e6;
+    color: #fff;
+    text-align: left;
+}
+
+.content table th, .content table td{
+    padding: 12px 15px;
+}
+
+.content table tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.content table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.content table tbody tr:last-of-type{
+    border-bottom: 2px solid #0082e6;
+}
+
+.content{
+    display: flex;
+    gap: 50px;
+}
