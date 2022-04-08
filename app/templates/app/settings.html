@@ -21,9 +21,6 @@
                 {% endfor %}
                 <li><a href="homepage">Home</a></li>
                 <li><a href="findCalculators">Find Calculator</a></li>
-                <!--
-                <li><a href="myCalculators/{{ email.0 }}">My Calculator</a></li>
-                -->
                 <li><a href="myCalculators/{{ obj.0 }}">My Calculator</a></li>
                 <li><a href="hot">Hot Area</a></li>
                 <li><a href="settings">Settings</li>
@@ -41,7 +38,6 @@
             <h2>Update your particulars here {{obj.1}}</h2>
             <br>
             
-            <!--
             <form method="POST">
             <!-- Security token by Django -->
             {% csrf_token %}
@@ -67,7 +63,6 @@
             <button type="submit" name="action" value="Update"> Update </button>
             </form>
         
-            -->
               
       </div>
 
