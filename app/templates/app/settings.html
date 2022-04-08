@@ -21,7 +21,10 @@
                 {% endfor %}
                 <li><a href="homepage">Home</a></li>
                 <li><a href="findCalculators">Find Calculator</a></li>
+                <!--
                 <li><a href="myCalculators/{{ email.0 }}">My Calculator</a></li>
+                -->
+                <li><a href="myCalculators/{{ obj.0 }}">My Calculator</a></li>
                 <li><a href="hot">Hot Area</a></li>
                 <li><a href="settings">Settings</li>
             </ul>
@@ -34,9 +37,33 @@
         
                 
         <div class = 'content'>
-            <h2>Update your particulars here {{obj.0}}</h2>
-            <br>            
-            
+            <h2>Update your particulars here {{obj.1}}</h2>
+            <br>
+            <form method="POST">
+            <!-- Security token by Django -->
+            {% csrf_token %}
+            <!-- form -->
+ 
+            <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
+            First name<span class="asteriskField">*</span> </label> <div class="controls"> 
+            <input type="text" name="first_name" value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_first_name"> </div> </div> 
+
+            <div id="div_id_last_name" class="control-group"> <label for="id_last_name" class="control-label requiredField">
+            Last name<span class="asteriskField">*</span> </label> <div class="controls"> 
+            <input type="text" name="last_name" value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_last_name"> </div> </div> 
+
+            <div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
+            Preferred timing<span class="asteriskField">*</span> </label> <div class="controls"> 
+            <input type="number" name="time_availability" value="{{obj.3}}" class="numberinput" required="" id="id_time_availability"> </div> </div> 
+
+            <div id="div_id_location_id" class="control-group"> <label for="id_since" class="control-label requiredField">
+            Preferred Location ID<span class="asteriskField">*</span> </label> <div class="controls"> 
+            <input type="number" name="location_id" value="{{obj.4}}" class="numberinput" required="" id="id_location_id"> </div> </div> 
+
+            <br>
+            <button type="submit" value="Update">Update</button>
+        </form>
+            <!--
             <h1>First Name: {{ first_name.0 }}</h1> 
             <button type='submit' value='Update'> Update </button>
             <h1>Last Name: {{ last_name.0 }}</h1>
@@ -45,7 +72,7 @@
             <button type='submit' value='Update'> Update </button>
             <h1>Preferred Location: {{ location.0 }}</h1> 
             <button type='submit' value='Update'> Update </button>
-
+            -->
               
         </div>
 
