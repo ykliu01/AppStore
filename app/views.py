@@ -201,6 +201,7 @@ def editAvailability(request, id):
         cursor.execute('SELECT serial_number, availability FROM calculators WHERE calculators.serial_number = %s', [id])
         spec_avail = cursor.fetchall()
         
+    result_dict = {'spec_avail': spec_avail}
 
     spec_status = ''
     # save the data from the form
@@ -217,7 +218,7 @@ def editAvailability(request, id):
     context["spec_avail"] = spec_avail
     context["status"] = spec_status
  
-    return render(request, "app/editAvailability.html")
+    return render(request, "app/editAvailability.html",result_dict)
 
 # view hot locations
 def hot(request):
