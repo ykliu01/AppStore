@@ -172,6 +172,8 @@ def myCalculators(request, id):
     with connection.cursor() as cursor:
         cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [id])
         email = cursor.fetchone()
+        cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand, s.first_name, s.last_name, l.owner_email FROM loan l, calculators cal, students s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
+        loaned = cursor.fetchall()
 
     result_dict = {'email': email}
     
