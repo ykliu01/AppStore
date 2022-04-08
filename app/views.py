@@ -673,8 +673,8 @@ def settings(request):
     if request.POST:
         if request.POST['action'] == 'Update':
             with connection.cursor() as cursor:
-                cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_name = %s WHERE email = %s", [request.POST['first_name'], request.POST['last_name'],request.POST['time_availability'] , request.POST['location_name'], username])
-                cursor.execute("SELECT s.email, s.first_name, s.last_name, s.time_availability, s.location_name FROM students s WHERE s.email = %s", [username])
+                cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s", [request.POST['first_name'], request.POST['last_name'],request.POST['time_availability'] , request.POST['location_id'], username])
+                cursor.execute("SELECT s.email, s.first_name, s.last_name, s.time_availability, s.location_id FROM students s WHERE s.email = %s", [username])
                 obj = cursor.fetchone()
     context["obj"] = obj
     return render(request, "app/settings.html", context)
