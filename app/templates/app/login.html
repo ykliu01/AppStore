@@ -23,6 +23,14 @@
                <p class="message"> Don't have an account? <a href="register"> Register </a> </p>
            </form>
         </div>
+        
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script>
+                {% for msg in messages %}
+                    swal('{{ msg }}');
+                {% endfor %}
+        </script>
+        
     </body>
     
 </html>
