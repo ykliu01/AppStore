@@ -78,33 +78,16 @@ def login(request):
             if student == None:
                 return redirect('register')    
             else:
-                request.session['username'] = request.POST['email']
-                return redirect('homepage')
-                ## admin will go homepage first too, with a link to go admin page instead
-                #cursor.execute("SELECT s.admin_rights FROM students s WHERE s.email = %s", [request.POST['email']])
-                #admin = cursor.fetchone()
-                #if admin == True:
-                #    return redirect('index')
-                #else:
-                #    return redirect('homepage')
+                with connection.cursor() as cursor:
+                    cursor.execute("SELECT * FROM students WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
+                    student = cursor.fetchone()
+                    if student == None:
+                        messages.error(request, 'Wrong Password')
+                        return redirect('login')
+                    else:
+                        request.session['username'] = request.POST['email']
+                        return redirect('homepage')
     return render(request,'app/login.html')
-
-"""
-# Admin login backup
-def login(request):
-    if request.POST:
-        ## Check if customerid is already in the table
-        with connection.cursor() as cursor:
-
-            cursor.execute("SELECT * FROM admin_account WHERE email = %s AND pass = %s", [request.POST['email'], request.POST['pass']])
-            admin_account = cursor.fetchone()
-            ## No customer with same id
-            if admin_account == None:
-                return redirect('register')    
-            else:
-                return redirect('index')
-    return render(request,'app/login.html')
-"""
 
 # Create your views here.
 def register(request):
