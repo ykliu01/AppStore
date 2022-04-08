@@ -195,6 +195,6 @@ nav .icon-burger .line{
 .content .table-fixed thead,
 .content .table-fixed tbody tr{
     display: table;
-    width: 100%;
+    width: 70%;
     table-layout: fixed;
 }
