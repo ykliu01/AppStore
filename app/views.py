@@ -188,8 +188,6 @@ def myCalculators(request, id):
                 loaned = cursor.fetchall()
                 result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
             return render(request, 'app/myCalculators.html', result_dict)
-                
-                # cursor.execute("DELETE FROM loan l WHERE l.serial_number = %s", [request.POST['serial_number']])
     
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
