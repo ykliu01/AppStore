@@ -67,17 +67,17 @@
             </thead>
             {% for loan in loaned %}
             <tr>
-                <td> {{loan.2}} </td>
-                <td> {{loan.0}} </td>
-                <td> {{loan.1}} </td>
-                <td> {{loan.3}} {{loan.4}} </td>
-                <td> {{loan.5}}
+                <td> {{loaned.2}} </td>
+                <td> {{loaned.0}} </td>
+                <td> {{loaned.1}} </td>
+                <td> {{loaned.3}} {{loaned.4}} </td>
+                <td> {{loaned.5}}
                 <td> 
                     <form method="POST" style="display: inline;"> 
                         {% csrf_token %}
-                        <input type="hidden" name="brand" value="{{loan.2}}"/>
-                        <input type="hidden" name="serial_number" value="{{loan.0}}"/>
-                        <button onclick="return confirm('Are you sure you want to return {{loan.2}}-{{loan.0}} to {{loan.3}}?');" type="submit" name="return" value="return">Return</button> 
+                        <input type="hidden" name="brand" value="{{loaned.2}}"/>
+                        <input type="hidden" name="serial_number" value="{{loaned.0}}"/>
+                        <button onclick="return confirm('Are you sure you want to return {{loaned.2}}-{{loaned.0}} to {{loaned.3}}?');" type="submit" name="return" value="return">Return</button> 
                     </form> 
                 </td>
             {% endfor %}
