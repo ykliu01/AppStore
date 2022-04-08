@@ -169,6 +169,14 @@ def edit(request, id):
 # Select all calculators belonging to a student
 def myCalculators(request, id):
     
+    with connection.cursor() as cursor:
+        if request.session.has_key('username'):
+            username = request.session['username']
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+
+    result_dict = {'email':email}
+    
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
