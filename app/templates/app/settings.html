@@ -5,7 +5,7 @@
     <head>
         <title>Settings</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="{% static 'app/style/style-settings.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'app/style/style-settings.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
     </head>
     
@@ -37,7 +37,7 @@
         
         <p style="color:red">{{ status|safe }}</p>
                 
-        <div class = 'content'> 
+        <!-- <div class = 'content'> -->
             <h2>Update your particulars here {{obj.1}}</h2>
             <br>
             <form method="POST">
@@ -63,10 +63,10 @@
 
             <br>
             <button type="submit" name="action" value="Update"> Update </button>
-        </form>
+            </form>
 
               
-      </div> 
+      <!-- </div> -->
 
     </body>
 </html>
