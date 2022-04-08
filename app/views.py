@@ -150,10 +150,14 @@ def edit(request, id):
 
     if request.POST:
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s"
-                    , [request.POST['first_name'], request.POST['last_name'],
-                        request.POST['time_availability'] , request.POST['location_id'], id ])
             status = 'Student edited successfully!'
+            try:
+                cursor.execute("UPDATE students SET first_name = %s, last_name = %s, pass = %s, admin_rights = %s, time_availability = %s, location_id = %s WHERE email = %s"
+                    , [request.POST['first_name'], request.POST['last_name'],request.POST['pass'], request.POST['admin_rights'],
+                        request.POST['time_availability'] , request.POST['location_id'], id ])
+            except:
+                status = 'Integrity constraint violated!'
+            
             cursor.execute("SELECT * FROM students WHERE email = %s", [id])
             obj = cursor.fetchone()
 
