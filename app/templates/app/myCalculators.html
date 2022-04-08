@@ -58,20 +58,22 @@
         <table border=1>
             <thead>
                 <th> Brand </th>
-                <th>Serial Number</th>
-                <th>Type</th>
+                <th> Serial Number </th>
+                <th> Type </th>
+                <th> Owner </th>
             </thead>
             {% for loan in loaned %}
             <tr>
                 <td> {{loan.2}} </td>
                 <td> {{loan.0}} </td>
                 <td> {{loan.1}} </td>
+                <td> {{loan.3}} </td>
                 <td> 
                     <form method="POST" style="display: inline;"> 
                         {% csrf_token %}
                         <input type="hidden" name="brand" value="{{loan.2}}"/>
                         <input type="hidden" name="serial_number" value="{{loan.0}}"/>
-                        <button onclick="return confirm('Are you sure you want to return {{loan.2}}-{{loan.0}} to {{loan.4}}?');" type="submit" name="return" value="return">Return</button> 
+                        <button onclick="return confirm('Are you sure you want to return {{loan.2}}-{{loan.0}} to {{loan.3}}?');" type="submit" name="return" value="return">Return</button> 
                     </form> 
                 </td>
             {% endfor %}
