@@ -174,3 +174,27 @@ nav .icon-burger .line{
     display: flex;
     gap: 50px;
 }
+
+.content .table-fixed {
+    height: 100px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+}
+
+.content .table-fixed thead th{
+    position: sticky;
+    top: 0;
+}
+
+.content .table-fixed tbody {
+    display: block;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.content .table-fixed thead,
+.content .table-fixed tbody tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
