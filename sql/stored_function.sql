@@ -1,3 +1,5 @@
+--to display "time_availability" column's entries from "students" table neatly
+
 CREATE FUNCTION transformed_time(arg INTEGER) RETURNS VARCHAR(5) AS $$ 
 BEGIN
 	IF arg < 10 THEN
