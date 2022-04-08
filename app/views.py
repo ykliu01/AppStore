@@ -303,7 +303,7 @@ def findCalculators(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
                 
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
         
     return render(request,'app/findCalculators.html', result_dict)
 
@@ -354,7 +354,8 @@ def findCalculators_time(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
+
         
     return render(request,'app/findCalculators_time.html', result_dict)
 
@@ -407,7 +408,7 @@ def findCalculators_location(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
         
     return render(request,'app/findCalculators_location.html', result_dict)
 
@@ -459,7 +460,7 @@ def findCalculators_type(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
         
     return render(request,'app/findCalculators_type.html', result_dict)
 
@@ -511,7 +512,7 @@ def findCalculators_time_loc(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
         
     return render(request,'app/findCalculators_time_loc.html', result_dict)
 
@@ -562,7 +563,7 @@ def findCalculators_time_type(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
         
     return render(request,'app/findCalculators_time_type.html', result_dict)
 
@@ -613,7 +614,7 @@ def findCalculators_loc_type(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
         
     return render(request,'app/findCalculators_loc_type.html', result_dict)
 
@@ -662,7 +663,7 @@ def findCalculators_all(request):
 
                 messages.success(request, 'Borrowed sucessfully!')
             
-            return render(request, "app/homepage.html")
+            return render(request, 'app/findCalculators.html')
             
     return render(request, 'app/findCalculators_all.html', result_dict)
 
