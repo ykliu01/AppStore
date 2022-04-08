@@ -708,7 +708,7 @@ def settings(request):
             username = request.session['username']
         cursor.execute("SELECT s.email, s.first_name, s.last_name, s.time_availability, s.location_id FROM students s WHERE s.email = %s", [username])
         obj = cursor.fetchone()
-    
+    context ={}
     context["obj"] = obj
     if request.POST:
         with connection.cursor() as cursor:
