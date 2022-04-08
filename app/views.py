@@ -166,7 +166,6 @@ def myCalculators(request, id):
                 cursor.execute("DELETE FROM calculators cal WHERE cal.serial_number = %s AND cal.brand = %s", [request.POST['serial_number'], request.POST['brand']])
         if request.POST['action'] == 'return':
             with connection.cursor() as cursor:
-                cursor.execute("UPDATE calculators SET availability = 'available' WHERE serial_number = %s AND brand = %s", [request.POST['serial_number'], request.POST['brand']])
                 cursor.execute("DELETE FROM loan l WHERE l.brand = %s AND l.serial_number = %s", [request.POST['brand'], request.POST['serial_number']])
                 cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
                 calculator = cursor.fetchall()
