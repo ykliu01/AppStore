@@ -321,7 +321,7 @@ def findCalculators_time(request):
     if request.POST:        
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
-                select_statement="SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, transformed_time(s.time_availability), s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) ORDER by s.time_availability ASC"
+                select_statement="SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email, transformed_time(s.time_availability) FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) ORDER by s.time_availability ASC"
                 user_input = [request.POST['s.time_availability']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
@@ -375,7 +375,7 @@ def findCalculators_location(request):
                 
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
-                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, transformed_time(s.time_availability), s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s ORDER BY l.location_name ASC"
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email, transformed_time(s.time_availability) FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s ORDER BY l.location_name ASC"
                 user_input = [request.POST['l.location_name']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
@@ -427,7 +427,7 @@ def findCalculators_type(request):
                
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
-                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, transformed_time(s.time_availability), s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND c.calc_type=%s ORDER BY c.calc_type ASC"
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name,s.time_availability, s.first_name, s.last_name, s.email, transformed_time(s.time_availability) FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND c.calc_type=%s ORDER BY c.calc_type ASC"
                 user_input = [request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
@@ -479,7 +479,7 @@ def findCalculators_time_loc(request):
                 
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
-                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, transformed_time(s.time_availability), s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND l.location_name = %s ORDER BY l.location_name ASC"
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email, transformed_time(s.time_availability) FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND l.location_name = %s ORDER BY l.location_name ASC"
                 user_input = [request.POST['s.time_availability'], request.POST['l.location_name']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
@@ -530,7 +530,7 @@ def findCalculators_time_type(request):
     if request.POST:        
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
-                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, transformed_time(s.time_availability), s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND c.calc_type=%s ORDER BY s.time_availability ASC"
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email, transformed_time(s.time_availability) FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND ((CAST(%s as INTEGER)-s.time_availability) BETWEEN 0 AND 59) AND c.calc_type=%s ORDER BY s.time_availability ASC"
                 user_input = [request.POST['s.time_availability'],  request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
@@ -581,7 +581,7 @@ def findCalculators_loc_type(request):
     if request.POST:
         if request.POST['action'] == 'Submit':
             with connection.cursor() as cursor:
-                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, transformed_time(s.time_availability), s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s AND c.calc_type=%s ORDER BY l.location_name ASC"
+                select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email, transformed_time(s.time_availability) FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id AND l.location_name = %s AND c.calc_type=%s ORDER BY l.location_name ASC"
                 user_input = [request.POST['l.location_name'], request.POST['c.calc_type']]
                 cursor.execute(select_statement,user_input)
                 available_calculators = cursor.fetchall() 
@@ -622,7 +622,7 @@ def findCalculators_all(request):
     result_dict={}
 
     with connection.cursor() as cursor:
-        select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, transformed_time(s.time_availability), s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id ORDER BY c.calc_type ASC"
+        select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email, transformed_time(s.time_availability) FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id ORDER BY c.calc_type ASC"
         cursor.execute(select_statement)
         available_calculators = cursor.fetchall() 
         if request.session.has_key('username'):
