@@ -1,37 +1,70 @@
 <html>
-<body>
-    <h2>Add New Calculator</h2>
-    <a href="/index">Back to home</a>
+    
+    <head>
+        <title>Calcurator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'app/style/style-addCalculator.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,700" rel="stylesheet">
+    </head>
+    
+    <body>
+        
+        <nav>
+            <input id="nav-toggle" type="checkbox">
+            <div class="logo"><strong>CALC</strong>URATOR</div>
+            <ul class="links">
+                {% for admin_check in admin %}
+                {% if admin_check %}
+                <li><a href="index">ADMIN</a></li>
+                {% endif %}
+                {% endfor %}
+                <li><a href="homepage">Home</a></li>
+                <li><a href="findCalculators">Find Calculator</a></li>
+                <li><a href="myCalculators/{{ email.0 }}">My Calculator</a></li>
+                <li><a href="hot">Hot Area</a></li>
+                <li><a href="settings">Settings</a></li>
+            </ul>
+            <label for="nav-toggle" class="icon-burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label>
+        </nav>
+        
+        <div class = 'content'>
+            <h2>Add New Calculator</h2>
+            <a href="/index">Back to home</a>
 
-    <p style="color:red">{{ status|safe }}</p>
-    <!-- Create a Form -->
-    <form method="POST">
-        <!-- Security token by Django -->
-        {% csrf_token %}
-        <!-- form -->
-        <div id="div_id_brand" class="control-group"> <label for="id_brand" class="control-label requiredField">
-        Brand<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="brand" maxlength="32" class="textinput textInput" required="" id="id_brand"> </div> </div>
-        <div id="div_id_serial_number" class="control-group"> <label for="id_serial_number" class="control-label requiredField">
+            <p style="color:red">{{ status|safe }}</p>
+            <!-- Create a Form -->
+            <form method="POST">
+                <!-- Security token by Django -->
+                {% csrf_token %}
+                <!-- form -->
+                <div id="div_id_brand" class="control-group"> <label for="id_brand" class="control-label requiredField">
+                Brand<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="brand" maxlength="32" class="textinput textInput" required="" id="id_brand"> </div> </div>
+                <div id="div_id_serial_number" class="control-group"> <label for="id_serial_number" class="control-label requiredField">
 
-        Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="serial_number" maxlength="32" class="textinput textInput" required="" id="id_serial_number"> </div> </div> 
-        <select id="calc_type" name="calc_type">
-            <option value="scientific">scientific</option>
-            <option value="graphing">graphing</option>
-            <option value="financial">financial</option>
-        </select>
-        </div> </div> <div id="div_id_price" class="control-group"> <label for="id_price" class="control-label requiredField">
-        Price<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="price" maxlength="64" class="textinput textInput" required="" id="id_calc_type"> </div> </div> <div id="div_id_calc_condition" class="control-group"> <label for="id_calc_condition" class="control-label requiredField">
-        Calculator Condition<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="calc_condition" class="textInput textInput" required="" id="id_calc_condition"> </div> </div> 
-        <select id="availability" name="availability">
-            <option value="available">available</option>
-            <option value="not available">not available</option>
-        </select>
+                Serial Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="serial_number" maxlength="32" class="textinput textInput" required="" id="id_serial_number"> </div> </div> 
+                <select id="calc_type" name="calc_type">
+                    <option value="scientific">scientific</option>
+                    <option value="graphing">graphing</option>
+                    <option value="financial">financial</option>
+                </select>
+                </div> </div> <div id="div_id_price" class="control-group"> <label for="id_price" class="control-label requiredField">
+                Price<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="price" maxlength="64" class="textinput textInput" required="" id="id_calc_type"> </div> </div> <div id="div_id_calc_condition" class="control-group"> <label for="id_calc_condition" class="control-label requiredField">
+                Calculator Condition<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="calc_condition" class="textInput textInput" required="" id="id_calc_condition"> </div> </div> 
+                <select id="availability" name="availability">
+                    <option value="available">available</option>
+                    <option value="not available">not available</option>
+                </select>
 
-        <div id="div_id_student_email" class="control-group"> <label for="id_student_email" class="control-label requiredField">
-        Student Email<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="student_email" maxlength="64" class="textinput textInput" required="" id="id_student_email"> </div> </div>
-        <br>
-        <button type="submit" value="Add">Add</button>
-    </form>
-</body>
+                <div id="div_id_student_email" class="control-group"> <label for="id_student_email" class="control-label requiredField">
+                Student Email<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="student_email" maxlength="64" class="textinput textInput" required="" id="id_student_email"> </div> </div>
+                <br>
+                <button type="submit" value="Add">Add</button>
+            </form>
+        </div>
+    </body>
 </html>
 
