@@ -72,7 +72,7 @@ def login(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
             cursor.execute("CREATE OR REPLACE VIEW hot_location AS SELECT s.location_id, COUNT (*) as count FROM students s GROUP BY s.location_id;")
-            cursor.execute("SELECT * FROM students WHERE email = %s AND pass = %s", [request.POST['email']])
+            cursor.execute("SELECT * FROM students WHERE email = %s, [request.POST['email']])
             student = cursor.fetchone()
             ## No customer with same id
             if student == None:
