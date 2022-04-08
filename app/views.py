@@ -172,8 +172,10 @@ def myCalculators(request, id):
     with connection.cursor() as cursor:
         cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [id])
         email = cursor.fetchone()
+        cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand, s.first_name, s.last_name, l.owner_email FROM loan l, calculators cal, students s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
+        loaned = cursor.fetchall()
 
-    result_dict = {'email': email}
+    result_dict = {'email': email, 'loaned': loaned}
     
     if request.POST:
         if request.POST['action'] == 'delete':
@@ -184,7 +186,7 @@ def myCalculators(request, id):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE serial_number = %s AND brand = %s", [request.POST['serial_number'], request.POST['brand']])
                 cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
                 calculator = cursor.fetchall()
-                cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand FROM loan l, calculators cal, students s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
+                cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand, s.first_name, s.last_name, l.owner_email FROM loan l, calculators cal, students s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
                 loaned = cursor.fetchall()
                 result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
             return render(request, 'app/myCalculators.html', result_dict)
@@ -192,7 +194,7 @@ def myCalculators(request, id):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
         calculator = cursor.fetchall()
-        cursor.execute("SELECT cal.serial_number, cal.calc_type FROM loan l, calculators cal WHERE l.borrower_email = %s AND l.owner_email = cal.email", [id])
+        cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand, s.first_name, s.last_name, s.email FROM loan l, calculators cal, student s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
         loaned = cursor.fetchall()
         result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
 
@@ -721,8 +723,9 @@ def settings(request):
     context["obj"] = obj
     
     if request.POST:
-        with connection.cursor() as cursor:
-            cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s", [request.POST['first_name'], request.POST['last_name'],request.POST['time_availability'] , request.POST['location_id'], [username]])
+        if request.POST['action'] == 'Update':
+            with connection.cursor() as cursor:
+                cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s", [request.POST['first_name'], request.POST['last_name'],request.POST['time_availability'] , request.POST['location_id'], username])
     
     return render(request, "app/settings.html", context) #, result_dict)
 
