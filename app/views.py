@@ -710,14 +710,20 @@ def findCalculators_all(request):
 #    return render(request, "app/settings.html", result_dict)
 
 def settings(request):
-    
+      
     with connection.cursor() as cursor:
         if request.session.has_key('username'):
             username = request.session['username']
         cursor.execute("SELECT s.email, s.first_name, s.last_name, s.time_availability, s.location_id FROM students s WHERE s.email = %s", [username])
         obj = cursor.fetchone()
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        email = cursor.fetchone()
+
+    result_dict = {'email':email}
+    
     context ={}
     context["obj"] = obj
+    
     if request.POST:
         with connection.cursor() as cursor:
             cursor.execute("UPDATE students SET first_name = %s, last_name = %s, time_availability = %s, location_id = %s WHERE email = %s", [request.POST['first_name'], request.POST['last_name'],request.POST['time_availability'] , request.POST['location_id'], [username]])
