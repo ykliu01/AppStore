@@ -32,7 +32,7 @@
         
         Preferred Time
         <br>
-        <div id="div_id_time_availability" class="control-group"> <select id="div_id_time_availability" name="time_availability">
+        <div id="div_id_time_availability" class="control-group"> <select id="div_id_time_availability" name="time_availability" required="">
                 <option value=0>00.00</option>
                 <option value=30>00.30</option>
                 <option value=100>01.00</option>
@@ -82,10 +82,139 @@
                 <option value=2300>23.00</option>
                 <option value=2330>23.30</option>
             </select></div>
+        <br><br>
         
-        <!--<div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
+        View Location (MRT station, mind the location ID before it) <br>
+            <div id="div_id_location_name" class="control-group"><select id="div_id_location_name" name="location_name">
+                <option value="Admiralty">1. Admiralty</option>
+                <option value="Aljunied">2. Aljunied</option>
+                <option value="Ang Mo Kio">3. Ang Mo Kio</option>
+                <option value="Bartley">4. Bartley</option>
+                <option value="Bayfront">5. Bayfront</option>
+                <option value="Beauty World">6. Beauty World</option>
+                <option value="Bedok">7. Bedok</option>
+                <option value="Bedok North">8. Bedok North</option>
+                <option value="Bedok Reservoir">9. Bedok Reservoir</option>
+                <option value="Bencoolen">10. Bencoolen</option>
+                <option value="Bendemeer">11 Bendemeer</option>
+                <option value="Bishan">12 Bishan</option>
+                <option value="Boon Keng">13 Boon Keng</option>
+                <option value="Boon Lay">14 Boon Lay</option>
+                <option value="Botanic Gardens">15 Botanic Gardens</option>
+                <option value="Braddell">16 Braddell</option>
+                    <option value="Bras Basah">17 Bras Basah</option>
+                    <option value="Buangkok">18 Buangkok</option>
+                    <option value="Bugis">19 Bugis</option>
+                    <option value="Bukit Batok">20 Bukit Batok</option>
+                    <option value="Bukit Gombak">21 Bukit Gombak</option>
+                    <option value="Bukit Panjang">22 Bukit Panjang</option>
+                    <option value="Buona Vista">23 Buona Vista</option>
+                    <option value="Caldecott">24 Caldecott</option>
+                    <option value="Canberra">25 Canberra</option>
+                    <option value="Cashew">26 Cashew</option>
+                    <option value="Changi Airport">27 Changi Airport</option>
+                    <option value="Chinatown">28 Chinatown</option>
+                    <option value="Chinese Garden">29 Chinese Garden</option>
+                    <option value="Choa Chu Kang">30 Choa Chu Kang</option>
+                    <option value="City Hall">31 City Hall</option>
+                    <option value="Clarke Quay">32 Clarke Quay</option>
+                    <option value="Clementi">33 Clementi</option>
+                    <option value="Commonwealth">34 Commonwealth</option>
+                    <option value="Dakota">35 Dakota</option>
+                    <option value="Dhoby Ghaut">36 Dhoby Ghaut</option>
+                    <option value="Dover">37 Dover</option>
+                    <option value="Downtown">38 Downtown</option>
+                    <option value="Esplanade">39 Esplanade</option>
+                    <option value="Eunos">40 Eunos</option>
+                    <option value="Expo">41 Expo</option>
+                    <option value="Farrer Park">42 Farrer Park</option>
+                    <option value="Farrer Road">43 Farrer Road</option>
+                    <option value="Fort Canning">44 Fort Canning</option>
+                    <option value="Geylang Bahru">45 Geylang Bahru</option>
+                    <option value="Gul Circle">46 Gul Circle</option>
+                    <option value="HarbourFront">47 HarbourFront</option>
+                    <option value="Haw Par Villa">48 Haw Par Villa</option>
+                    <option value="Hillview">49 Hillview</option>
+                    <option value="Holland Village">50 Holland Village</option>
+                    <option value="Hougang">51 Hougang</option>
+                    <option value="Jalan Besar">52 Jalan Besar</option>
+                    <option value="Joo Koon">53 Joo Koon</option>
+                    <option value="Jurong East">54 Jurong East</option>
+                    <option value="Kaki Bukit">55 Kaki Bukit</option>
+                    <option value="Kallang">56 Kallang</option>
+                    <option value="Kembangan">57 Kembangan</option>
+                    <option value="Kent Ridge">58 Kent Ridge</option>
+                    <option value="Khatib">59 Khatib</option>
+                    <option value="King Albert Park">60 King Albert Park</option>
+                    <option value="Kovan">61 Kovan</option>
+                    <option value="Kranji">62 Kranji</option>
+                    <option value="Labrador Park">63 Labrador Park</option>
+                    <option value="Lakeside">64 Lakeside</option>
+                    <option value="Lavender">65 Lavender</option>
+                    <option value="Little India">66 Little India</option>
+                    <option value="Lorong Chuan">67 Lorong Chuan</option>
+                    <option value="MacPherson">68 MacPherson</option>
+                    <option value="Marina Bay">69 Marina Bay</option>
+                    <option value="Marina South Pier">70 Marina South Pier</option>
+                    <option value="Marsiling">71 Marsiling</option>
+                    <option value="Marymount">72 Marymount</option>
+                    <option value="Mattar">73 Mattar</option>
+                    <option value="Mountbatten">74 Mountbatten</option>
+                    <option value="Newton">75 Newton</option>
+                    <option value="Nicoll Highway">76 Nicoll Highway</option>
+                    <option value="Novena">77 Novena</option>
+                    <option value="one-north">78 one-north</option>
+                    <option value="Orchard">79 Orchard</option>
+                    <option value="Outram Park">80 Outram Park</option>
+                    <option value="Pasir Panjang">81 Pasir Panjang</option>
+                    <option value="Pasir Ris">82 Pasir Ris</option>
+                    <option value="Paya Lebar">83 Paya Lebar</option>
+                    <option value="Pioneer">84 Pioneer</option>
+                    <option value="Potong Pasir">85 Potong Pasir</option>
+                    <option value="Promenade">86 Promenade</option>
+                    <option value="Punggol">87 Punggol</option>
+                    <option value="Queenstown">88 Queenstown</option>
+                    <option value="Raffles Place">89 Raffles Place</option>
+                    <option value="Redhill">90 Redhill</option>
+                    <option value="Rochor">91 Rochor</option>
+                    <option value="Sembawang">92 Sembawang</option>
+                    <option value="Sengkang">93 Sengkang</option>
+                    <option value="Serangoon">94 Serangoon</option>
+                    <option value="Simei">95 Simei</option>
+                    <option value="Sixth Avenue">96 Sixth Avenue</option>
+                    <option value="Somerset">97 Somerset</option>
+                    <option value="Stadium">98 Stadium</option>
+                    <option value="Stevens">99 Stevens</option>
+                    <option value="Tai Seng">100 Tai Seng</option>
+                    <option value="Tampines">103 Tampines</option>
+                    <option value="Tampines East">101 Tampines East</option>
+                    <option value="Tampines West">102 Tampines West</option>
+                    <option value="Tan Kah Kee">104 Tan Kah Kee</option>
+                    <option value="Tanah Merah">105 Tanah Merah</option>
+                    <option value="Tanjong Pagar">106 Tanjong Pagar</option>
+                    <option value="Telok Ayer">107 Telok Ayer</option>
+                    <option value="Telok Blangah">108 Telok Blanga</option>
+                    <option value="Tiong Bahru">109 Tiong Bahru</option>
+                    <option value="Toa Payoh">110 Toa Payoh</option>
+                    <option value="Tuas Crescent">111 Tuas Crescent</option>
+                    <option value="Tuas Link">112 Tuas Link</option>
+                    <option value="Tuas West Road">113 Tuas West Road</option>
+                    <option value="Ubi">114 Ubi</option>
+                    <option value="Upper Changi">115 Upper Changi</option>
+                    <option value="Woodlands">116 Woodlands</option>
+                    <option value="Woodlands North">117 Woodlands North</option>
+                    <option value="Woodlands South">118 Woodlands South</option>
+                    <option value="Woodleigh">119 Woodleigh</option>
+                    <option value="Yew Tee">120 Yew Tee</option>
+                    <option value="Yio Chu Kang">121 Yio Chu Kang</option>
+                    <option value="Yishun">122 Yishun</option>
+
+                </select></div>
+                <br><br>
+        
+        <div id="div_id_time_availability" class="control-group"> <label for="id_time_availability" class="control-label requiredField">
         Preferred timing<span class="asteriskField">*</span> </label> <div class="controls"> 
-        <input type="number" name="time_availability" value="{{obj.5}}" class="numberinput" required="" id="id_time_availability"> </div> </div>--> 
+        <input type="number" name="time_availability" value="{{obj.5}}" class="numberinput" required="" id="id_time_availability"> </div> </div>
         
         <div id="div_id_number_of_transaction" class="control-group"> <label for="id_number_of_transaction" class="control-label requiredField">
         number of transaction<span class="asteriskField">*</span> </label> <div class="controls"> 
