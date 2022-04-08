@@ -629,6 +629,7 @@ def findCalculators_loc_type(request):
     return render(request,'app/findCalculators_loc_type.html', result_dict)
 
 def findCalculators_all(request):
+    email_dict={}
     result_dict={}
     
     with connection.cursor() as cursor:
@@ -637,7 +638,7 @@ def findCalculators_all(request):
         cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
         email = cursor.fetchone()
     
-    result_dict = {'email':email}
+    email_dict = {'email':email}
 
     with connection.cursor() as cursor:
         select_statement = "SELECT c.calc_type, c.brand, c.serial_number, c.price, c.calc_condition, l.location_name, s.time_availability, s.first_name, s.last_name, s.email FROM calculators c, students s, locations l WHERE c.availability='available' AND c.email = s.email AND l.location_id=s.location_id ORDER BY c.calc_type ASC"
