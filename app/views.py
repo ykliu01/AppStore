@@ -170,12 +170,10 @@ def edit(request, id):
 def myCalculators(request, id):
     
     with connection.cursor() as cursor:
-        if request.session.has_key('username'):
-            username = request.session['username']
-        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [username])
+        cursor.execute("SELECT s.email FROM students s WHERE s.email = %s", [id])
         email = cursor.fetchone()
 
-    result_dict = {'email':email}
+    result_dict = {'email': email}
     
     if request.POST:
         if request.POST['action'] == 'delete':
