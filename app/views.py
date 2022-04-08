@@ -184,7 +184,7 @@ def myCalculators(request, id):
                 cursor.execute("UPDATE calculators SET availability = 'not available' WHERE serial_number = %s AND brand = %s", [request.POST['serial_number'], request.POST['brand']])
                 cursor.execute("SELECT * FROM calculators cal WHERE cal.email = %s", [id])
                 calculator = cursor.fetchall()
-                cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand FROM loan l, calculators cal, students s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
+                cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand, s.first_name FROM loan l, calculators cal, students s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
                 loaned = cursor.fetchall()
                 result_dict = {'calculators': calculator, 'loaned': loaned, 'student_email':id}
             return render(request, 'app/myCalculators.html', result_dict)
