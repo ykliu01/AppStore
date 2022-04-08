@@ -40,9 +40,3 @@ return_location_id INT NOT NULL REFERENCES locations(location_id) ON UPDATE CASC
 brand VARCHAR(32),
 serial_number VARCHAR(32),
 FOREIGN KEY (brand, serial_number) REFERENCES calculators(brand, serial_number) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED);
-
-CREATE TABLE IF NOT EXISTS test_students(
-id INT PRIMARY KEY,
-time INT,
-location_id INT REFERENCES locations(location_id) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED);
-
