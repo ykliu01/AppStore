@@ -175,7 +175,7 @@ def myCalculators(request, id):
         cursor.execute("SELECT cal.serial_number, cal.calc_type, cal.brand, s.first_name, s.last_name, l.owner_email FROM loan l, calculators cal, students s WHERE l.borrower_email = %s AND l.owner_email = cal.email AND l.owner_email = s.email", [id])
         loaned = cursor.fetchall()
 
-    result_dict = {'email': email}
+    result_dict = {'email': email, 'loaned': loaned}
     
     if request.POST:
         if request.POST['action'] == 'delete':
